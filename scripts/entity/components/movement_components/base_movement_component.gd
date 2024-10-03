@@ -1,4 +1,4 @@
-class_name base_movement_component extends CharacterBody2D
+class_name BaseMovementComponent extends CharacterBody2D
 
 ## Event called when the jump input starts.
 signal on_jump_started()
