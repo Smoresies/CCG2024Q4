@@ -18,4 +18,5 @@ zoom = Vector2(4, 4)
 position_smoothing_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("1_n1ip3")]
-position = Vector2(178, 172)
+position = Vector2(185, 185)
+DECELERATION_TIME = 5.0
