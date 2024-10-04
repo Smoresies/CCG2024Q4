@@ -11,9 +11,9 @@ var deceleration: float = MAX_SPEED / DECELERATION_TIME
 func _physics_process(delta: float) -> void:
 	apply_gravity(delta)
 	
-	player_jump()
+	apply_player_jump()
 	
-	horizontal_movement(delta)
+	apply_horizontal_movement(delta)
 
 	move_and_slide()
 
@@ -23,11 +23,11 @@ func apply_gravity(delta: float):
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
-func player_jump():
+func apply_player_jump():
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 
-func horizontal_movement(delta: float):
+func apply_horizontal_movement(delta: float):
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction := Input.get_axis("left", "right")
