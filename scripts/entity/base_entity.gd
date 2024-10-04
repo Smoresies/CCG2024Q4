@@ -7,9 +7,10 @@ class_name BaseEntity extends Node
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	input_component.on_horizontal_movement_input_started.connect(movement_component.on_movement_started)
+	input_component.on_horizontal_movement_input.connect(movement_component.on_movement)
+	input_component.on_horizontal_movement_input_cancelled.connect(movement_component.on_movement_cancelled)
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+	input_component.on_jump_input_started.connect(movement_component.on_jump_started)
+	input_component.on_jump_input.connect(movement_component.on_jump)
+	input_component.on_jump_input_cancelled.connect(movement_component.on_jump_cancelled)
