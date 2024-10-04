@@ -19,3 +19,6 @@ addons/Todo_Manager/todo.cfg
 *.sln
 
 *.tmp
+
+# vscode
+.vscode/
