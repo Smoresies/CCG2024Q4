@@ -39,6 +39,5 @@ func apply_horizontal_movement(delta: float):
 
 	else: # Direction button inactive
 		# Decelerate towards zero speed
-		print(deceleration)
 		velocity.x = move_toward(velocity.x, 0, deceleration * delta)
 	

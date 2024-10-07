@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://b72i1rjjo3key"]
+[gd_scene load_steps=4 format=3 uid="uid://b72i1rjjo3key"]
 
 [ext_resource type="PackedScene" uid="uid://b72fdcrlypc86" path="res://scenes/player.tscn" id="1_n1ip3"]
+[ext_resource type="PackedScene" uid="uid://cyat18updlfha" path="res://scenes/enemy_template.tscn" id="2_05qbi"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_sj5p0"]
 
@@ -20,3 +21,6 @@ position_smoothing_enabled = true
 [node name="Player" parent="." instance=ExtResource("1_n1ip3")]
 position = Vector2(185, 185)
 DECELERATION_TIME = 5.0
+
+[node name="EnemyTemplate" parent="." instance=ExtResource("2_05qbi")]
+position = Vector2(251, 195)
