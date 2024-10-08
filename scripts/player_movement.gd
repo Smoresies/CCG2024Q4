@@ -1,6 +1,5 @@
 class_name Player extends CharacterBody2D
 
-
 @export var MAX_SPEED: int = 200
 @export var JUMP_VELOCITY: int = -300.0
 @export var ACCELERATION: int = 1500
@@ -31,7 +30,6 @@ func apply_horizontal_movement(delta: float):
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction := Input.get_axis("left", "right")
-
 	
 	if direction: # Direction button active
 		# Accelerate towards the target speed
@@ -41,4 +39,5 @@ func apply_horizontal_movement(delta: float):
 		# Decelerate towards zero speed
 		print(deceleration)
 		velocity.x = move_toward(velocity.x, 0, deceleration * delta)
+	
 	
