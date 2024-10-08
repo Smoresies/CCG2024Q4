@@ -15,7 +15,6 @@ func _ready() -> void:
 
 	# if the movement component and input component exist connect the movement together.
 	if movement_component && input_component:
-		print("meow")
 		input_component.on_horizontal_movement_input.connect(movement_component.on_movement_input)
 
 		input_component.on_jump_input_started.connect(movement_component.on_jump_input_started)
