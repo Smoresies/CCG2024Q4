@@ -1,11 +1,11 @@
 [gd_scene load_steps=13 format=3 uid="uid://cplaaen2uodhm"]
 
 [ext_resource type="Script" path="res://scripts/entity/base_entity.gd" id="1_e765f"]
-[ext_resource type="Script" path="res://scripts/entity/components/input_components/base_input_component.gd" id="2_e6iaj"]
 [ext_resource type="Script" path="res://scripts/entity/components/health_and_status_components/base_health_and_status_component.gd" id="3_jfr1s"]
 [ext_resource type="Script" path="res://scripts/entity/components/attack_components/base_attack_component.gd" id="4_j1hws"]
-[ext_resource type="Script" path="res://scripts/entity/components/movement_components/base_movement_component.gd" id="5_osu1u"]
+[ext_resource type="Script" path="res://scripts/entity/components/movement_components/player_movement_component.gd" id="5_hgkaw"]
 [ext_resource type="Texture2D" uid="uid://duhsy7vxy8hdl" path="res://sources/knight.png" id="6_cme2n"]
+[ext_resource type="Script" path="res://scripts/entity/components/input_components/player_input_component.gd" id="6_snpov"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dsw0d"]
 
@@ -47,13 +47,10 @@ animations = [{
 
 [node name="Entity" type="Node2D" node_paths=PackedStringArray("movement_component", "input_component", "health_and_status_component", "attack_components")]
 script = ExtResource("1_e765f")
-movement_component = NodePath("BaseMovementComponent")
-input_component = NodePath("BaseInputComponent")
+movement_component = NodePath("PlayerMovementComponent")
+input_component = NodePath("PlayerInputComponent")
 health_and_status_component = NodePath("BaseHealthAndStatusComponent")
 attack_components = [NodePath("BaseAttackComponent")]
-
-[node name="BaseInputComponent" type="Node" parent="."]
-script = ExtResource("2_e6iaj")
 
 [node name="BaseHealthAndStatusComponent" type="Node" parent="."]
 script = ExtResource("3_jfr1s")
@@ -61,13 +58,16 @@ script = ExtResource("3_jfr1s")
 [node name="BaseAttackComponent" type="Node" parent="."]
 script = ExtResource("4_j1hws")
 
-[node name="BaseMovementComponent" type="CharacterBody2D" parent="."]
-script = ExtResource("5_osu1u")
+[node name="PlayerInputComponent" type="Node" parent="."]
+script = ExtResource("6_snpov")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BaseMovementComponent"]
+[node name="PlayerMovementComponent" type="CharacterBody2D" parent="."]
+script = ExtResource("5_hgkaw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerMovementComponent"]
 shape = SubResource("CapsuleShape2D_dsw0d")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="BaseMovementComponent"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PlayerMovementComponent"]
 position = Vector2(1, -12)
 sprite_frames = SubResource("SpriteFrames_2vlp2")
 autoplay = "default"
