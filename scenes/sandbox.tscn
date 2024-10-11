@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://db57whnmfxr41"]
 
-[ext_resource type="PackedScene" uid="uid://cplaaen2uodhm" path="res://scenes/entity.tscn" id="1_rhfi0"]
+[ext_resource type="PackedScene" uid="uid://cplaaen2uodhm" path="res://scenes/entity.tscn" id="1_1nb0p"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_sj5p0"]
 
@@ -17,4 +17,4 @@ position = Vector2(185, 176)
 zoom = Vector2(4, 4)
 position_smoothing_enabled = true
 
-[node name="Entity" parent="." instance=ExtResource("1_rhfi0")]
+[node name="Entity" parent="." instance=ExtResource("1_1nb0p")]

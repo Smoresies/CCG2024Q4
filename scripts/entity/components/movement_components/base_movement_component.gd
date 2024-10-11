@@ -35,8 +35,7 @@ func _ready() -> void:
 
 ## Determines whether or not the entity is grounded or airborne this frame and
 ## saves the current state for use next frame.
-@warning_ignore("UNUSED_PARAMETER")
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	_try_to_run_grounded_events()
 	_was_grounded = is_on_floor()
 
