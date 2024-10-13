@@ -11,14 +11,15 @@ class_name PlayerMovementComponent extends BaseMovementComponent
 @export_range(0, 10, 0.1, "or_greater") var DECELERATION_TIME: float = 0.2
 
 ## The current input direction.
-var current_input_direction: float = 0
+var _current_input_direction: float = 0
 ## How fast the character decelerates after loss of input.
-var deceleration: float = MAX_SPEED / DECELERATION_TIME
+var _horizontal_deceleration: float = MAX_SPEED / DECELERATION_TIME
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	#do nothing
 	pass
+
 
 ## Applies movement to the character.
 func _physics_process(delta: float) -> void:
@@ -27,36 +28,33 @@ func _physics_process(delta: float) -> void:
 	apply_horizontal_movement(delta)
 	move_and_slide()
 
+
 func on_movement_input(horizontal_vector2: float) -> void:
-	if(current_input_direction == 0 && horizontal_vector2 != 0):
-		on_horizontal_movement_started.emit(horizontal_vector2)
-	elif(current_input_direction != 0 && horizontal_vector2 == 0):
-		on_horizontal_movement_cancelled.emit(horizontal_vector2)
-	elif current_input_direction != 0 && horizontal_vector2 != 0:
-		on_horizontal_movement.emit(horizontal_vector2)
-	
-	current_input_direction = horizontal_vector2
+	_current_input_direction = horizontal_vector2
+
 
 func on_jump_input_started() -> void:
 	if is_on_floor():
 		velocity.y = JUMP_VELOCITY
 
+
 func on_jump_input() -> void:
 	# do nothing
 	pass
 
+
 func on_jump_input_cancelled() -> void:
 	# do nothing
 	pass
-	
+
+
 ## Moves the entity based on the current input direction.
 func apply_horizontal_movement(delta: float):
  	# Direction button active
-	if current_input_direction:
+	if _current_input_direction:
 		# Accelerate towards the target speed
-		velocity.x = move_toward(velocity.x, current_input_direction * MAX_SPEED, ACCELERATION * delta)
+		velocity.x = move_toward(velocity.x, _current_input_direction * MAX_SPEED, ACCELERATION * delta)
 	 # Direction button inactive
 	else:
 		# Decelerate towards zero speed
-		velocity.x = move_toward(velocity.x, 0, deceleration * delta)
-	
+		velocity.x = move_toward(velocity.x, 0, _horizontal_deceleration * delta)

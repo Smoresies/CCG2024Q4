@@ -28,16 +28,23 @@ signal on_airborne_start()
 ## If the entity was grounded in the last physics frame.
 var _was_grounded: bool
 
+## The horizontal velocity last physics frame.
+var _previous_horizontal_velocity: float = 0
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	push_error('Abstract Class Instaniation Error: %s' % [name])
 	assert (false, 'Abstract Class Instaniation Error: %s' % [name])
 
+
 ## Determines whether or not the entity is grounded or airborne this frame and
 ## saves the current state for use next frame.
 func _physics_process(_delta: float) -> void:
+	emit_movement_signals()
 	_try_to_run_grounded_events()
 	_was_grounded = is_on_floor()
+	_previous_horizontal_velocity = velocity.x
+
 
 ## Determines if the signal on_grounded_start and on_airborne_start signals
 ## should be invoked and then invokes them if they should.
@@ -47,10 +54,12 @@ func _try_to_run_grounded_events():
 	elif  !_was_grounded && is_on_floor():
 		on_grounded_start.emit()
 
+
 ## Updates the velocity of the entity if it is grounded.
 func apply_gravity(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
+
 
 ## What the entity does when it receives movement input. Should be implemented in child class.
 @warning_ignore("UNUSED_PARAMETER")
@@ -75,3 +84,14 @@ func on_jump_input() -> void:
 func on_jump_input_cancelled() -> void:
 	push_error('Abstract Method Not Implemented Error: %s' % [name])
 	assert (false, 'Abstract Method Not Implemented Error: %s' % [name])
+
+
+## Calls the movement signals using the given velocity and previous velocity
+func emit_movement_signals():
+	if(velocity.x == 0 && _previous_horizontal_velocity != 0):
+		on_horizontal_movement_cancelled.emit(velocity.x)
+	elif(velocity.x != 0 && _previous_horizontal_velocity == 0):
+		on_horizontal_movement_started.emit(velocity.x)
+	elif velocity.x != 0 && _previous_horizontal_velocity != 0:
+		on_horizontal_movement.emit(velocity.x)
+	
