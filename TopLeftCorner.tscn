@@ -1,0 +1,55 @@
+[gd_scene load_steps=3 format=3 uid="uid://ciaxf1m5vrhfh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pkiqk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m2otk"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(4, -2)
+scale = Vector2(75, 25)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(10, 10)
+shape = SubResource("RectangleShape2D_pkiqk")
+
+[node name="StaticBody2D5" type="StaticBody2D" parent="."]
+position = Vector2(0, 501)
+scale = Vector2(50, 50)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D5"]
+position = Vector2(10, 10)
+shape = SubResource("RectangleShape2D_pkiqk")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+position = Vector2(2400, 0)
+scale = Vector2(75, 25)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(10, 10)
+shape = SubResource("RectangleShape2D_pkiqk")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+position = Vector2(0, 1500)
+scale = Vector2(75, 25)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+position = Vector2(10, 10)
+shape = SubResource("RectangleShape2D_pkiqk")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="."]
+position = Vector2(2400, 1500)
+scale = Vector2(75, 25)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4"]
+position = Vector2(10, 10)
+shape = SubResource("RectangleShape2D_pkiqk")
+
+[node name="StaticBody2D6" type="StaticBody2D" parent="."]
+position = Vector2(1500, 0)
+scale = Vector2(45, 15)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D6"]
+position = Vector2(10, 10)
+shape = SubResource("RectangleShape2D_m2otk")
