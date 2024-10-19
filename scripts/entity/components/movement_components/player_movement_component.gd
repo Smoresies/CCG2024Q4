@@ -36,6 +36,7 @@ func on_movement_input(horizontal_vector2: float) -> void:
 func on_jump_input_started() -> void:
 	if is_on_floor():
 		velocity.y = JUMP_VELOCITY
+		on_jump_started.emit()
 
 
 func on_jump_input() -> void:
@@ -49,7 +50,7 @@ func on_jump_input_cancelled() -> void:
 
 
 ## Moves the entity based on the current input direction.
-func apply_horizontal_movement(delta: float):
+func apply_horizontal_movement(delta: float) -> void:
  	# Direction button active
 	if _current_input_direction:
 		# Accelerate towards the target speed
