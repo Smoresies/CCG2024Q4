@@ -12,6 +12,15 @@ signal on_jump_input()
 @warning_ignore("UNUSED_SIGNAL")
 signal on_jump_input_cancelled()
 
+@warning_ignore("UNUSED_SIGNAL")
+signal on_attack_input_started()
+
+@warning_ignore("UNUSED_SIGNAL")
+signal on_attack_input()
+
+@warning_ignore("UNUSED_SIGNAL")
+signal on_attack_input_cancelled()
+
 ## Event called when the horizontal input is held.
 ## [br]
 ## [param horizontal_value] float: The horizontal input value. Should be implemented in child class.

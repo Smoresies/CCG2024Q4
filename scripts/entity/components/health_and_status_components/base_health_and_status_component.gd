@@ -1,52 +1,70 @@
 class_name BaseHealthAndStatusComponent extends Node
 
-## Event called when the health changes. Should be implemented in the child class.
-@warning_ignore("UNUSED_SIGNAL")
-signal on_health_changed(current_health: int)
 
-## Event called when the entity dies. Should be implemented in the child class.
-@warning_ignore("UNUSED_SIGNAL")
 signal on_death()
+@warning_ignore("UNUSED_SIGNAL")
+signal on_damage_taken()
+@warning_ignore("UNUSED_SIGNAL")
+signal on_healed()
+@warning_ignore("UNUSED_SIGNAL")
+signal on_attack()
+@warning_ignore("UNUSED_SIGNAL")
+signal on_move()
 
-## The current health of the entity.
-var health: int = 100
+
+var status_effects: Array = []
+
 
 ## The maximum health of the entity.
 @export var max_health: int = 100
-
-## The defense stat of the enemy, which reduces incoming damage.
-@export var defense: int = 10
-
-## Determines whether the entity is alive.
-var is_alive: bool = true
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	push_error('Abstract Class Instaniation Error: %s' % [name])
-	assert (false, 'Abstract Class Instaniation Error: %s' % [name])
+## The current health of the entity.
+var _current_health: int = max_health
 
 
-## Reduces health based on the damage taken and the enemy's defense.
-## [param damage] int: The raw damage taken.
-func take_damage(damage: int) -> void:
-	if is_alive:
-		var final_damage = max(damage - defense, 0)  # Ensures defense doesn't heal the enemy
-		health -= final_damage
+## Bonuses
+var flat_defense_bonus: int = 0
+var percent_defense_bonus: float = 1
+var flat_heal_bonus: int = 0
+var percent_heal_bonus: float = 1
+var flat_damage_bonus: int = 0
+var percent_damage_bonus: float = 1
+var flat_move_speed_bonus: int = 0
+var percent_move_speed_bonus: float = 1
+
+
+# func add_status_effect(status_effect: StatusEffect):
+	# TBD
+
+
+# func remove_status_effect(status_effect: StatusEffect):
+	# TBD
+
+
+## Reduces health based on the damage taken and the entity's defense.
+## [param damage_to_take] int: The raw damage taken.
+func take_damage(damage_to_take: int) -> void:
+	if _current_health > 0:
+		var final_damage = max((damage_to_take - flat_defense_bonus) * percent_defense_bonus, 0)
+		_current_health -= final_damage
+		on_damage_taken.emit()
 		_check_health_status()
 
 
-## Heals the enemy, ensuring it doesn't go over max health.
-## [param heal_amount] int: The amount of health to restore.
-func heal(heal_amount: int) -> void:
-	if is_alive:
-		health = min(health + heal_amount, max_health)
-		on_health_changed.emit(health)
+## Heals the entity, ensuring it doesn't go over max health.
+## [param health_to_heal] int: The amount of health to restore.
+func heal_damage(health_to_heal: int) -> void:
+	if _current_health > 0:
+		var final_health_gain: int = min((_current_health + health_to_heal + flat_heal_bonus) * percent_heal_bonus)
+		_current_health = min(final_health_gain, max_health)
+		on_healed.emit()
 
 
-## Checks the enemy's health and emits death or health change signals.
+## Checks the entity's health and emits death or health change signals.
 func _check_health_status() -> void:
-	if health <= 0:
-		is_alive = false
+	if _current_health <= 0:
 		on_death.emit()
-	else:
-		on_health_changed.emit()
+		_die()
+
+## Free's the queue of the entity
+func _die() -> void:
+	queue_free()

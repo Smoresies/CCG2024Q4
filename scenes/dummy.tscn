@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://c861ph2h6lepr"]
+
+[ext_resource type="Script" path="res://scripts/entity/components/health_and_status_components/base_health_and_status_component.gd" id="1_124w2"]
+[ext_resource type="Script" path="res://scripts/entity/base_entity.gd" id="1_krk0w"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_e2pqk"]
+
+[node name="Dummy" type="Node2D"]
+script = ExtResource("1_krk0w")
+
+[node name="BaseHealthAndStatusComponent" type="Node" parent="."]
+script = ExtResource("1_124w2")
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+collision_layer = 2
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+shape = SubResource("CapsuleShape2D_e2pqk")
