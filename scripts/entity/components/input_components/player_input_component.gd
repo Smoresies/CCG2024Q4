@@ -2,9 +2,9 @@ class_name PlayerInputComponent extends BaseInputComponent
 ## An extension to the [BaseInputComponent] class which takes in input from a player input device.
 
 
-const JUMP_INPUT_NAME: StringName = "jump"
-const LEFT_INPUT_NAME: StringName  = "left"
-const RIGHT_INPUT_NAME: StringName = "right"
+const JUMP_INPUT_NAME: StringName = &"jump"
+const LEFT_INPUT_NAME: StringName  = &"left"
+const RIGHT_INPUT_NAME: StringName = &"right"
 
 
 func _ready() -> void:

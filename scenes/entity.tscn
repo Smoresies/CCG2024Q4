@@ -59,6 +59,7 @@ script = ExtResource("3_jfr1s")
 script = ExtResource("4_j1hws")
 lock_on_area = NodePath("../PlayerMovementComponent/Area2D")
 measurement_position = NodePath("../PlayerMovementComponent")
+time_between_target_updates_in_seconds = 0.25
 
 [node name="PlayerInputComponent" type="Node" parent="."]
 script = ExtResource("6_snpov")
