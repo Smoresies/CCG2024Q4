@@ -55,8 +55,11 @@ attack_components = [NodePath("BaseAttackComponent")]
 [node name="BaseHealthAndStatusComponent" type="Node" parent="."]
 script = ExtResource("3_jfr1s")
 
-[node name="BaseAttackComponent" type="Node" parent="."]
+[node name="BaseAttackComponent" type="Node" parent="." node_paths=PackedStringArray("lock_on_area", "measurement_position")]
 script = ExtResource("4_j1hws")
+lock_on_area = NodePath("../PlayerMovementComponent/Area2D")
+measurement_position = NodePath("../PlayerMovementComponent")
+time_between_target_updates_in_seconds = 0.25
 
 [node name="PlayerInputComponent" type="Node" parent="."]
 script = ExtResource("6_snpov")
@@ -71,3 +74,9 @@ shape = SubResource("CapsuleShape2D_dsw0d")
 position = Vector2(1, -12)
 sprite_frames = SubResource("SpriteFrames_2vlp2")
 autoplay = "default"
+
+[node name="Area2D" type="Area2D" parent="PlayerMovementComponent"]
+collision_mask = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PlayerMovementComponent/Area2D"]
+polygon = PackedVector2Array(0, 0, 120, 90, 120, -90)
