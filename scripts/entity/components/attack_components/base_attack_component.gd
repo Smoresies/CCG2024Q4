@@ -1,11 +1,30 @@
 class_name BaseAttackComponent extends Node
 
+@warning_ignore("UNUSED_SIGNAL")
+signal on_attack_started()
 
-# Called when the node enters the scene tree for the first time.
+@warning_ignore("UNUSED_SIGNAL")
+signal on_attack()
+
+@warning_ignore("UNUSED_SIGNAL")
+signal on_attack_cancelled()
+
 func _ready() -> void:
-	pass # Replace with function body.
+    # Abstract class instantiation error
+    push_error('Abstract Class Instantiation Error: %s' % [name])
+    assert(false, 'Abstract Class Instantiation Error: %s' % [name])
 
+func on_attack_input_started() -> void:
+    # Abstract method error
+    push_error('Abstract Method Not Implemented Error: %s' % [name])
+    assert(false, 'Abstract Method Not Implemented Error: %s' % [name])
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	pass
+func on_attack_input() -> void:
+    # Abstract method error
+    push_error('Abstract Method Not Implemented Error: %s' % [name])
+    assert(false, 'Abstract Method Not Implemented Error: %s' % [name])
+
+func on_attack_input_cancelled() -> void:
+    # Abstract method error
+    push_error('Abstract Method Not Implemented Error: %s' % [name])
+    assert(false, 'Abstract Method Not Implemented Error: %s' % [name])
