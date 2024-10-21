@@ -1,7 +1,7 @@
 [gd_scene load_steps=49 format=3 uid="uid://b72fdcrlypc86"]
 
 [ext_resource type="AudioStream" uid="uid://bnaa47d42yp8e" path="res://sources/SFX/Player/Land/Player_Land_Dirt_v1.ogg" id="2_6y5cm"]
-[ext_resource type="Script" path="res://scenes/player_audio_manager.gd" id="2_mirnq"]
+[ext_resource type="Script" path="res://scripts/player_audio_manager.gd" id="2_mirnq"]
 [ext_resource type="Texture2D" uid="uid://cru6ng4m43trc" path="res://sources/knight.png" id="2_vsk4g"]
 [ext_resource type="AudioStream" uid="uid://r1aaf8460rr5" path="res://sources/SFX/Player/Footsteps/Player_Step_Dirt_v1.ogg" id="3_g578f"]
 [ext_resource type="AudioStream" uid="uid://c24y4yki1tema" path="res://sources/SFX/Player/Land/Player_Land_Dirt_v2.ogg" id="3_qf3p5"]
@@ -126,6 +126,23 @@ tracks/0/keys = {
 }]
 }
 
+[sub_resource type="Animation" id="Animation_jpuhp"]
+resource_name = "land"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player Audio Manager/Landing SFX")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
+
 [sub_resource type="Animation" id="Animation_2gj0e"]
 resource_name = "walk"
 tracks/0/type = "method"
@@ -141,23 +158,6 @@ tracks/0/keys = {
 "args": [0.0],
 "method": &"play"
 }, {
-"args": [0.0],
-"method": &"play"
-}]
-}
-
-[sub_resource type="Animation" id="Animation_jpuhp"]
-resource_name = "land"
-tracks/0/type = "method"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Player Audio Manager/Landing SFX")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"values": [{
 "args": [0.0],
 "method": &"play"
 }]
