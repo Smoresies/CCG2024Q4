@@ -1,12 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://c861ph2h6lepr"]
+[gd_scene load_steps=5 format=3 uid="uid://c861ph2h6lepr"]
 
 [ext_resource type="Script" path="res://scripts/entity/components/health_and_status_components/base_health_and_status_component.gd" id="1_124w2"]
 [ext_resource type="Script" path="res://scripts/entity/base_entity.gd" id="1_krk0w"]
+[ext_resource type="Texture2D" uid="uid://crknk8sxt53m0" path="res://sources/icon.svg" id="3_p1iry"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_e2pqk"]
 
-[node name="Dummy" type="Node2D"]
+[node name="Dummy" type="Node2D" node_paths=PackedStringArray("health_and_status_component")]
 script = ExtResource("1_krk0w")
+health_and_status_component = NodePath("BaseHealthAndStatusComponent")
 
 [node name="BaseHealthAndStatusComponent" type="Node" parent="."]
 script = ExtResource("1_124w2")
@@ -17,3 +19,8 @@ collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
 shape = SubResource("CapsuleShape2D_e2pqk")
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D/CollisionShape2D"]
+position = Vector2(0, 1)
+scale = Vector2(0.148438, 0.28125)
+texture = ExtResource("3_p1iry")

@@ -1,13 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://d305p8471rxhx"]
+[gd_scene load_steps=4 format=3 uid="uid://d305p8471rxhx"]
 
 [ext_resource type="Script" path="res://scripts/entity/components/projectile_components/base_projectile_component.gd" id="1_1fxq5"]
+[ext_resource type="Texture2D" uid="uid://crknk8sxt53m0" path="res://sources/icon.svg" id="2_howwq"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_k8rh7"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_05lk1"]
 
-[node name="projectile" type="Node2D"]
-
-[node name="BaseProjectileComponent" type="Area2D" parent="."]
+[node name="projectile" type="Area2D"]
+collision_layer = 4
+collision_mask = 2
 script = ExtResource("1_1fxq5")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BaseProjectileComponent"]
-shape = SubResource("CircleShape2D_k8rh7")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_05lk1")
+
+[node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D"]
+texture = ExtResource("2_howwq")
