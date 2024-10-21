@@ -16,7 +16,7 @@ var status_effects: Array = []
 
 
 ## The maximum health of the entity.
-@export var max_health: int = 100
+@export var max_health: int = 10
 ## The current health of the entity.
 var _current_health: int = max_health
 
@@ -43,6 +43,7 @@ var percent_move_speed_bonus: float = 1
 ## Reduces health based on the damage taken and the entity's defense.
 ## [param damage_to_take] int: The raw damage taken.
 func take_damage(damage_to_take: int) -> void:
+	print("Taking " + str(damage_to_take))
 	if _current_health > 0:
 		var final_damage = max((damage_to_take - flat_defense_bonus) * percent_defense_bonus, 0)
 		_current_health -= final_damage
@@ -67,4 +68,5 @@ func _check_health_status() -> void:
 
 ## Free's the queue of the entity
 func _die() -> void:
-	queue_free()
+	print("I died")
+	self.get_parent().queue_free()
