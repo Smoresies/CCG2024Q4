@@ -5,6 +5,7 @@ class_name PlayerInputComponent extends BaseInputComponent
 const JUMP_INPUT_NAME: StringName = &"jump"
 const LEFT_INPUT_NAME: StringName  = &"left"
 const RIGHT_INPUT_NAME: StringName = &"right"
+const ATTACK_INPUT_NAME: StringName = &"attack"
 
 
 func _ready() -> void:
@@ -21,3 +22,11 @@ func _input(_event: InputEvent) -> void:
 		on_jump_input_cancelled.emit()
 
 	on_horizontal_movement_input.emit(Input.get_axis(LEFT_INPUT_NAME, RIGHT_INPUT_NAME))
+
+	if Input.is_action_just_pressed(ATTACK_INPUT_NAME):
+		on_attack_input_started.emit()
+		on_attack_input.emit()
+	elif Input.is_action_pressed(ATTACK_INPUT_NAME):
+		on_attack_input.emit()
+	elif Input.is_action_just_released(ATTACK_INPUT_NAME):
+		on_attack_input_cancelled.emit()

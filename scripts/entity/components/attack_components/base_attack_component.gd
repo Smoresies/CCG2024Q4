@@ -24,11 +24,37 @@ var _current_target: Node2D = null
 ## If the update target timer is running.
 var _update_target_timer_running: bool = false
 
-# Called when the node enters the scene tree for the first time.
+@warning_ignore("UNUSED_SIGNAL")
+signal on_attack_started()
+
+@warning_ignore("UNUSED_SIGNAL")
+signal on_attack()
+
+@warning_ignore("UNUSED_SIGNAL")
+signal on_attack_cancelled()
+
 func _ready() -> void:
+	# Abstract class instantiation error
 	lock_on_area.body_entered.connect(_add_target)
 	lock_on_area.body_exited.connect(_remove_target)
 	on_target_change.connect(target_changed)
+
+func on_attack_input_started() -> void:
+	# Abstract method error
+	push_error('Abstract Method Not Implemented Error: %s' % [name])
+	assert(false, 'Abstract Method Not Implemented Error: %s' % [name])
+
+
+func on_attack_input() -> void:
+	# Abstract method error
+	push_error('Abstract Method Not Implemented Error: %s' % [name])
+	assert(false, 'Abstract Method Not Implemented Error: %s' % [name])
+
+
+func on_attack_input_cancelled() -> void:
+	# Abstract method error
+	push_error('Abstract Method Not Implemented Error: %s' % [name])
+	assert(false, 'Abstract Method Not Implemented Error: %s' % [name])
 
 
 ## Checks each target in the lock on area and then determines which is the closest. Emits an on_target_change signal if the target has changed.
@@ -56,6 +82,7 @@ func update_closest_target():
 		await(get_tree().create_timer(time_between_target_updates_in_seconds, false, true, false).timeout)
 		_update_target_timer_running = false
 
+
 ## Used for debug purposes only.
 func target_changed(previous_target, curr_target):
 	print("prev target: " + str(previous_target))
@@ -68,6 +95,7 @@ func _add_target(_body: Node2D):
 	if _num_targets == 1:
 		_update_targets = true
 		update_closest_target()
+
 
 ## Removes a target and updates the boolean for continuing running the coroutine.
 func _remove_target(_body: Node2D):
