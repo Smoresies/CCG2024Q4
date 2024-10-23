@@ -3,9 +3,9 @@
 [ext_resource type="Script" path="res://scripts/entity/base_entity.gd" id="1_e765f"]
 [ext_resource type="Script" path="res://scripts/entity/components/health_and_status_components/base_health_and_status_component.gd" id="3_jfr1s"]
 [ext_resource type="Script" path="res://scripts/entity/components/attack_components/player_attack_component.gd" id="3_lcgwo"]
-[ext_resource type="PackedScene" uid="uid://d305p8471rxhx" path="res://scenes/projectile.tscn" id="4_fm3ym"]
+[ext_resource type="PackedScene" path="res://scenes/projectile.tscn" id="4_fm3ym"]
 [ext_resource type="Script" path="res://scripts/entity/components/movement_components/player_movement_component.gd" id="5_hgkaw"]
-[ext_resource type="Texture2D" uid="uid://dxj88na1dyosf" path="res://sources/knight.png" id="6_cme2n"]
+[ext_resource type="Texture2D" uid="uid://duhsy7vxy8hdl" path="res://sources/knight.png" id="6_cme2n"]
 [ext_resource type="Script" path="res://scripts/entity/components/input_components/player_input_component.gd" id="6_snpov"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dsw0d"]
@@ -58,13 +58,13 @@ attack_components = [NodePath("PlayerAttackComponent")]
 [node name="BaseHealthAndStatusComponent" type="Node" parent="."]
 script = ExtResource("3_jfr1s")
 
-[node name="PlayerAttackComponent" type="Node" parent="." node_paths=PackedStringArray("lock_on_area", "measurement_position","projectile_spawn_position" )]
+[node name="PlayerAttackComponent" type="Node" parent="." node_paths=PackedStringArray("projectile_spawn_position", "lock_on_area", "measurement_position")]
 script = ExtResource("3_lcgwo")
+projectile_scene = ExtResource("4_fm3ym")
+projectile_spawn_position = NodePath("../PlayerMovementComponent")
 lock_on_area = NodePath("../PlayerMovementComponent/Area2D")
 measurement_position = NodePath("../PlayerMovementComponent")
 time_between_target_updates_in_seconds = 0.25
-projectile_scene = ExtResource("4_fm3ym")
-projectile_spawn_position = NodePath("../PlayerMovementComponent")
 
 [node name="PlayerInputComponent" type="Node" parent="."]
 script = ExtResource("6_snpov")
