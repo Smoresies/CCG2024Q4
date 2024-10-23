@@ -16,7 +16,7 @@ var status_effects: Array = []
 
 
 ## The maximum health of the entity.
-@export var max_health: int = 10
+@export var max_health: int = 20
 ## The current health of the entity.
 var _current_health: int = max_health
 
@@ -45,24 +45,25 @@ func _ready() -> void:
 ## Reduces health based on the damage taken and the entity's defense.
 ## [param damage_to_take] int: The raw damage taken.
 func take_damage(damage_to_take: int) -> void:
-	var final_damage = max((damage_to_take - flat_defense_bonus) * percent_defense_bonus, 0)
+	
+	var final_damage: int = max((damage_to_take - flat_defense_bonus) * percent_defense_bonus, 0)
 	_current_health -= final_damage
+	print("Took" + str(final_damage) + ", now " + str(_current_health))
 	on_damage_taken.emit()
 
 	if _current_health <= 0:
 		on_death.emit()
 
-
-
-
 ## Heals the entity, ensuring it doesn't go over max health.
 ## [param health_to_heal] int: The amount of health to restore.
-func heal_damage(health_to_heal: int) -> void:
-	if _current_health > 0:
-		var final_health_gain: int = min((_current_health + health_to_heal + flat_heal_bonus) * percent_heal_bonus)
-		_current_health = min(final_health_gain, max_health)
-		on_healed.emit()
+func heal_health(health_to_heal: int) -> void:
+	
+	var final_health_gain: int = max((health_to_heal + flat_heal_bonus) * percent_heal_bonus, 0)
+	_current_health = min(final_health_gain + _current_health, max_health)
+	print("Healed" + str(final_health_gain) + ", now " + str(_current_health))
+	on_healed.emit()
 
-## Free's the queue of the entity
+## Destroys this entity
 func _die() -> void:
+	print("died")
 	self.get_parent().queue_free()
