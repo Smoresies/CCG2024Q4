@@ -2,6 +2,11 @@ class_name PlayerAttackComponent extends BaseAttackComponent
 
 @export var projectile_scene: PackedScene # The projectile scene to instantiate
 @export var projectile_spawn_position: Node2D
+@export var projectile_damage: int
+@export var projectile_hit_effects: Array
+@export var projectile_healing: int
+@export var projectile_speed: int
+
 func _ready() -> void:
 	# Override the abstract class
 	pass

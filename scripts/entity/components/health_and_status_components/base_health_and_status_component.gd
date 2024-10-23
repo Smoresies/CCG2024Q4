@@ -31,6 +31,8 @@ var percent_damage_bonus: float = 1
 var flat_move_speed_bonus: int = 0
 var percent_move_speed_bonus: float = 1
 
+func _ready() -> void:
+	on_death.connect(_die)
 
 # func add_status_effect(status_effect: StatusEffect):
 	# TBD
@@ -43,12 +45,14 @@ var percent_move_speed_bonus: float = 1
 ## Reduces health based on the damage taken and the entity's defense.
 ## [param damage_to_take] int: The raw damage taken.
 func take_damage(damage_to_take: int) -> void:
-	print("Taking " + str(damage_to_take))
-	if _current_health > 0:
-		var final_damage = max((damage_to_take - flat_defense_bonus) * percent_defense_bonus, 0)
-		_current_health -= final_damage
-		on_damage_taken.emit()
-		_check_health_status()
+	var final_damage = max((damage_to_take - flat_defense_bonus) * percent_defense_bonus, 0)
+	_current_health -= final_damage
+	on_damage_taken.emit()
+
+	if _current_health <= 0:
+		on_death.emit()
+
+
 
 
 ## Heals the entity, ensuring it doesn't go over max health.
@@ -59,14 +63,6 @@ func heal_damage(health_to_heal: int) -> void:
 		_current_health = min(final_health_gain, max_health)
 		on_healed.emit()
 
-
-## Checks the entity's health and emits death or health change signals.
-func _check_health_status() -> void:
-	if _current_health <= 0:
-		on_death.emit()
-		_die()
-
 ## Free's the queue of the entity
 func _die() -> void:
-	print("I died")
 	self.get_parent().queue_free()
