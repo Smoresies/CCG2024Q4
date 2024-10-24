@@ -74,6 +74,7 @@ script = ExtResource("6_snpov")
 
 [node name="PlayerMovementComponent" type="CharacterBody2D" parent="."]
 script = ExtResource("5_hgkaw")
+JUMP_VELOCITY = -500
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerMovementComponent"]
 position = Vector2(0, -15)

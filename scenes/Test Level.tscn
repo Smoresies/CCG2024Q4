@@ -1,53 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://bfp42la3c4yyj"]
+[gd_scene load_steps=3 format=3 uid="uid://bfp42la3c4yyj"]
 
-[ext_resource type="Script" path="res://scripts/entity/components/health_and_status_components/base_health_and_status_component.gd" id="1_eot5w"]
-[ext_resource type="Texture2D" uid="uid://cl6oqq7npxhpn" path="res://sources/knight.png" id="1_huhbo"]
-[ext_resource type="Script" path="res://scripts/entity/components/attack_components/projectile_attack_component.gd" id="2_hyhw4"]
-[ext_resource type="PackedScene" uid="uid://d305p8471rxhx" path="res://scenes/projectile.tscn" id="3_yjpao"]
-[ext_resource type="Script" path="res://scripts/entity/components/input_components/player_input_component.gd" id="4_euw4g"]
-[ext_resource type="Script" path="res://scripts/entity/components/movement_components/player_movement_component.gd" id="5_nmujh"]
+[ext_resource type="PackedScene" uid="uid://cplaaen2uodhm" path="res://scenes/entity.tscn" id="1_w26b6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_feb52"]
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_w1van"]
-radius = 6.0
-height = 22.0
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ff4ej"]
-atlas = ExtResource("1_huhbo")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_7ksxf"]
-atlas = ExtResource("1_huhbo")
-region = Rect2(32, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_bimj1"]
-atlas = ExtResource("1_huhbo")
-region = Rect2(64, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_4gxpx"]
-atlas = ExtResource("1_huhbo")
-region = Rect2(96, 0, 32, 32)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_jwnds"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ff4ej")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_7ksxf")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_bimj1")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_4gxpx")
-}],
-"loop": true,
-"name": &"default",
-"speed": 10.0
-}]
 
 [node name="Node2D" type="Node2D"]
 
@@ -73,22 +28,22 @@ scale = Vector2(20, 2)
 shape = SubResource("RectangleShape2D_feb52")
 
 [node name="StaticBody2D5" type="StaticBody2D" parent="."]
-position = Vector2(2950, 500)
+position = Vector2(2950, 540)
 scale = Vector2(15, 2)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D5"]
 shape = SubResource("RectangleShape2D_feb52")
 
 [node name="Wall" type="StaticBody2D" parent="."]
-position = Vector2(2820, 575)
-scale = Vector2(2, 5.5)
+position = Vector2(2820, 595)
+scale = Vector2(2, 3.5)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall"]
 shape = SubResource("RectangleShape2D_feb52")
 
 [node name="Wall2" type="StaticBody2D" parent="."]
-position = Vector2(3080, 575)
-scale = Vector2(2, 5.5)
+position = Vector2(3080, 595)
+scale = Vector2(2, 3.5)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall2"]
 shape = SubResource("RectangleShape2D_feb52")
@@ -107,6 +62,38 @@ scale = Vector2(2, 45)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall4"]
 shape = SubResource("RectangleShape2D_feb52")
 
+[node name="Vine" type="StaticBody2D" parent="."]
+position = Vector2(2600, 870)
+scale = Vector2(1, 20)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Vine"]
+shape = SubResource("RectangleShape2D_feb52")
+debug_color = Color(1.68458e-07, 0.650642, 0.0785852, 0.42)
+
+[node name="Vine2" type="StaticBody2D" parent="."]
+position = Vector2(1935, 1470)
+scale = Vector2(1, 30)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Vine2"]
+shape = SubResource("RectangleShape2D_feb52")
+debug_color = Color(1.68458e-07, 0.650642, 0.0785852, 0.42)
+
+[node name="Vine3" type="StaticBody2D" parent="."]
+position = Vector2(600, 1420)
+scale = Vector2(1, 25)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Vine3"]
+shape = SubResource("RectangleShape2D_feb52")
+debug_color = Color(1.68458e-07, 0.650642, 0.0785852, 0.42)
+
+[node name="Vine4" type="StaticBody2D" parent="."]
+position = Vector2(900, 200)
+scale = Vector2(1, 20)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Vine4"]
+shape = SubResource("RectangleShape2D_feb52")
+debug_color = Color(1.68458e-07, 0.650642, 0.0785852, 0.42)
+
 [node name="StaticBody2D6" type="StaticBody2D" parent="."]
 position = Vector2(585, 500)
 scale = Vector2(15, 2)
@@ -115,15 +102,15 @@ scale = Vector2(15, 2)
 shape = SubResource("RectangleShape2D_feb52")
 
 [node name="StaticBody2D8" type="StaticBody2D" parent="."]
-position = Vector2(885, 600)
-scale = Vector2(15, 2)
+position = Vector2(905, 600)
+scale = Vector2(17, 2)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D8"]
 shape = SubResource("RectangleShape2D_feb52")
 
 [node name="StaticBody2D9" type="StaticBody2D" parent="."]
-position = Vector2(1100, 800)
-scale = Vector2(15, 2)
+position = Vector2(1250, 950)
+scale = Vector2(30, 2)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D9"]
 shape = SubResource("RectangleShape2D_feb52")
@@ -149,38 +136,6 @@ scale = Vector2(85, 2)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ground 2"]
 shape = SubResource("RectangleShape2D_feb52")
 
-[node name="BaseHealthAndStatusComponent" type="Node" parent="."]
-script = ExtResource("1_eot5w")
-
-[node name="PlayerAttackComponent" type="Node" parent="." node_paths=PackedStringArray("projectile_spawn_position", "lock_on_area", "measurement_position")]
-script = ExtResource("2_hyhw4")
-projectile_scene = ExtResource("3_yjpao")
-projectile_spawn_position = NodePath("")
-projectile_damage = 10
-projectile_healing = 5
-projectile_speed = 71
-lock_on_area = NodePath("")
-measurement_position = NodePath("")
-time_between_target_updates_in_seconds = 0.25
-
-[node name="PlayerInputComponent" type="Node" parent="."]
-script = ExtResource("4_euw4g")
-
-[node name="PlayerMovementComponent" type="CharacterBody2D" parent="."]
-position = Vector2(113, 1126)
-script = ExtResource("5_nmujh")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerMovementComponent"]
-position = Vector2(0, -15)
-shape = SubResource("CapsuleShape2D_w1van")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PlayerMovementComponent"]
-position = Vector2(0, -18)
-sprite_frames = SubResource("SpriteFrames_jwnds")
-autoplay = "default"
-
-[node name="Area2D" type="Area2D" parent="PlayerMovementComponent"]
-collision_mask = 2
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PlayerMovementComponent/Area2D"]
-polygon = PackedVector2Array(0, 0, 120, 90, 120, -90)
+[node name="Entity" parent="." instance=ExtResource("1_w26b6")]
+position = Vector2(1437, 505)
+scale = Vector2(5, 5)
