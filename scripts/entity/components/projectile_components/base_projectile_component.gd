@@ -3,11 +3,11 @@ class_name BaseProjectileComponent extends Area2D
 var damage: int = 20 # Damage inflicted by the projectile
 var healing: int = 0
 var move_speed: int = 0
-var on_hit_effects: Array[int] = [] # Integer for now, change to status_effect once implemented
+var on_hit_effects: Array[BaseStatusEffect] = [] # Integer for now, change to status_effect once implemented
 var target_location: Vector2 = Vector2.ZERO
 var velocity: Vector2 = Vector2.ZERO
 
-func init(set_starting_position: Vector2, set_damage: int, set_on_hit_effects: Array[int], set_healing: int, set_move_speed: int, set_target_location: Vector2) -> void:
+func init(set_starting_position: Vector2, set_damage: int, set_on_hit_effects: Array[BaseStatusEffect], set_healing: int, set_move_speed: int, set_target_location: Vector2) -> void:
 	self.damage = set_damage
 	self.on_hit_effects = set_on_hit_effects
 	self.healing = set_healing

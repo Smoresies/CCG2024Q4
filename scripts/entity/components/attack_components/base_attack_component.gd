@@ -3,6 +3,8 @@ class_name BaseAttackComponent extends Node
 ## Occurs when the target has changed
 signal on_target_change(previous_target, current_target)
 
+@export var attacks: Array[BaseAttack]
+
 ## The Area2D that the character locks onto the closest target.
 @export var lock_on_area: Area2D
 
@@ -40,21 +42,14 @@ func _ready() -> void:
 	on_target_change.connect(target_changed)
 
 func on_attack_input_started() -> void:
-	# Abstract method error
-	push_error('Abstract Method Not Implemented Error: %s' % [name])
-	assert(false, 'Abstract Method Not Implemented Error: %s' % [name])
-
+	attacks[0].start_attack()
 
 func on_attack_input() -> void:
-	# Abstract method error
-	push_error('Abstract Method Not Implemented Error: %s' % [name])
-	assert(false, 'Abstract Method Not Implemented Error: %s' % [name])
+	attacks[0].attack()
 
 
 func on_attack_input_cancelled() -> void:
-	# Abstract method error
-	push_error('Abstract Method Not Implemented Error: %s' % [name])
-	assert(false, 'Abstract Method Not Implemented Error: %s' % [name])
+	attacks[0].cancel_attack()
 
 
 ## Checks each target in the lock on area and then determines which is the closest. Emits an on_target_change signal if the target has changed.
