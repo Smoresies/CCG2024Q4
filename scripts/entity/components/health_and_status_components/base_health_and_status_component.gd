@@ -63,6 +63,9 @@ func heal_health(health_to_heal: int) -> void:
 	print("Healed" + str(final_health_gain) + ", now " + str(_current_health))
 	on_healed.emit()
 
+func apply_status_effect(status_effect_to_add: BaseStatusEffect) -> void:
+	pass
+
 ## Destroys this entity
 func _die() -> void:
 	print("died")

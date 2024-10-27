@@ -1,9 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://db57whnmfxr41"]
+[gd_scene load_steps=6 format=3 uid="uid://db57whnmfxr41"]
 
 [ext_resource type="PackedScene" uid="uid://cplaaen2uodhm" path="res://scenes/entity.tscn" id="1_1nb0p"]
 [ext_resource type="PackedScene" uid="uid://c861ph2h6lepr" path="res://scenes/dummy.tscn" id="2_xqrxo"]
+[ext_resource type="Script" path="res://scripts/entity/projectile_components/base_collidable_object.gd" id="3_igvw7"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_sj5p0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vau7a"]
 
 [node name="Sandbox" type="Node2D"]
 
@@ -22,3 +25,19 @@ position_smoothing_enabled = true
 
 [node name="Dummy" parent="." instance=ExtResource("2_xqrxo")]
 position = Vector2(247, 196)
+
+[node name="Dummy2" parent="." instance=ExtResource("2_xqrxo")]
+position = Vector2(247, 159)
+
+[node name="Dummy3" parent="." instance=ExtResource("2_xqrxo")]
+position = Vector2(247, 122)
+
+[node name="BaseCollidableObject" type="Area2D" parent="."]
+collision_layer = 0
+script = ExtResource("3_igvw7")
+damage = 1
+healing = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BaseCollidableObject"]
+position = Vector2(198, 200)
+shape = SubResource("RectangleShape2D_vau7a")
