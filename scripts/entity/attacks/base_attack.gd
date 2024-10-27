@@ -8,11 +8,11 @@ class_name BaseAttack extends Node
 func _ready() -> void:
     pass
 
-func start_attack():
+func start_attack(_target: Node2D):
     pass
 
-func attack():
+func attack(_target: Node2D):
     pass
 
-func cancel_attack():
+func cancel_attack(_target: Node2D):
     pass

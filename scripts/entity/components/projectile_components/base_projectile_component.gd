@@ -1,20 +1,29 @@
 class_name BaseProjectileComponent extends Area2D
 
-var damage: int = 20 # Damage inflicted by the projectile
+## Damage inflicted by the projectile
+var damage: int = 20
 var healing: int = 0
 var move_speed: int = 0
-var on_hit_effects: Array[BaseStatusEffect] = [] # Integer for now, change to status_effect once implemented
-var target_location: Vector2 = Vector2.ZERO
+var on_hit_effects: Array[BaseStatusEffect] = []
+var target_location: Node2D
 var velocity: Vector2 = Vector2.ZERO
 
-func init(set_starting_position: Vector2, set_damage: int, set_on_hit_effects: Array[BaseStatusEffect], set_healing: int, set_move_speed: int, set_target_location: Vector2) -> void:
+func init(set_starting_position: Vector2, set_damage: int, set_on_hit_effects: Array[BaseStatusEffect], set_healing: int, set_move_speed: int, set_target_or_direction) -> void:
 	self.damage = set_damage
 	self.on_hit_effects = set_on_hit_effects
 	self.healing = set_healing
 	self.move_speed = set_move_speed
-	self.target_location = set_target_location
 	global_position = set_starting_position
-	velocity = set_target_location * move_speed # We only shooting right
+
+	var direction: Vector2
+	if set_target_or_direction is Node2D:
+		target_location = set_target_or_direction
+		direction = target_location.global_position - set_starting_position
+	elif set_target_or_direction is Vector2:
+		direction = set_target_or_direction
+
+		
+	velocity = (direction).normalized() * move_speed
 
 func _ready() -> void:
 	# Connect the area_entered signal

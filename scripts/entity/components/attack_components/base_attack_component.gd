@@ -42,20 +42,20 @@ func _ready() -> void:
 	on_target_change.connect(target_changed)
 
 func on_attack_input_started() -> void:
-	attacks[0].start_attack()
+	attacks[0].start_attack(_get_current_target_or_direction())
 
 func on_attack_input() -> void:
-	attacks[0].attack()
+	attacks[0].attack(_get_current_target_or_direction())
 
 
 func on_attack_input_cancelled() -> void:
-	attacks[0].cancel_attack()
+	attacks[0].cancel_attack(_get_current_target_or_direction())
 
 
 ## Checks each target in the lock on area and then determines which is the closest. Emits an on_target_change signal if the target has changed.
 func update_closest_target():
 	# Run while 
-	while (_update_targets || _current_target != null) && !_update_target_timer_running:
+	while (_update_targets || is_instance_valid(_current_target)) && !_update_target_timer_running:
 		_update_target_timer_running = true
 		var closest_node: Node2D = null
 		var closest_distance: float =  INF
@@ -91,6 +91,11 @@ func _add_target(_body: Node2D):
 		_update_targets = true
 		update_closest_target()
 
+func _get_current_target_or_direction():
+	if is_instance_valid(_current_target):
+		return _current_target
+	else:
+		return Vector2.RIGHT
 
 ## Removes a target and updates the boolean for continuing running the coroutine.
 func _remove_target(_body: Node2D):
