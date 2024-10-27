@@ -26,6 +26,7 @@ var _horizontal_deceleration: float = MAX_SPEED / DECELERATION_TIME
 
 ## Moth Jump state variables
 var _is_moth_jumping: bool = false
+var _can_moth_jump: bool = true
 var _is_fluttering: bool = false
 var _moth_jump_timer: float = 0.0
 var _moth_jump_flutter_timer: float = 0.0
@@ -35,7 +36,6 @@ var _is_jump_button_held: bool = false
 
 func _ready() -> void:
 	JUMP_VELOCITY *= -1
-	MOTH_JUMP_DIP_AMOUNT *= -1
 	pass
 
 ## Applies movement to the character.
@@ -50,13 +50,12 @@ func on_movement_input(horizontal_vector2: float) -> void:
 
 func on_jump_input_started() -> void:
 	if is_on_floor():
+		_can_moth_jump = true
 		velocity.y = JUMP_VELOCITY
 		on_jump_started.emit()
-	elif not _is_moth_jumping:
+	elif not _is_moth_jumping and _can_moth_jump:
 		# Start Moth Jump
 		_init_moth_jump()
-		
-		
 
 func on_jump_input() -> void:
 	_is_jump_button_held = true
@@ -75,12 +74,13 @@ func apply_horizontal_movement(delta: float) -> void:
 
 func apply_gravity(delta: float) -> void:
 	if _is_moth_jumping:
+		_can_moth_jump = false
 		if _is_fluttering:
 			
 			_apply_moth_jump_dip(delta)
 			
 			_moth_jump_flutter_timer += delta
-			if _moth_jump_flutter_timer >= MOTH_JUMP_FLUTTER_DURATION:
+			if _moth_jump_flutter_timer >= MOTH_JUMP_FLUTTER_DURATION or !_is_jump_button_held:
 				_is_fluttering = false
 				velocity.y = 0.0
 				on_moth_jump_ended.emit()
@@ -94,6 +94,7 @@ func apply_gravity(delta: float) -> void:
 			else:
 				# End Moth Jump
 				_is_moth_jumping = false
+				on_moth_jump_ended.emit()
 				super.apply_gravity(delta)  # Resume normal gravity
 
 	else:
@@ -113,9 +114,21 @@ func _init_moth_jump() -> void:
 	
 func _apply_moth_jump_dip(delta: float) -> void:
 	# Handle the flutter dip
+	
+	# Flutter progress, goes from 0 to MOTH_JUMP_FLUTTER_DURATION. Used as the X for the dip equation
 	var flutter_progress: float = _moth_jump_flutter_timer / MOTH_JUMP_FLUTTER_DURATION
+	
 	# Copy in to desmos to see why I chose this function: -\sin\left(\frac{\left(x-a\right)^{2}}{c}\right)+1
-	var flutter_dip: float = -MOTH_JUMP_DIP_AMOUNT * (-sin((pow((flutter_progress-0.5),2))/0.16) + 1)
+	# Calculate the amount of dip to have based on the time remaining in flutter progress.
+	# X|flutter_progress is the amount of time left. Only outputs the range [0,1]
+	var bounded_dip_equation = (-sin((pow((flutter_progress-0.5),2))/0.16) + 1)
+	
+	# Amplify the dip amount by MOTH_JUMP_DIP_AMOUNT
+	var flutter_dip: float = MOTH_JUMP_DIP_AMOUNT * bounded_dip_equation
+	
+	# Calculate the desired Y every frame: matches the amplified curve.
 	var desired_position_y: float = _moth_jump_initial_height + flutter_dip
+	
+	# Applies the position offset
 	var position_difference_y: float = desired_position_y - global_position.y
 	velocity.y = position_difference_y / delta
