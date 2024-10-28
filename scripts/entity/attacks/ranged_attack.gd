@@ -2,7 +2,7 @@ class_name RangedAttack extends BaseAttack
 
 ## The projectile scene to instantiate
 @export var projectile_scene: PackedScene
-@export var projectile_spawn_position: Node2D
+@export var projectile_spawn_position: Marker2D
 @export var projectile_speed: int
 
 func _ready() -> void:
@@ -20,3 +20,6 @@ func attack(_target_or_direction) -> void:
 
 func cancel_attack(_target_or_direction) -> void:
 	pass
+
+func init_attack(new_projectile_spawn_position: Marker2D) -> void:
+	projectile_spawn_position = new_projectile_spawn_position

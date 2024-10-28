@@ -62,12 +62,13 @@ script = ExtResource("3_jfr1s")
 [node name="PlayerInputComponent" type="Node" parent="."]
 script = ExtResource("6_snpov")
 
-[node name="BaseAttackComponent" type="Node" parent="." node_paths=PackedStringArray("attacks", "lock_on_area", "measurement_position")]
+[node name="BaseAttackComponent" type="Node" parent="." node_paths=PackedStringArray("attacks", "lock_on_area", "measurement_position", "projectile_spawn_position")]
 script = ExtResource("6_7ankf")
 attacks = [NodePath("../RangedAttack")]
 lock_on_area = NodePath("../PlayerMovementComponent/Area2D")
 measurement_position = NodePath("../PlayerMovementComponent")
 time_between_target_updates_in_seconds = 0.25
+projectile_spawn_position = NodePath("../PlayerMovementComponent/Marker2D")
 
 [node name="PlayerMovementComponent" type="CharacterBody2D" parent="."]
 script = ExtResource("5_hgkaw")
@@ -87,10 +88,13 @@ collision_mask = 2
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PlayerMovementComponent/Area2D"]
 polygon = PackedVector2Array(0, 0, 120, 90, 120, -90)
 
+[node name="Marker2D" type="Marker2D" parent="PlayerMovementComponent"]
+position = Vector2(7, -14)
+
 [node name="RangedAttack" type="Node" parent="." node_paths=PackedStringArray("projectile_spawn_position")]
 script = ExtResource("7_v4hhs")
 projectile_scene = ExtResource("4_fm3ym")
-projectile_spawn_position = NodePath("../PlayerMovementComponent")
+projectile_spawn_position = NodePath("../PlayerMovementComponent/Marker2D")
 projectile_speed = 100
 base_attack_damage = 10
 base_attack_cooldown_in_seconds = 1.0

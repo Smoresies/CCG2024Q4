@@ -64,7 +64,9 @@ func heal_health(health_to_heal: int) -> void:
 	on_healed.emit()
 
 func apply_status_effect(status_effect_to_add: BaseStatusEffect) -> void:
-	pass
+	if status_effect_to_add.one_shot:
+		status_effect_to_add.apply_status_effect(get_parent())
+
 
 ## Destroys this entity
 func _die() -> void:

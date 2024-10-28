@@ -14,11 +14,11 @@ func _on_body_entered(body: Node2D) -> void:
 	_deal_damage(parent)
 	_heal_health(parent)
 	_apply_status_effects(parent)
+	queue_free()
 
 func _deal_damage(entity: BaseEntity) -> void:
 	var parent_health_component: BaseHealthAndStatusComponent = entity.health_and_status_component
 	parent_health_component.take_damage(damage)
-	queue_free()
 
 func _heal_health(entity: BaseEntity) -> void:
 	var parent_health_component: BaseHealthAndStatusComponent = entity.health_and_status_component

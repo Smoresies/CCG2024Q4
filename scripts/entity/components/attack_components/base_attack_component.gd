@@ -14,6 +14,8 @@ signal on_target_change(previous_target, current_target)
 ## The time between target updates in seconds.
 @export var time_between_target_updates_in_seconds: float
 
+@export var projectile_spawn_position: Marker2D
+
 ## Used to continue a coroutine for updating the target.
 var _update_targets: bool = true
 
@@ -101,3 +103,11 @@ func _get_current_target_or_direction():
 func _remove_target(_body: Node2D):
 	_num_targets -= 1
 	_update_targets = _num_targets > 0
+
+func replace_attack1(attack_scene: PackedScene) -> void:
+	attacks[0].queue_free()
+	var new_attack: BaseAttack = attack_scene.instantiate()
+	add_child(new_attack)
+	attacks[0] = new_attack
+	if new_attack is RangedAttack:
+		(new_attack as RangedAttack).init_attack(projectile_spawn_position)

@@ -29,8 +29,7 @@ var _previous_horizontal_velocity: float = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	push_error('Abstract Class Instaniation Error: %s' % [name])
-	assert (false, 'Abstract Class Instaniation Error: %s' % [name])
+	Utilities.make_abstract_class(name)
 
 
 ## Determines whether or not the entity is grounded or airborne this frame and
@@ -45,26 +44,22 @@ func _physics_process(_delta: float) -> void:
 ## What the entity does when it receives movement input. Should be implemented in child class.
 @warning_ignore("UNUSED_PARAMETER")
 func on_movement_input(horizontal_vector2: float) -> void:
-	push_error('Abstract Method Not Implemented Error: %s' % [name])
-	assert (false, 'Abstract Method Not Implemented Error: %s' % [name])
+	Utilities.make_abstract_function(name)
 
 
 ## What the entity does when it receives jump started input. Should be implemented in child class.
 func on_jump_input_started() -> void:
-	push_error('Abstract Method Not Implemented Error: %s' % [name])
-	assert (false, 'Abstract Method Not Implemented Error: %s' % [name])
+	Utilities.make_abstract_function(name)
 
 
 ## What the entity does when it receives jump input. Should be implemented in child class.
 func on_jump_input() -> void:
-	push_error('Abstract Method Not Implemented Error: %s' % [name])
-	assert (false, 'Abstract Method Not Implemented Error: %s' % [name])
+	Utilities.make_abstract_function(name)
 
 
 ## What the entity does when it receives jump cancelled input. Should be implemented in child class.
 func on_jump_input_cancelled() -> void:
-	push_error('Abstract Method Not Implemented Error: %s' % [name])
-	assert (false, 'Abstract Method Not Implemented Error: %s' % [name])
+	Utilities.make_abstract_function(name)
 
 
 ## Calls the movement signals using the given velocity and previous velocity
