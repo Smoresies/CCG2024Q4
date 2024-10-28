@@ -18,7 +18,7 @@ func _input(_event: InputEvent) -> void:
 		on_jump_input.emit()
 	elif Input.is_action_pressed(JUMP_INPUT_NAME):
 		on_jump_input.emit()
-	elif Input.is_action_pressed(JUMP_INPUT_NAME):
+	elif Input.is_action_just_released(JUMP_INPUT_NAME):
 		on_jump_input_cancelled.emit()
 
 	on_horizontal_movement_input.emit(Input.get_axis(LEFT_INPUT_NAME, RIGHT_INPUT_NAME))

@@ -13,7 +13,6 @@ signal on_horizontal_movement(value: float )
 signal on_horizontal_movement_cancelled(value: float )
 
 ## Event called when a jump starts. Should be implemented in child class.
-@warning_ignore("UNUSED_SIGNAL")
 signal on_jump_started()
 
 ## Event called when the entity becomes grounded after not being grounded.
