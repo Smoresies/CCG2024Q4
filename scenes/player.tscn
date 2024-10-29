@@ -1,15 +1,18 @@
-[gd_scene load_steps=22 format=3 uid="uid://civfx1w4vjpko"]
+[gd_scene load_steps=26 format=3 uid="uid://civfx1w4vjpko"]
 
-[ext_resource type="Texture2D" uid="uid://duhsy7vxy8hdl" path="res://sources/knight.png" id="2_vsk4g"]
-[ext_resource type="AudioStream" uid="uid://i3ajnlkejktf" path="res://sources/SFX/Player/Player_Step_Dirt_var_01.ogg" id="3_g578f"]
-[ext_resource type="AudioStream" uid="uid://bl2e3wcsajmqw" path="res://sources/SFX/Player/Player_Step_Dirt_var_02.ogg" id="4_gv24y"]
-[ext_resource type="AudioStream" uid="uid://dcgabawp30707" path="res://sources/SFX/Player/Player_Step_Dirt_var_03.ogg" id="5_bmnyq"]
-[ext_resource type="AudioStream" uid="uid://bcachw38fw5om" path="res://sources/SFX/Player/Player_Step_Dirt_var_04.ogg" id="6_buq6l"]
-[ext_resource type="AudioStream" uid="uid://b0xh8ml8u4x1b" path="res://sources/SFX/Player/Player_Step_Dirt_var_05.ogg" id="7_ke05a"]
-[ext_resource type="AudioStream" uid="uid://8bkmdsv6hujr" path="res://sources/SFX/Player/Player_Step_Dirt_var_06.ogg" id="8_2ioqd"]
-[ext_resource type="AudioStream" uid="uid://6sh0f7soswbc" path="res://sources/SFX/Player/Player_Step_Dirt_var_07.ogg" id="9_axmd3"]
-[ext_resource type="AudioStream" uid="uid://dbti4xkw7tv2d" path="res://sources/SFX/Player/Player_Step_Dirt_var_08.ogg" id="10_m26br"]
-[ext_resource type="AudioStream" uid="uid://dgbq6rr004ly4" path="res://sources/SFX/Player/Player_Step_Dirt_var_09.ogg" id="11_l3wis"]
+[ext_resource type="AudioStream" uid="uid://bo4si64728gya" path="res://sources/SFX/Player/Footsteps/Player_Step_Dirt_var_01.ogg" id="2_365dw"]
+[ext_resource type="Texture2D" uid="uid://cru6ng4m43trc" path="res://sources/knight.png" id="2_vsk4g"]
+[ext_resource type="AudioStream" uid="uid://b1rmycq11amek" path="res://sources/SFX/Player/Footsteps/Player_Step_Dirt_var_02.ogg" id="3_11cx4"]
+[ext_resource type="AudioStream" uid="uid://bo2fybso0hfcq" path="res://sources/SFX/Player/Footsteps/Player_Step_Dirt_var_03.ogg" id="4_sgnae"]
+[ext_resource type="AudioStream" uid="uid://bw8ft10m4ckbe" path="res://sources/SFX/Player/Footsteps/Player_Step_Dirt_var_04.ogg" id="5_7n8qr"]
+[ext_resource type="AudioStream" uid="uid://cojqa7p0ulesb" path="res://sources/SFX/Player/Footsteps/Player_Step_Dirt_var_05.ogg" id="6_xw8v3"]
+[ext_resource type="AudioStream" uid="uid://bheqjqhd8cayk" path="res://sources/SFX/Player/Footsteps/Player_Step_Dirt_var_06.ogg" id="7_o3lgk"]
+[ext_resource type="AudioStream" uid="uid://c03i8305yfl8v" path="res://sources/SFX/Player/Footsteps/Player_Step_Dirt_var_07.ogg" id="8_xap3f"]
+[ext_resource type="AudioStream" uid="uid://drkvuedrkshgx" path="res://sources/SFX/Player/Footsteps/Player_Step_Dirt_var_08.ogg" id="9_r5hfh"]
+[ext_resource type="AudioStream" uid="uid://jxmumfkjylbb" path="res://sources/SFX/Player/Footsteps/Player_Step_Dirt_var_09.ogg" id="10_fqsjb"]
+[ext_resource type="AudioStream" uid="uid://cyj625hqi61o1" path="res://sources/SFX/Player/Moth Jump/player_moth-jump_start.ogg" id="11_wqyd4"]
+[ext_resource type="AudioStream" uid="uid://mcvfnytd4n4t" path="res://sources/SFX/Player/Moth Jump/player_moth-jump_hold.ogg" id="12_0ceqj"]
+[ext_resource type="AudioStream" uid="uid://upwnw8t3gyvx" path="res://sources/SFX/Player/Moth Jump/player_moth-jump_release.ogg" id="13_noflm"]
 
 [sub_resource type="GDScript" id="GDScript_xs5un"]
 script/source = "class_name Player extends CharacterBody2D
@@ -152,15 +155,42 @@ animations = [{
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_prv2u"]
 random_pitch = 1.2
 streams_count = 9
-stream_0/stream = ExtResource("3_g578f")
-stream_1/stream = ExtResource("4_gv24y")
-stream_2/stream = ExtResource("5_bmnyq")
-stream_3/stream = ExtResource("6_buq6l")
-stream_4/stream = ExtResource("7_ke05a")
-stream_5/stream = ExtResource("8_2ioqd")
-stream_6/stream = ExtResource("9_axmd3")
-stream_7/stream = ExtResource("10_m26br")
-stream_8/stream = ExtResource("11_l3wis")
+stream_0/stream = ExtResource("2_365dw")
+stream_1/stream = ExtResource("3_11cx4")
+stream_2/stream = ExtResource("4_sgnae")
+stream_3/stream = ExtResource("5_7n8qr")
+stream_4/stream = ExtResource("6_xw8v3")
+stream_5/stream = ExtResource("7_o3lgk")
+stream_6/stream = ExtResource("8_xap3f")
+stream_7/stream = ExtResource("9_r5hfh")
+stream_8/stream = ExtResource("10_fqsjb")
+
+[sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_v6fwb"]
+clip_count = 3
+clip_0/name = &"Player Moth-jump Start"
+clip_0/stream = ExtResource("11_wqyd4")
+clip_0/auto_advance = 1
+clip_0/next_clip = 1
+clip_1/name = &"Player Moth-jump Hold"
+clip_1/stream = ExtResource("12_0ceqj")
+clip_1/auto_advance = 0
+clip_2/name = &"Player Moth-jump Release"
+clip_2/stream = ExtResource("13_noflm")
+clip_2/auto_advance = 0
+_transitions = {
+Vector2i(-1, -1): {
+"fade_beats": 0,
+"fade_mode": 4,
+"from_time": 0,
+"to_time": 1
+},
+Vector2i(1, 1): {
+"fade_beats": 0,
+"fade_mode": 4,
+"from_time": 3,
+"to_time": 1
+}
+}
 
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(584, 373)
@@ -191,3 +221,8 @@ position = Vector2(584, 373)
 [node name="Footstep SFX" type="AudioStreamPlayer2D" parent="Player Audio Manager"]
 position = Vector2(584, 373)
 stream = SubResource("AudioStreamRandomizer_prv2u")
+
+[node name="Moth Jump SFX" type="AudioStreamPlayer2D" parent="Player Audio Manager"]
+position = Vector2(584, 373)
+stream = SubResource("AudioStreamInteractive_v6fwb")
+bus = &"SFX"
