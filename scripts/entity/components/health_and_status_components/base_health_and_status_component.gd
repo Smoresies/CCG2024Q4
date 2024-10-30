@@ -12,7 +12,7 @@ signal on_attack()
 signal on_move()
 
 
-var status_effects: Array = []
+var status_effects: Dictionary
 
 
 ## The maximum health of the entity.
@@ -66,7 +66,8 @@ func heal_health(health_to_heal: int) -> void:
 func apply_status_effect(status_effect_to_add: BaseStatusEffect) -> void:
 	if status_effect_to_add.one_shot:
 		status_effect_to_add.apply_status_effect(get_parent())
-
+	else:
+		status_effects.get_or_add(status_effect_to_add)
 
 ## Destroys this entity
 func _die() -> void:
