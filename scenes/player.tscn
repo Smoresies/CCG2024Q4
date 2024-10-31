@@ -1,6 +1,7 @@
-[gd_scene load_steps=41 format=3 uid="uid://civfx1w4vjpko"]
+[gd_scene load_steps=42 format=3 uid="uid://civfx1w4vjpko"]
 
 [ext_resource type="AudioStream" uid="uid://bo4si64728gya" path="res://sources/SFX/Player/Footsteps/Player_Step_Dirt_var_01.ogg" id="2_365dw"]
+[ext_resource type="Script" path="res://scenes/player_audio_manager.gd" id="2_hkha4"]
 [ext_resource type="AudioStream" uid="uid://cfsue0llwws2" path="res://sources/SFX/Player/Jump/Player_Jump_Wood_v1.ogg" id="2_km0tm"]
 [ext_resource type="Texture2D" uid="uid://cru6ng4m43trc" path="res://sources/knight.png" id="2_vsk4g"]
 [ext_resource type="AudioStream" uid="uid://b1rmycq11amek" path="res://sources/SFX/Player/Footsteps/Player_Step_Dirt_var_02.ogg" id="3_11cx4"]
@@ -175,7 +176,6 @@ stream_3/stream = ExtResource("5_q6qfb")
 stream_4/stream = ExtResource("6_qa40k")
 
 [sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_r8y8h"]
-initial_clip = 1
 clip_count = 2
 clip_0/name = &"TODO dirt"
 clip_0/stream = SubResource("AudioStreamRandomizer_le8dy")
@@ -261,6 +261,7 @@ position = Vector2(585, 361)
 sprite_frames = SubResource("SpriteFrames_6b3tj")
 
 [node name="Player Audio Manager" type="Node" parent="."]
+script = ExtResource("2_hkha4")
 
 [node name="AudioListener2D" type="AudioListener2D" parent="Player Audio Manager"]
 position = Vector2(584, 373)
