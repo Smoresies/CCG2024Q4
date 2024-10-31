@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://civfx1w4vjpko"]
+[gd_scene load_steps=45 format=3 uid="uid://civfx1w4vjpko"]
 
 [ext_resource type="AudioStream" uid="uid://bo4si64728gya" path="res://sources/SFX/Player/Footsteps/Player_Step_Dirt_var_01.ogg" id="2_365dw"]
 [ext_resource type="Script" path="res://scenes/player_audio_manager.gd" id="2_hkha4"]
@@ -106,14 +106,51 @@ tracks/0/keys = {
 "update": 0,
 "values": [0, 1, 2, 3]
 }
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Player Audio Manager/Footstep SFX")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.2),
+
+[sub_resource type="Animation" id="Animation_bge2g"]
+resource_name = "walking"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player Audio Manager/Footstep SFX")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_uus07"]
+resource_name = "jumping"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player Audio Manager/Jumping SFX")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_tf4ur"]
+resource_name = "landing"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player Audio Manager/Landing SFX")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [0.0],
@@ -124,7 +161,10 @@ tracks/1/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_pucqf"]
 _data = {
 "RESET": SubResource("Animation_ba674"),
-"idle": SubResource("Animation_ap55u")
+"idle": SubResource("Animation_ap55u"),
+"jumping": SubResource("Animation_uus07"),
+"landing": SubResource("Animation_tf4ur"),
+"walking": SubResource("Animation_bge2g")
 }
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ff4ej"]
