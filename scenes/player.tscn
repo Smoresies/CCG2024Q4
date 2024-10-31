@@ -1,7 +1,7 @@
 [gd_scene load_steps=46 format=3 uid="uid://civfx1w4vjpko"]
 
 [ext_resource type="AudioStream" uid="uid://bo4si64728gya" path="res://sources/SFX/Player/Footsteps/Player_Step_Dirt_var_01.ogg" id="2_365dw"]
-[ext_resource type="Script" path="res://scenes/player_audio_manager.gd" id="2_hkha4"]
+[ext_resource type="Script" path="res://scripts/player_audio_manager.gd" id="2_hkha4"]
 [ext_resource type="AudioStream" uid="uid://cfsue0llwws2" path="res://sources/SFX/Player/Jump/Player_Jump_Wood_v1.ogg" id="2_km0tm"]
 [ext_resource type="Texture2D" uid="uid://cru6ng4m43trc" path="res://sources/knight.png" id="2_vsk4g"]
 [ext_resource type="AudioStream" uid="uid://b1rmycq11amek" path="res://sources/SFX/Player/Footsteps/Player_Step_Dirt_var_02.ogg" id="3_11cx4"]
@@ -107,23 +107,6 @@ tracks/0/keys = {
 "values": [0, 1, 2, 3]
 }
 
-[sub_resource type="Animation" id="Animation_bge2g"]
-resource_name = "walking"
-tracks/0/type = "method"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Player Audio Manager/Footstep SFX")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [0.0],
-"method": &"play"
-}]
-}
-
 [sub_resource type="Animation" id="Animation_uus07"]
 resource_name = "jumping"
 tracks/0/type = "method"
@@ -164,6 +147,23 @@ tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/path = NodePath("Player Audio Manager/Moth Jump SFX")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_bge2g"]
+resource_name = "walking"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player Audio Manager/Footstep SFX")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
