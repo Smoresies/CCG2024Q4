@@ -1,13 +1,14 @@
 extends Node
 
-@export var current_sfx_material: String
 @onready var landing_sfx: AudioStreamPlayer2D = $"Landing SFX"
 @onready var footstep_sfx: AudioStreamPlayer2D = $"Footstep SFX"
 @onready var jumping_sfx: AudioStreamPlayer2D = $"Jumping SFX"
+@onready var moth_jump_sfx: AudioStreamPlayer2D = $"Moth Jump SFX"
 # An array containing the valid surface types for sound effects. 
 @export var sfx_floor_materials: Array = ["dirt", "wood"]
 # The first item in the array is the default value. 
 @export var default_sfx_floor_material: String = sfx_floor_materials[0]
+@export var current_sfx_material: String = default_sfx_floor_material
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -31,3 +32,7 @@ func set_sfx_floor_material(sfx_material: String) -> void:
 	footstep_sfx.get_stream_playback().switch_to_clip_by_name(current_sfx_material)
 	jumping_sfx.get_stream_playback().switch_to_clip_by_name(current_sfx_material)
 	landing_sfx.get_stream_playback().switch_to_clip_by_name(current_sfx_material)
+
+# When the moth jump is released, 
+func _on_moth_jump_released() -> void:
+	moth_jump_sfx.get_stream_playback().switch_to_clip_by_name("Player Moth-jump Release")
