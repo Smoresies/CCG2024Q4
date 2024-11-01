@@ -83,6 +83,7 @@ sprite_frames = SubResource("SpriteFrames_2vlp2")
 autoplay = "default"
 
 [node name="Area2D" type="Area2D" parent="PlayerMovementComponent"]
+position = Vector2(2, -23)
 collision_mask = 2
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PlayerMovementComponent/Area2D"]

@@ -3,6 +3,7 @@ class_name BaseAttackComponent extends Node
 ## Occurs when the target has changed
 signal on_target_change(previous_target, current_target)
 
+## The attacks the attack component as access to use.
 @export var attacks: Array[BaseAttack]
 
 ## The Area2D that the character locks onto the closest target.
@@ -27,6 +28,9 @@ var _current_target: Node2D = null
 
 ## If the update target timer is running.
 var _update_target_timer_running: bool = false
+
+## The current direction we are facing.
+var _current_direction_facing: Vector2 = Vector2.RIGHT
 
 @warning_ignore("UNUSED_SIGNAL")
 signal on_attack_started()
@@ -93,17 +97,19 @@ func _add_target(_body: Node2D):
 		_update_targets = true
 		update_closest_target()
 
+## Gets the current target or the direction we are facing.
 func _get_current_target_or_direction():
 	if is_instance_valid(_current_target):
 		return _current_target
 	else:
-		return Vector2.RIGHT
+		return _current_direction_facing
 
 ## Removes a target and updates the boolean for continuing running the coroutine.
 func _remove_target(_body: Node2D):
 	_num_targets -= 1
 	_update_targets = _num_targets > 0
 
+## Replaces the attack in spot 0 of the attack array.
 func replace_attack1(attack_scene: PackedScene) -> void:
 	attacks[0].queue_free()
 	var new_attack: BaseAttack = attack_scene.instantiate()
@@ -111,3 +117,13 @@ func replace_attack1(attack_scene: PackedScene) -> void:
 	attacks[0] = new_attack
 	if new_attack is RangedAttack:
 		(new_attack as RangedAttack).init_attack(projectile_spawn_position)
+
+## Updates the direction of the lock on area and projectile spawn point to the
+## other side if the direciton changes.
+func update_direction_specific_items(value: float):
+	lock_on_area.position.x *= -1 
+	lock_on_area.scale.x *= -1
+	projectile_spawn_position.position.x *= -1
+	projectile_spawn_position.scale.x *= -1
+
+	_current_direction_facing.x = value

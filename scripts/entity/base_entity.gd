@@ -15,13 +15,12 @@ class_name BaseEntity extends Node
 func _ready() -> void:
 
 	# if the movement component and input component exist connect the movement together.
-	if movement_component and input_component:
+	if movement_component and input_component and attack_component:
 		input_component.on_horizontal_movement_input.connect(movement_component.on_movement_input)
 		input_component.on_jump_input_started.connect(movement_component.on_jump_input_started)
 		input_component.on_jump_input.connect(movement_component.on_jump_input)
 		input_component.on_jump_input_cancelled.connect(movement_component.on_jump_input_cancelled)
-
-	if input_component and attack_component:
+		movement_component.on_direction_changed.connect(attack_component.update_direction_specific_items)
 		input_component.on_attack_input_started.connect(attack_component.on_attack_input_started)
 		input_component.on_attack_input.connect(attack_component.on_attack_input)
 		input_component.on_attack_input_cancelled.connect(attack_component.on_attack_input_cancelled)
