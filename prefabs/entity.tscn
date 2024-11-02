@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://d305p8471rxhx" path="res://prefabs/projectiles/projectile.tscn" id="4_fm3ym"]
 [ext_resource type="Script" path="res://scripts/entity/components/movement_components/player_movement_component.gd" id="5_hgkaw"]
 [ext_resource type="Script" path="res://scripts/entity/components/attack_components/base_attack_component.gd" id="6_7ankf"]
-[ext_resource type="Texture2D" uid="uid://duhsy7vxy8hdl" path="res://sources/knight.png" id="6_cme2n"]
+[ext_resource type="Texture2D" uid="uid://cn302dgfjy5yk" path="res://sources/knight.png" id="6_cme2n"]
 [ext_resource type="Script" path="res://scripts/entity/components/input_components/player_input_component.gd" id="6_snpov"]
 [ext_resource type="Script" path="res://scripts/entity/attacks/ranged_attack.gd" id="7_v4hhs"]
 

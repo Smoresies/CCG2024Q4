@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://df0h6dt2b3l7n"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_21kih"]
+size = Vector2(20, 115)
+
+[node name="Climbable" type="Area2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -47.5)
+shape = SubResource("RectangleShape2D_21kih")
