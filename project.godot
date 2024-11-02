@@ -32,10 +32,13 @@ directories/dch_directory={
 "Vertor": "res://dialogic/characters/Vertor.dch"
 }
 directories/dtl_directory={
+"firstrun_end": "res://dialogic/firstrun_end.dtl",
+"firstrun_start": "res://dialogic/firstrun_start.dtl",
+"prince_chatter": "res://dialogic/prince_chatter.dtl",
 "test": "res://dialogic/test.dtl"
 }
-layout/style_list=[]
-layout/default_style=""
+layout/style_list=["res://dialogic/styles/Chatter.tres", "res://dialogic/styles/Default.tres"]
+layout/default_style="res://dialogic/styles/Default.tres"
 extensions_folder="res://addons/dialogic_additions"
 text/letter_speed=0.01
 text/initial_text_reveal_skippable=true
@@ -44,11 +47,11 @@ text/advance_delay=0.1
 text/autoadvance_per_character_delay=0.1
 text/autoadvance_ignored_characters_enabled=true
 audio/max_channels=4.0
-animations/join_default_length=0.5
-animations/join_default_wait=true
-animations/leave_default_length=0.5
-animations/leave_default_wait=true
-animations/cross_fade_default_length=0.5
+animations/join_default_length=0.2
+animations/join_default_wait=false
+animations/leave_default_length=0.2
+animations/leave_default_wait=false
+animations/cross_fade_default_length=0.2
 choices/autofocus_first=true
 choices/delay=0.2
 choices/reveal_delay=0
@@ -57,6 +60,7 @@ save/autosave_delay=60.0
 save/encryption_on_exports_only=true
 text/autopauses={}
 variables={}
+glossary/default_case_sensitive=true
 
 [dotnet]
 

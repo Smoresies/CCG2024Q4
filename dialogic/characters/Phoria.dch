@@ -8,12 +8,23 @@
 "sound_moods": {},
 "style": ""
 },
-"default_portrait": "",
+"default_portrait": "Default",
 "description": "",
 "display_name": "Phoria",
 "mirror": false,
 "nicknames": [""],
 "offset": Vector2(0, 0),
-"portraits": {},
+"portraits": {
+"Default": {
+"export_overrides": {
+"image": "\"res://dialogic/characters/PhoriaPortrait_Default.png\""
+},
+"ignore_char_scale": false,
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1.0,
+"scene": ""
+}
+},
 "scale": 1.0
 }
