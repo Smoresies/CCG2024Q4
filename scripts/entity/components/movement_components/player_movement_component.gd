@@ -79,11 +79,9 @@ func on_jump_input_cancelled() -> void:
 	
 func _on_entered_climbable() -> void:
 	_is_climbing = true
-	_can_climb = true
 
 func _on_exited_climbable() -> void:
 	_is_climbing = false
-	_can_climb = false
 	if _is_up_pressed:
 		velocity.y = -CLIMB_EXIT_SPEED
 

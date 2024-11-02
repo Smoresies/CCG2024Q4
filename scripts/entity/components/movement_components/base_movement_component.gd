@@ -47,7 +47,6 @@ var _current_direction: int = 1
 
 ## Climbing booleans
 var _is_climbing: bool = false
-var _can_climb: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -133,10 +132,8 @@ func try_to_emit_signal_direction_change():
 
 func _on_entered_climbable() -> void:
 	_is_climbing = true
-	_can_climb = true
 	print("Entered climbable area")
 
 func _on_exited_climbable() -> void:
 	_is_climbing = false
-	_can_climb = false
 	print("Exited climbable area")
