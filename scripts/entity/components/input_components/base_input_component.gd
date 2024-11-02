@@ -28,7 +28,7 @@ signal on_attack_input_cancelled()
 signal on_horizontal_movement_input(horizontal_value: float)
 
 @warning_ignore("UNUSED_SIGNAL")
-signal on_vertical_movement_input(horizontal_value: float)
+signal on_vertical_movement_input(vertical_value: float)
 
 
 # Called when the node enters the scene tree for the first time.

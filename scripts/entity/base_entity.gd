@@ -25,14 +25,3 @@ func _ready() -> void:
 		input_component.on_attack_input_started.connect(attack_component.on_attack_input_started)
 		input_component.on_attack_input.connect(attack_component.on_attack_input)
 		input_component.on_attack_input_cancelled.connect(attack_component.on_attack_input_cancelled)
-		
-
-
-
-func _on_entered_climbable(body: Node) -> void:
-	print("Entered Climbable signal")
-	movement_component._on_entered_climbable()
-
-func _on_exited_climbable(body: Node) -> void:
-	print("Exited Climbable signal")
-	movement_component._on_exited_climbable()

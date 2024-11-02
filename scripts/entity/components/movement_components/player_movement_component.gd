@@ -38,11 +38,8 @@ var _is_jump_button_held: bool = false
 ## Change when tiles are implemented.
 var _is_up_pressed: bool = false  
 
-@export var LAUNCH_VELOCITY: int = 100
-
 @export var CLIMB_SPEED: int = 300
-var _is_climbing: bool = false
-var _can_climb: bool = false
+@export var CLIMB_EXIT_SPEED: int = 50
 
 func _ready() -> void:
 	JUMP_VELOCITY *= -1
@@ -68,8 +65,7 @@ func on_vertical_movement_input(vertical_vector2: float) -> void:
 func on_jump_input_started() -> void:
 	if is_on_floor() or _is_climbing:
 		_can_moth_jump = true
-		velocity.y = LAUNCH_VELOCITY if _is_climbing else JUMP_VELOCITY
-		_is_climbing = false
+		velocity.y = JUMP_VELOCITY if _is_climbing else JUMP_VELOCITY
 		on_jump_started.emit()
 	elif not _is_moth_jumping and _can_moth_jump:
 		# Start Moth Jump
@@ -84,14 +80,12 @@ func on_jump_input_cancelled() -> void:
 func _on_entered_climbable() -> void:
 	_is_climbing = true
 	_can_climb = true
-	print("Entered climbable area")
 
 func _on_exited_climbable() -> void:
 	_is_climbing = false
 	_can_climb = false
 	if _is_up_pressed:
-		velocity.y = -LAUNCH_VELOCITY
-	print("Exited climbable area")
+		velocity.y = -CLIMB_EXIT_SPEED
 
 
 ## Moves the entity based on the current input direction.

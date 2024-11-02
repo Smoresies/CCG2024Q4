@@ -45,6 +45,10 @@ var _previous_vertical_velocity: float = 0
 ## The current direction the character is facing. 1 being right.
 var _current_direction: int = 1
 
+## Climbing booleans
+var _is_climbing: bool = false
+var _can_climb: bool = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	Utilities.make_abstract_class(name)
@@ -126,3 +130,13 @@ func try_to_emit_signal_direction_change():
 	elif velocity.x < 0 and _current_direction > 0:
 		_current_direction = -1
 		on_direction_changed.emit(_current_direction)
+
+func _on_entered_climbable() -> void:
+	_is_climbing = true
+	_can_climb = true
+	print("Entered climbable area")
+
+func _on_exited_climbable() -> void:
+	_is_climbing = false
+	_can_climb = false
+	print("Exited climbable area")
