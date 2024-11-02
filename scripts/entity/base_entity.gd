@@ -8,21 +8,19 @@ class_name BaseEntity extends Node
 ## The health and status component of the entity.
 @export var health_and_status_component: BaseHealthAndStatusComponent
 ## The attack components of the entity.
-@export var attack_components: Array[BaseAttackComponent]
+@export var attack_component: BaseAttackComponent
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 
 	# if the movement component and input component exist connect the movement together.
-	if movement_component and input_component:
+	if movement_component and input_component and attack_component:
 		input_component.on_horizontal_movement_input.connect(movement_component.on_movement_input)
 		input_component.on_jump_input_started.connect(movement_component.on_jump_input_started)
 		input_component.on_jump_input.connect(movement_component.on_jump_input)
 		input_component.on_jump_input_cancelled.connect(movement_component.on_jump_input_cancelled)
-
-
-	for attack_component in attack_components:
+		movement_component.on_direction_changed.connect(attack_component.update_direction_specific_items)
 		input_component.on_attack_input_started.connect(attack_component.on_attack_input_started)
 		input_component.on_attack_input.connect(attack_component.on_attack_input)
 		input_component.on_attack_input_cancelled.connect(attack_component.on_attack_input_cancelled)

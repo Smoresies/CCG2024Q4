@@ -21,6 +21,7 @@ signal on_moth_jump_ended()
 
 ## The current input direction.
 var _current_input_direction: float = 0
+
 ## How fast the character decelerates after loss of input.
 var _horizontal_deceleration: float = MAX_SPEED / DECELERATION_TIME
 

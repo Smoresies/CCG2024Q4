@@ -21,16 +21,21 @@ signal on_grounded_start()
 ## Event called when the entity becomes airborne.
 signal on_airborne_start()
 
+## Event called when the entity changes direction.
+signal on_direction_changed(value: float)
+
 ## If the entity was grounded in the last physics frame.
 var _was_grounded: bool
 
 ## The horizontal velocity last physics frame.
 var _previous_horizontal_velocity: float = 0
 
+## The current direction the character is facing. 1 being right.
+var _current_direction: int = 1
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	push_error('Abstract Class Instaniation Error: %s' % [name])
-	assert (false, 'Abstract Class Instaniation Error: %s' % [name])
+	Utilities.make_abstract_class(name)
 
 
 ## Determines whether or not the entity is grounded or airborne this frame and
@@ -39,32 +44,29 @@ func _physics_process(_delta: float) -> void:
 	_emit_movement_signals()
 	_try_to_run_grounded_events()
 	_was_grounded = is_on_floor()
+	try_to_emit_signal_direction_change()
 	_previous_horizontal_velocity = velocity.x
 
 
 ## What the entity does when it receives movement input. Should be implemented in child class.
 @warning_ignore("UNUSED_PARAMETER")
 func on_movement_input(horizontal_vector2: float) -> void:
-	push_error('Abstract Method Not Implemented Error: %s' % [name])
-	assert (false, 'Abstract Method Not Implemented Error: %s' % [name])
+	Utilities.make_abstract_function(name)
 
 
 ## What the entity does when it receives jump started input. Should be implemented in child class.
 func on_jump_input_started() -> void:
-	push_error('Abstract Method Not Implemented Error: %s' % [name])
-	assert (false, 'Abstract Method Not Implemented Error: %s' % [name])
+	Utilities.make_abstract_function(name)
 
 
 ## What the entity does when it receives jump input. Should be implemented in child class.
 func on_jump_input() -> void:
-	push_error('Abstract Method Not Implemented Error: %s' % [name])
-	assert (false, 'Abstract Method Not Implemented Error: %s' % [name])
+	Utilities.make_abstract_function(name)
 
 
 ## What the entity does when it receives jump cancelled input. Should be implemented in child class.
 func on_jump_input_cancelled() -> void:
-	push_error('Abstract Method Not Implemented Error: %s' % [name])
-	assert (false, 'Abstract Method Not Implemented Error: %s' % [name])
+	Utilities.make_abstract_function(name)
 
 
 ## Calls the movement signals using the given velocity and previous velocity
@@ -90,3 +92,12 @@ func _try_to_run_grounded_events() -> void:
 func apply_gravity(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
+
+## Emits the signal direction change when 
+func try_to_emit_signal_direction_change():
+	if velocity.x > 0 and _current_direction < 0:
+		_current_direction = 1
+		on_direction_changed.emit(_current_direction)
+	elif velocity.x < 0 and _current_direction > 0:
+		_current_direction = -1
+		on_direction_changed.emit(_current_direction)
