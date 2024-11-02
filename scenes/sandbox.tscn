@@ -65,5 +65,7 @@ shape = SubResource("RectangleShape2D_vau7a")
 
 [node name="Climbable" parent="." instance=ExtResource("7_nah8b")]
 position = Vector2(129, 202)
+collision_layer = 17
 
-[connection signal="body_entered" from="Climbable" to="Entity" method="_on_climbable_body_entered"]
+[connection signal="body_entered" from="Climbable" to="Entity" method="_on_entered_climbable"]
+[connection signal="body_exited" from="Climbable" to="Entity" method="_on_exited_climbable"]

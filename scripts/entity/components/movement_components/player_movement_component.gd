@@ -34,6 +34,12 @@ var _moth_jump_flutter_timer: float = 0.0
 var _moth_jump_initial_height: float = 0.0
 var _is_jump_button_held: bool = false
 
+## Used for rudimentary validation of exiting the climbable while holding up.
+## Change when tiles are implemented.
+var _is_up_pressed: bool = false  
+
+@export var LAUNCH_VELOCITY: int = 100
+
 @export var CLIMB_SPEED: int = 300
 var _is_climbing: bool = false
 var _can_climb: bool = false
@@ -57,11 +63,13 @@ func on_horizontal_movement_input(horizontal_vector2: float) -> void:
 
 func on_vertical_movement_input(vertical_vector2: float) -> void:
 	_current_input_direction.y = vertical_vector2
+	_is_up_pressed = vertical_vector2 < 0
 
 func on_jump_input_started() -> void:
-	if is_on_floor():
+	if is_on_floor() or _is_climbing:
 		_can_moth_jump = true
-		velocity.y = JUMP_VELOCITY
+		velocity.y = LAUNCH_VELOCITY if _is_climbing else JUMP_VELOCITY
+		_is_climbing = false
 		on_jump_started.emit()
 	elif not _is_moth_jumping and _can_moth_jump:
 		# Start Moth Jump
@@ -81,6 +89,8 @@ func _on_entered_climbable() -> void:
 func _on_exited_climbable() -> void:
 	_is_climbing = false
 	_can_climb = false
+	if _is_up_pressed:
+		velocity.y = -LAUNCH_VELOCITY
 	print("Exited climbable area")
 
 
@@ -138,6 +148,7 @@ func _moth_jump(delta: float) -> void:
 	
 func apply_climbing_movement(delta: float) -> void:
 	velocity.y = move_toward(velocity.y, _current_input_direction.y * CLIMB_SPEED, ACCELERATION * delta)
+	velocity.x = move_toward(velocity.x, _current_input_direction.x * MAX_SPEED, ACCELERATION * delta)
 
 	
 func _apply_moth_jump_dip(delta: float) -> void:

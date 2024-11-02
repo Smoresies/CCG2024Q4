@@ -71,6 +71,7 @@ time_between_target_updates_in_seconds = 0.25
 projectile_spawn_position = NodePath("../PlayerMovementComponent/Marker2D")
 
 [node name="PlayerMovementComponent" type="CharacterBody2D" parent="."]
+collision_mask = 17
 script = ExtResource("5_hgkaw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerMovementComponent"]
