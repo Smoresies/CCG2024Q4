@@ -65,7 +65,7 @@ func on_vertical_movement_input(vertical_vector2: float) -> void:
 func on_jump_input_started() -> void:
 	if is_on_floor() or _is_climbing:
 		_can_moth_jump = true
-		velocity.y = JUMP_VELOCITY if _is_climbing else JUMP_VELOCITY
+		velocity.y = JUMP_VELOCITY
 		on_jump_started.emit()
 	elif not _is_moth_jumping and _can_moth_jump:
 		# Start Moth Jump
