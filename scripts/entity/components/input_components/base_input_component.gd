@@ -27,6 +27,9 @@ signal on_attack_input_cancelled()
 @warning_ignore("UNUSED_SIGNAL")
 signal on_horizontal_movement_input(horizontal_value: float)
 
+@warning_ignore("UNUSED_SIGNAL")
+signal on_vertical_movement_input(vertical_value: float)
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -55,6 +58,12 @@ func jump_input_cancelled() -> bool:
 
 ## Gets the current combined left and right input. Needs to be overwrote.
 func horizontal_movement_input() -> float:
+	Utilities.make_abstract_function(name)
+
+	return 0
+
+## Gets the current combined left and right input. Needs to be overwrote.
+func vertical_movement_input() -> float:
 	Utilities.make_abstract_function(name)
 
 	return 0

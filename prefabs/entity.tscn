@@ -59,6 +59,7 @@ movement_component = NodePath("PlayerMovementComponent")
 [node name="BaseAttackComponent" parent="." instance=ExtResource("4_nn3m4")]
 
 [node name="PlayerMovementComponent" type="CharacterBody2D" parent="."]
+collision_mask = 17
 script = ExtResource("5_hgkaw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerMovementComponent"]

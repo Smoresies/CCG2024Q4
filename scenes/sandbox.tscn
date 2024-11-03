@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://db57whnmfxr41"]
+[gd_scene load_steps=11 format=3 uid="uid://db57whnmfxr41"]
 
 [ext_resource type="PackedScene" uid="uid://c861ph2h6lepr" path="res://prefabs/dummy.tscn" id="2_xqrxo"]
 [ext_resource type="Script" path="res://scripts/entity/projectile_components/base_collidable_object.gd" id="3_igvw7"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dtwb2d20i0de2" path="res://prefabs/attacks/ranged_attack2.tscn" id="5_ct8tr"]
 [ext_resource type="Script" path="res://scripts/status_effect/replace_attack_status_effect.gd" id="6_ciesc"]
 [ext_resource type="PackedScene" uid="uid://civfx1w4vjpko" path="res://prefabs/player.tscn" id="7_iabik"]
+[ext_resource type="PackedScene" uid="uid://df0h6dt2b3l7n" path="res://prefabs/climbable.tscn" id="7_nah8b"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_sj5p0"]
 
@@ -60,3 +61,7 @@ position = Vector2(168, 200)
 shape = SubResource("RectangleShape2D_vau7a")
 
 [node name="Player" parent="." instance=ExtResource("7_iabik")]
+
+[node name="Climbable" parent="." instance=ExtResource("7_nah8b")]
+position = Vector2(129, 202)
+collision_layer = 17
