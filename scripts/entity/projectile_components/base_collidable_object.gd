@@ -28,4 +28,3 @@ func _apply_status_effects(entity: BaseEntity):
 	var parent_health_component: BaseHealthAndStatusComponent = entity.health_and_status_component
 	for status_effect in status_effects:
 		parent_health_component.apply_status_effect(status_effect)
-
