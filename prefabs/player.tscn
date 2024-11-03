@@ -1,36 +1,38 @@
-[gd_scene load_steps=55 format=3 uid="uid://civfx1w4vjpko"]
+[gd_scene load_steps=57 format=3 uid="uid://civfx1w4vjpko"]
 
 [ext_resource type="Script" path="res://scripts/entity/base_entity.gd" id="1_ghq3j"]
-[ext_resource type="Texture2D" uid="uid://c52yso0a0uh55" path="res://sources/player animations/Moth_Spritesheet.png" id="1_u1mv8"]
-[ext_resource type="AudioStream" uid="uid://c4jvkuuoub3np" path="res://sources/SFX/Player/Footsteps/Player_Step_Dirt_var_01.ogg" id="2_365dw"]
+[ext_resource type="Texture2D" uid="uid://bdbpxrph84mb3" path="res://sources/player animations/Moth_Spritesheet.png" id="1_u1mv8"]
+[ext_resource type="AudioStream" uid="uid://biq5cnwhrtsj2" path="res://sources/SFX/Player/Footsteps/Player_Step_Dirt_var_01.ogg" id="2_365dw"]
 [ext_resource type="Script" path="res://scripts/entity/components/movement_components/player_movement_component.gd" id="2_awxgg"]
 [ext_resource type="Script" path="res://scripts/player_audio_manager.gd" id="2_hkha4"]
-[ext_resource type="AudioStream" uid="uid://b0oj42gq5iwp6" path="res://sources/SFX/Player/Jump/Player_Jump_Wood_v1.ogg" id="2_km0tm"]
-[ext_resource type="AudioStream" uid="uid://cje8lpsvtwe6y" path="res://sources/SFX/Player/Footsteps/Player_Step_Dirt_var_02.ogg" id="3_11cx4"]
-[ext_resource type="AudioStream" uid="uid://bnxjgpwf5yrrk" path="res://sources/SFX/Player/Jump/Player_Jump_Wood_v2.ogg" id="3_v87jn"]
+[ext_resource type="AudioStream" uid="uid://cvskxtlwuj8ad" path="res://sources/SFX/Player/Jump/Player_Jump_Wood_v1.ogg" id="2_km0tm"]
+[ext_resource type="AudioStream" uid="uid://deu2ggm1ysrqo" path="res://sources/SFX/Player/Footsteps/Player_Step_Dirt_var_02.ogg" id="3_11cx4"]
+[ext_resource type="AudioStream" uid="uid://dar1tdrisfu5s" path="res://sources/SFX/Player/Jump/Player_Jump_Wood_v2.ogg" id="3_v87jn"]
 [ext_resource type="Script" path="res://scripts/player_animation_controller.gd" id="4_4xhru"]
-[ext_resource type="AudioStream" uid="uid://ct6lno8a477x7" path="res://sources/SFX/Player/Jump/Player_Jump_Wood_v3.ogg" id="4_hqlsc"]
-[ext_resource type="AudioStream" uid="uid://dwlmvn5f47iiw" path="res://sources/SFX/Player/Footsteps/Player_Step_Dirt_var_03.ogg" id="4_sgnae"]
-[ext_resource type="AudioStream" uid="uid://ck8n18thqiwr" path="res://sources/SFX/Player/Footsteps/Player_Step_Dirt_var_04.ogg" id="5_7n8qr"]
-[ext_resource type="AudioStream" uid="uid://bwdc36bi7hvu1" path="res://sources/SFX/Player/Jump/Player_Jump_Wood_v4.ogg" id="5_q6qfb"]
-[ext_resource type="AudioStream" uid="uid://78ncm1wm8cvo" path="res://sources/SFX/Player/Jump/Player_Jump_Wood_v5.ogg" id="6_qa40k"]
-[ext_resource type="AudioStream" uid="uid://d0nc08q3rpo75" path="res://sources/SFX/Player/Footsteps/Player_Step_Dirt_var_05.ogg" id="6_xw8v3"]
-[ext_resource type="AudioStream" uid="uid://2d7j5qlg2koi" path="res://sources/SFX/Player/Footsteps/Player_Step_Dirt_var_06.ogg" id="7_o3lgk"]
-[ext_resource type="AudioStream" uid="uid://cah2oj4gut40e" path="res://sources/SFX/Player/Footsteps/Player_Step_Dirt_var_07.ogg" id="8_xap3f"]
-[ext_resource type="AudioStream" uid="uid://bee8ax0ldve8m" path="res://sources/SFX/Player/Footsteps/Player_Step_Dirt_var_08.ogg" id="9_r5hfh"]
-[ext_resource type="AudioStream" uid="uid://bavb8qeu7wrtk" path="res://sources/SFX/Player/Footsteps/Player_Step_Dirt_var_09.ogg" id="10_fqsjb"]
-[ext_resource type="AudioStream" uid="uid://crv078lvsuhww" path="res://sources/SFX/Player/Footsteps/Player_Step_Wood_v1.ogg" id="11_v8xoh"]
-[ext_resource type="AudioStream" uid="uid://oygphai84xoe" path="res://sources/SFX/Player/Moth Jump/player_moth-jump_start.ogg" id="11_wqyd4"]
-[ext_resource type="AudioStream" uid="uid://bphaagwuv2xg7" path="res://sources/SFX/Player/Moth Jump/player_moth-jump_hold.ogg" id="12_0ceqj"]
-[ext_resource type="AudioStream" uid="uid://c0md0byy3qgt6" path="res://sources/SFX/Player/Footsteps/Player_Step_Wood_v2.ogg" id="12_iu53o"]
-[ext_resource type="AudioStream" uid="uid://by1qyhxypryis" path="res://sources/SFX/Player/Moth Jump/player_moth-jump_release.ogg" id="13_noflm"]
-[ext_resource type="AudioStream" uid="uid://dc7f7a2w75khb" path="res://sources/SFX/Player/Footsteps/Player_Step_Wood_v3.ogg" id="13_p42t8"]
-[ext_resource type="AudioStream" uid="uid://dtsamer5t7cit" path="res://sources/SFX/Player/Footsteps/Player_Step_Wood_v4.ogg" id="14_tl5nr"]
-[ext_resource type="AudioStream" uid="uid://cp5034svvc26x" path="res://sources/SFX/Player/Footsteps/Player_Step_Wood_v5.ogg" id="15_arjia"]
-[ext_resource type="PackedScene" uid="uid://cvnavuouf7esd" path="res://prefabs/components/base_attack_component.tscn" id="27_qysgp"]
+[ext_resource type="AudioStream" uid="uid://blgddmhn7i0by" path="res://sources/SFX/Player/Jump/Player_Jump_Wood_v3.ogg" id="4_hqlsc"]
+[ext_resource type="AudioStream" uid="uid://cpptf6y6r6hhc" path="res://sources/SFX/Player/Footsteps/Player_Step_Dirt_var_03.ogg" id="4_sgnae"]
+[ext_resource type="AudioStream" uid="uid://geqputobjeuj" path="res://sources/SFX/Player/Footsteps/Player_Step_Dirt_var_04.ogg" id="5_7n8qr"]
+[ext_resource type="AudioStream" uid="uid://wkmrt7k0xtwq" path="res://sources/SFX/Player/Jump/Player_Jump_Wood_v4.ogg" id="5_q6qfb"]
+[ext_resource type="AudioStream" uid="uid://datbg5awd3h3x" path="res://sources/SFX/Player/Jump/Player_Jump_Wood_v5.ogg" id="6_qa40k"]
+[ext_resource type="AudioStream" uid="uid://c1lh56whjocv1" path="res://sources/SFX/Player/Footsteps/Player_Step_Dirt_var_05.ogg" id="6_xw8v3"]
+[ext_resource type="AudioStream" uid="uid://pbnrqf1sj3ey" path="res://sources/SFX/Player/Footsteps/Player_Step_Dirt_var_06.ogg" id="7_o3lgk"]
+[ext_resource type="AudioStream" uid="uid://b3qslibky7wtd" path="res://sources/SFX/Player/Footsteps/Player_Step_Dirt_var_07.ogg" id="8_xap3f"]
+[ext_resource type="AudioStream" uid="uid://3wiu6xqybwp1" path="res://sources/SFX/Player/Footsteps/Player_Step_Dirt_var_08.ogg" id="9_r5hfh"]
+[ext_resource type="AudioStream" uid="uid://cuu5fcp1p3o0p" path="res://sources/SFX/Player/Footsteps/Player_Step_Dirt_var_09.ogg" id="10_fqsjb"]
+[ext_resource type="AudioStream" uid="uid://dmk010c4rd17c" path="res://sources/SFX/Player/Footsteps/Player_Step_Wood_v1.ogg" id="11_v8xoh"]
+[ext_resource type="AudioStream" uid="uid://c5jlmuxdkbuk8" path="res://sources/SFX/Player/Moth Jump/player_moth-jump_start.ogg" id="11_wqyd4"]
+[ext_resource type="AudioStream" uid="uid://b30ogs7x022w6" path="res://sources/SFX/Player/Moth Jump/player_moth-jump_hold.ogg" id="12_0ceqj"]
+[ext_resource type="AudioStream" uid="uid://dci68shumj6fv" path="res://sources/SFX/Player/Footsteps/Player_Step_Wood_v2.ogg" id="12_iu53o"]
+[ext_resource type="AudioStream" uid="uid://v64wneiy8unp" path="res://sources/SFX/Player/Moth Jump/player_moth-jump_release.ogg" id="13_noflm"]
+[ext_resource type="AudioStream" uid="uid://dlucuqp10lmy8" path="res://sources/SFX/Player/Footsteps/Player_Step_Wood_v3.ogg" id="13_p42t8"]
+[ext_resource type="AudioStream" uid="uid://dsc3caesksu20" path="res://sources/SFX/Player/Footsteps/Player_Step_Wood_v4.ogg" id="14_tl5nr"]
+[ext_resource type="AudioStream" uid="uid://b5kctobx5ahbk" path="res://sources/SFX/Player/Footsteps/Player_Step_Wood_v5.ogg" id="15_arjia"]
 [ext_resource type="PackedScene" uid="uid://di47ep1fu4808" path="res://prefabs/components/base_health_and_status_component.tscn" id="28_50nj0"]
+[ext_resource type="Texture2D" uid="uid://br07m16g4c18p" path="res://sources/light.jpg" id="28_5627b"]
+[ext_resource type="Script" path="res://scripts/entity/components/light_components/light_component.gd" id="29_glieu"]
 [ext_resource type="PackedScene" uid="uid://ccu1llutgwao8" path="res://prefabs/components/player_input_component.tscn" id="29_tkue1"]
 [ext_resource type="PackedScene" uid="uid://csg2c5faso123" path="res://prefabs/components/ranged_attack.tscn" id="30_5ht77"]
+[ext_resource type="Script" path="res://scripts/entity/components/attack_components/player_attack_component.gd" id="31_a0bar"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_280hp"]
 radius = 15.0
@@ -372,7 +374,7 @@ script = ExtResource("1_ghq3j")
 movement_component = NodePath("PlayerController")
 input_component = NodePath("PlayerInputComponent")
 health_and_status_component = NodePath("BaseHealthAndStatusComponent")
-attack_component = NodePath("BaseAttackComponent")
+attack_component = NodePath("PlayerAttackComponent")
 
 [node name="PlayerController" type="CharacterBody2D" parent="."]
 script = ExtResource("2_awxgg")
@@ -432,17 +434,27 @@ collision_mask = 2
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PlayerController/Area2D"]
 polygon = PackedVector2Array(0, 0, 120, 90, 120, -90)
 
-[node name="BaseAttackComponent" parent="." node_paths=PackedStringArray("attacks", "lock_on_area", "measurement_position", "projectile_spawn_position") instance=ExtResource("27_qysgp")]
-attacks = [NodePath("../RangedAttack")]
-lock_on_area = NodePath("../PlayerController/Area2D")
-measurement_position = NodePath("../PlayerController/Marker2D")
-projectile_spawn_position = NodePath("../PlayerController/Marker2D")
+[node name="LightComponent" type="PointLight2D" parent="PlayerController"]
+shadow_enabled = true
+texture = ExtResource("28_5627b")
+script = ExtResource("29_glieu")
+
+[node name="Camera2D" type="Camera2D" parent="PlayerController"]
+zoom = Vector2(2, 2)
+position_smoothing_enabled = true
 
 [node name="BaseHealthAndStatusComponent" parent="." instance=ExtResource("28_50nj0")]
 
 [node name="PlayerInputComponent" parent="." instance=ExtResource("29_tkue1")]
 
 [node name="RangedAttack" parent="." node_paths=PackedStringArray("projectile_spawn_position") instance=ExtResource("30_5ht77")]
+projectile_spawn_position = NodePath("../PlayerController/Marker2D")
+
+[node name="PlayerAttackComponent" type="Node" parent="." node_paths=PackedStringArray("lock_on_area", "attacks", "measurement_position", "projectile_spawn_position")]
+script = ExtResource("31_a0bar")
+lock_on_area = NodePath("../PlayerController/Area2D")
+attacks = [NodePath("../RangedAttack")]
+measurement_position = NodePath("../PlayerController/Marker2D")
 projectile_spawn_position = NodePath("../PlayerController/Marker2D")
 
 [connection signal="on_horizontal_movement" from="PlayerController" to="PlayerController/AnimatedSprite2D/AnimationPlayer" method="walking"]
