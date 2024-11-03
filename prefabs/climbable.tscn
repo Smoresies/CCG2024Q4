@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://df0h6dt2b3l7n"]
+
+[ext_resource type="Script" path="res://scripts/environment/climbable_area_component.gd" id="1_76ua0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_21kih"]
+size = Vector2(20, 115)
+
+[node name="Climbable" type="Area2D"]
+collision_layer = 16
+script = ExtResource("1_76ua0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -47.5)
+shape = SubResource("RectangleShape2D_21kih")

@@ -16,7 +16,8 @@ func _ready() -> void:
 
 	# if the movement component and input component exist connect the movement together.
 	if movement_component and input_component and attack_component:
-		input_component.on_horizontal_movement_input.connect(movement_component.on_movement_input)
+		input_component.on_horizontal_movement_input.connect(movement_component.on_horizontal_movement_input)
+		input_component.on_vertical_movement_input.connect(movement_component.on_vertical_movement_input)
 		input_component.on_jump_input_started.connect(movement_component.on_jump_input_started)
 		input_component.on_jump_input.connect(movement_component.on_jump_input)
 		input_component.on_jump_input_cancelled.connect(movement_component.on_jump_input_cancelled)
