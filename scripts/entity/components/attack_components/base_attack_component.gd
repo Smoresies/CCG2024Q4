@@ -3,6 +3,9 @@ class_name BaseAttackComponent extends Node
 ## Occurs when the target has changed
 signal on_target_change(previous_target, current_target)
 
+## The attacks the attack component as access to use.
+@export var attacks: Array[BaseAttack]
+
 ## The Area2D that the character locks onto the closest target.
 @export var lock_on_area: Area2D
 
@@ -11,6 +14,8 @@ signal on_target_change(previous_target, current_target)
 
 ## The time between target updates in seconds.
 @export var time_between_target_updates_in_seconds: float
+
+@export var projectile_spawn_position: Marker2D
 
 ## Used to continue a coroutine for updating the target.
 var _update_targets: bool = true
@@ -23,6 +28,9 @@ var _current_target: Node2D = null
 
 ## If the update target timer is running.
 var _update_target_timer_running: bool = false
+
+## The current direction we are facing.
+var _current_direction_facing: Vector2 = Vector2.RIGHT
 
 @warning_ignore("UNUSED_SIGNAL")
 signal on_attack_started()
@@ -40,27 +48,20 @@ func _ready() -> void:
 	on_target_change.connect(target_changed)
 
 func on_attack_input_started() -> void:
-	# Abstract method error
-	push_error('Abstract Method Not Implemented Error: %s' % [name])
-	assert(false, 'Abstract Method Not Implemented Error: %s' % [name])
-
+	attacks[0].start_attack(_get_current_target_or_direction())
 
 func on_attack_input() -> void:
-	# Abstract method error
-	push_error('Abstract Method Not Implemented Error: %s' % [name])
-	assert(false, 'Abstract Method Not Implemented Error: %s' % [name])
+	attacks[0].attack(_get_current_target_or_direction())
 
 
 func on_attack_input_cancelled() -> void:
-	# Abstract method error
-	push_error('Abstract Method Not Implemented Error: %s' % [name])
-	assert(false, 'Abstract Method Not Implemented Error: %s' % [name])
+	attacks[0].cancel_attack(_get_current_target_or_direction())
 
 
 ## Checks each target in the lock on area and then determines which is the closest. Emits an on_target_change signal if the target has changed.
 func update_closest_target():
 	# Run while 
-	while (_update_targets || _current_target != null) && !_update_target_timer_running:
+	while (_update_targets || is_instance_valid(_current_target)) && !_update_target_timer_running:
 		_update_target_timer_running = true
 		var closest_node: Node2D = null
 		var closest_distance: float =  INF
@@ -96,8 +97,33 @@ func _add_target(_body: Node2D):
 		_update_targets = true
 		update_closest_target()
 
+## Gets the current target or the direction we are facing.
+func _get_current_target_or_direction():
+	if is_instance_valid(_current_target):
+		return _current_target
+	else:
+		return _current_direction_facing
 
 ## Removes a target and updates the boolean for continuing running the coroutine.
 func _remove_target(_body: Node2D):
 	_num_targets -= 1
 	_update_targets = _num_targets > 0
+
+## Replaces the attack in spot 0 of the attack array.
+func replace_attack1(attack_scene: PackedScene) -> void:
+	attacks[0].queue_free()
+	var new_attack: BaseAttack = attack_scene.instantiate()
+	add_child(new_attack)
+	attacks[0] = new_attack
+	if new_attack is RangedAttack:
+		(new_attack as RangedAttack).init_attack(projectile_spawn_position)
+
+## Updates the direction of the lock on area and projectile spawn point to the
+## other side if the direciton changes.
+func update_direction_specific_items(value: float):
+	lock_on_area.position.x *= -1 
+	lock_on_area.scale.x *= -1
+	projectile_spawn_position.position.x *= -1
+	projectile_spawn_position.scale.x *= -1
+
+	_current_direction_facing.x = value

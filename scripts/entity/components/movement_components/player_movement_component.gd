@@ -20,7 +20,8 @@ signal on_moth_jump_ended()
 @export var MOTH_JUMP_FLUTTER_DURATION: float = 0.35
 
 ## The current input direction.
-var _current_input_direction: float = 0
+var _current_input_direction: Vector2 = Vector2(0,0)
+
 ## How fast the character decelerates after loss of input.
 var _horizontal_deceleration: float = MAX_SPEED / DECELERATION_TIME
 
@@ -33,6 +34,12 @@ var _moth_jump_flutter_timer: float = 0.0
 var _moth_jump_initial_height: float = 0.0
 var _is_jump_button_held: bool = false
 
+## Used for rudimentary validation of exiting the climbable while holding up.
+## Change when tiles are implemented.
+var _is_up_pressed: bool = false  
+
+@export var CLIMB_SPEED: int = 300
+@export var CLIMB_EXIT_SPEED: int = 50
 
 func _ready() -> void:
 	JUMP_VELOCITY *= -1
@@ -41,15 +48,22 @@ func _ready() -> void:
 ## Applies movement to the character.
 func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
-	apply_gravity(delta)
-	apply_horizontal_movement(delta)
+	if _is_climbing:
+		apply_climbing_movement(delta)
+	else:
+		apply_gravity(delta)
+		apply_horizontal_movement(delta)
 	move_and_slide()
 
-func on_movement_input(horizontal_vector2: float) -> void:
-	_current_input_direction = horizontal_vector2
+func on_horizontal_movement_input(horizontal_vector2: float) -> void:
+	_current_input_direction.x = horizontal_vector2
+
+func on_vertical_movement_input(vertical_vector2: float) -> void:
+	_current_input_direction.y = vertical_vector2
+	_is_up_pressed = vertical_vector2 < 0
 
 func on_jump_input_started() -> void:
-	if is_on_floor():
+	if is_on_floor() or _is_climbing:
 		_can_moth_jump = true
 		velocity.y = JUMP_VELOCITY
 		on_jump_started.emit()
@@ -62,12 +76,21 @@ func on_jump_input() -> void:
 
 func on_jump_input_cancelled() -> void:
 	_is_jump_button_held = false
+	
+func _on_entered_climbable() -> void:
+	_is_climbing = true
+
+func _on_exited_climbable() -> void:
+	_is_climbing = false
+	if _is_up_pressed:
+		velocity.y = -CLIMB_EXIT_SPEED
+
 
 ## Moves the entity based on the current input direction.
 func apply_horizontal_movement(delta: float) -> void:
-	if _current_input_direction != 0:
+	if _current_input_direction.x != 0:
 		# Accelerate towards the target speed
-		velocity.x = move_toward(velocity.x, _current_input_direction * MAX_SPEED, ACCELERATION * delta)
+		velocity.x = move_toward(velocity.x, _current_input_direction.x * MAX_SPEED, ACCELERATION * delta)
 	else:
 		# Decelerate towards zero speed
 		velocity.x = move_toward(velocity.x, 0, _horizontal_deceleration * delta)
@@ -114,6 +137,11 @@ func _moth_jump(delta: float) -> void:
 		on_moth_jump_ended.emit()
 		super.apply_gravity(delta)
 	
+	
+func apply_climbing_movement(delta: float) -> void:
+	velocity.y = move_toward(velocity.y, _current_input_direction.y * CLIMB_SPEED, ACCELERATION * delta)
+	velocity.x = move_toward(velocity.x, _current_input_direction.x * MAX_SPEED, ACCELERATION * delta)
+
 	
 func _apply_moth_jump_dip(delta: float) -> void:
 	# Handle the flutter dip

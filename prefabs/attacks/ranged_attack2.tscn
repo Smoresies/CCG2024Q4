@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://dtwb2d20i0de2"]
+
+[ext_resource type="Script" path="res://scripts/entity/attacks/ranged_attack.gd" id="1_av27f"]
+[ext_resource type="PackedScene" uid="uid://d305p8471rxhx" path="res://prefabs/projectiles/projectile.tscn" id="2_e6qii"]
+
+[node name="RangedAttack" type="Node"]
+script = ExtResource("1_av27f")
+projectile_scene = ExtResource("2_e6qii")
+projectile_speed = 200
+base_attack_damage = 10
+base_attack_cooldown_in_seconds = 1.0
