@@ -1,11 +1,11 @@
 [gd_scene load_steps=10 format=3 uid="uid://db57whnmfxr41"]
 
-[ext_resource type="PackedScene" uid="uid://cplaaen2uodhm" path="res://prefabs/entity.tscn" id="1_1nb0p"]
 [ext_resource type="PackedScene" uid="uid://c861ph2h6lepr" path="res://prefabs/dummy.tscn" id="2_xqrxo"]
 [ext_resource type="Script" path="res://scripts/entity/projectile_components/base_collidable_object.gd" id="3_igvw7"]
 [ext_resource type="Script" path="res://scripts/status_effect/base_status_effect.gd" id="4_3cfgk"]
 [ext_resource type="PackedScene" uid="uid://dtwb2d20i0de2" path="res://prefabs/attacks/ranged_attack2.tscn" id="5_ct8tr"]
 [ext_resource type="Script" path="res://scripts/status_effect/replace_attack_status_effect.gd" id="6_ciesc"]
+[ext_resource type="PackedScene" uid="uid://civfx1w4vjpko" path="res://prefabs/player.tscn" id="7_iabik"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_sj5p0"]
 
@@ -26,11 +26,8 @@ position = Vector2(184, 215)
 shape = SubResource("WorldBoundaryShape2D_sj5p0")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(185, 176)
-zoom = Vector2(4, 4)
+position = Vector2(477, 155)
 position_smoothing_enabled = true
-
-[node name="Entity" parent="." instance=ExtResource("1_1nb0p")]
 
 [node name="Dummy" parent="." instance=ExtResource("2_xqrxo")]
 position = Vector2(247, 196)
@@ -61,3 +58,5 @@ status_effects = Array[ExtResource("4_3cfgk")]([SubResource("Resource_8rh63")])
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BaseCollidableObject2"]
 position = Vector2(168, 200)
 shape = SubResource("RectangleShape2D_vau7a")
+
+[node name="Player" parent="." instance=ExtResource("7_iabik")]

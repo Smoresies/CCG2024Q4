@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://cvnavuouf7esd"]
+
+[ext_resource type="Script" path="res://scripts/entity/components/attack_components/base_attack_component.gd" id="1_h4pdm"]
+
+[node name="BaseAttackComponent" type="Node" node_paths=PackedStringArray("attacks", "lock_on_area", "measurement_position", "projectile_spawn_position")]
+script = ExtResource("1_h4pdm")
+attacks = [NodePath("")]
+lock_on_area = NodePath("")
+measurement_position = NodePath("")
+time_between_target_updates_in_seconds = 0.25
+projectile_spawn_position = NodePath("")

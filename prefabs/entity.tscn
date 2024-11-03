@@ -1,13 +1,12 @@
-[gd_scene load_steps=15 format=3 uid="uid://cplaaen2uodhm"]
+[gd_scene load_steps=14 format=3 uid="uid://cplaaen2uodhm"]
 
 [ext_resource type="Script" path="res://scripts/entity/base_entity.gd" id="1_e765f"]
-[ext_resource type="Script" path="res://scripts/entity/components/health_and_status_components/base_health_and_status_component.gd" id="3_jfr1s"]
-[ext_resource type="PackedScene" uid="uid://d305p8471rxhx" path="res://prefabs/projectiles/projectile.tscn" id="4_fm3ym"]
+[ext_resource type="PackedScene" uid="uid://di47ep1fu4808" path="res://prefabs/components/base_health_and_status_component.tscn" id="2_w517k"]
+[ext_resource type="PackedScene" uid="uid://ccu1llutgwao8" path="res://prefabs/components/player_input_component.tscn" id="3_srndx"]
+[ext_resource type="PackedScene" uid="uid://cvnavuouf7esd" path="res://prefabs/components/base_attack_component.tscn" id="4_nn3m4"]
 [ext_resource type="Script" path="res://scripts/entity/components/movement_components/player_movement_component.gd" id="5_hgkaw"]
-[ext_resource type="Script" path="res://scripts/entity/components/attack_components/base_attack_component.gd" id="6_7ankf"]
 [ext_resource type="Texture2D" uid="uid://bx0sh83j6ub8k" path="res://sources/knight.png" id="6_cme2n"]
-[ext_resource type="Script" path="res://scripts/entity/components/input_components/player_input_component.gd" id="6_snpov"]
-[ext_resource type="Script" path="res://scripts/entity/attacks/ranged_attack.gd" id="7_v4hhs"]
+[ext_resource type="PackedScene" uid="uid://csg2c5faso123" path="res://prefabs/components/ranged_attack.tscn" id="7_bi6bb"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dsw0d"]
 radius = 6.0
@@ -52,23 +51,15 @@ animations = [{
 [node name="Entity" type="Node2D" node_paths=PackedStringArray("movement_component", "input_component", "health_and_status_component", "attack_component")]
 script = ExtResource("1_e765f")
 movement_component = NodePath("PlayerMovementComponent")
-input_component = NodePath("PlayerInputComponent")
-health_and_status_component = NodePath("BaseHealthAndStatusComponent")
-attack_component = NodePath("BaseAttackComponent")
+input_component = NodePath("")
+health_and_status_component = NodePath("")
+attack_component = NodePath("")
 
-[node name="BaseHealthAndStatusComponent" type="Node" parent="."]
-script = ExtResource("3_jfr1s")
+[node name="BaseHealthAndStatusComponent" parent="." instance=ExtResource("2_w517k")]
 
-[node name="PlayerInputComponent" type="Node" parent="."]
-script = ExtResource("6_snpov")
+[node name="PlayerInputComponent" parent="." instance=ExtResource("3_srndx")]
 
-[node name="BaseAttackComponent" type="Node" parent="." node_paths=PackedStringArray("attacks", "lock_on_area", "measurement_position", "projectile_spawn_position")]
-script = ExtResource("6_7ankf")
-attacks = [NodePath("../RangedAttack")]
-lock_on_area = NodePath("../PlayerMovementComponent/Area2D")
-measurement_position = NodePath("../PlayerMovementComponent")
-time_between_target_updates_in_seconds = 0.25
-projectile_spawn_position = NodePath("../PlayerMovementComponent/Marker2D")
+[node name="BaseAttackComponent" parent="." instance=ExtResource("4_nn3m4")]
 
 [node name="PlayerMovementComponent" type="CharacterBody2D" parent="."]
 script = ExtResource("5_hgkaw")
@@ -92,10 +83,4 @@ polygon = PackedVector2Array(0, 0, 120, 90, 120, -90)
 [node name="Marker2D" type="Marker2D" parent="PlayerMovementComponent"]
 position = Vector2(7, -14)
 
-[node name="RangedAttack" type="Node" parent="." node_paths=PackedStringArray("projectile_spawn_position")]
-script = ExtResource("7_v4hhs")
-projectile_scene = ExtResource("4_fm3ym")
-projectile_spawn_position = NodePath("../PlayerMovementComponent/Marker2D")
-projectile_speed = 100
-base_attack_damage = 10
-base_attack_cooldown_in_seconds = 1.0
+[node name="RangedAttack" parent="." instance=ExtResource("7_bi6bb")]
