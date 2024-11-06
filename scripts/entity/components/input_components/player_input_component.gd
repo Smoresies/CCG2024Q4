@@ -2,9 +2,13 @@ class_name PlayerInputComponent extends BaseInputComponent
 ## An extension to the [BaseInputComponent] class which takes in input from a player input device.
 
 
-const JUMP_INPUT_NAME = "jump"
-const LEFT_INPUT_NAME = "left"
-const RIGHT_INPUT_NAME = "right"
+const JUMP_INPUT_NAME: StringName = &"jump"
+const LEFT_INPUT_NAME: StringName  = &"left"
+const RIGHT_INPUT_NAME: StringName = &"right"
+const DOWN_INPUT_NAME: StringName = &"down"
+const UP_INPUT_NAME: StringName = &"up"
+const ATTACK_INPUT_NAME: StringName = &"attack"
+
 
 
 func _ready() -> void:
@@ -17,7 +21,17 @@ func _input(_event: InputEvent) -> void:
 		on_jump_input.emit()
 	elif Input.is_action_pressed(JUMP_INPUT_NAME):
 		on_jump_input.emit()
-	elif Input.is_action_pressed(JUMP_INPUT_NAME):
+	elif Input.is_action_just_released(JUMP_INPUT_NAME):
 		on_jump_input_cancelled.emit()
 
 	on_horizontal_movement_input.emit(Input.get_axis(LEFT_INPUT_NAME, RIGHT_INPUT_NAME))
+	
+	on_vertical_movement_input.emit(Input.get_axis(UP_INPUT_NAME, DOWN_INPUT_NAME))
+
+	if Input.is_action_just_pressed(ATTACK_INPUT_NAME):
+		on_attack_input_started.emit()
+		on_attack_input.emit()
+	elif Input.is_action_pressed(ATTACK_INPUT_NAME):
+		on_attack_input.emit()
+	elif Input.is_action_just_released(ATTACK_INPUT_NAME):
+		on_attack_input_cancelled.emit()
