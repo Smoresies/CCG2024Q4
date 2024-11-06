@@ -6,13 +6,13 @@ class_name BaseAttack extends Node
 @export var base_attack_cooldown_in_seconds: float
 
 func _ready() -> void:
-    pass
+	pass
 
 func start_attack(_target: Node2D):
-    pass
+	pass
 
 func attack(_target: Node2D):
-    pass
+	pass
 
 func cancel_attack(_target: Node2D):
-    pass
+	pass
