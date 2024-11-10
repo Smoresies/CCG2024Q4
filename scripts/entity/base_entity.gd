@@ -13,7 +13,8 @@ class_name BaseEntity extends Node
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-
+	var terrain_generator = TerrainGenerator.new()
+	terrain_generator.make_spaces()
 	# if the movement component and input component exist connect the movement together.
 	if movement_component and input_component and attack_component:
 		input_component.on_horizontal_movement_input.connect(movement_component.on_horizontal_movement_input)

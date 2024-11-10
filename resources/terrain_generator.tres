@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="TerrainGenerator" load_steps=2 format=3 uid="uid://g0dvghbr3rba"]
+
+[ext_resource type="Script" path="res://scripts/environment/terrain_generator.gd" id="1_su67f"]
+
+[resource]
+script = ExtResource("1_su67f")
+max_layers = 6
+min_layers = 4
+max_width = 2
+min_width = 0

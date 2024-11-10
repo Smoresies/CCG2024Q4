@@ -1,6 +1,7 @@
 [gd_scene load_steps=11 format=4 uid="uid://db57whnmfxr41"]
 
-[ext_resource type="TileSet" uid="uid://jihb2ayj2lsh" path="res://sources/tiles.tres" id="1_t1d4h"]
+[ext_resource type="PackedScene" uid="uid://cplaaen2uodhm" path="res://prefabs/entity.tscn" id="1_1nb0p"]
+[ext_resource type="TileSet" uid="uid://dy58c3j07fjj5" path="res://sources/tiles.tres" id="1_t1d4h"]
 [ext_resource type="PackedScene" uid="uid://c861ph2h6lepr" path="res://prefabs/dummy.tscn" id="2_xqrxo"]
 [ext_resource type="Script" path="res://scripts/entity/projectile_components/base_collidable_object.gd" id="3_igvw7"]
 [ext_resource type="Script" path="res://scripts/status_effect/base_status_effect.gd" id="4_3cfgk"]
