@@ -6,7 +6,10 @@ var visited: bool = false
 
 var useable: bool = false
 
-func init_room_for_use() -> void:
+var spawn_position: Vector2
+
+func init_room_for_use(position: Vector2) -> void:
+	spawn_position = position
 	wall_location.get_or_add(CardinalDirection.NORTH)
 	wall_location.get_or_add(CardinalDirection.SOUTH)
 	wall_location.get_or_add(CardinalDirection.EAST)
@@ -17,6 +20,13 @@ func remove_wall(wall_to_remove: int) -> void:
 	if wall_to_remove >= 0:
 		visited = true
 		wall_location.erase(wall_to_remove)
+
+func place_room(room_to_place: PackedScene, node: Node2D) -> void:
+	print(node)
+	var room: Node2D = room_to_place.instantiate()
+	room.global_position = spawn_position
+	node.add_child(room)
+	print(node.get_children())
 
 func get_debug_string() -> Array[String]:
 	var walls: Array[String] = []

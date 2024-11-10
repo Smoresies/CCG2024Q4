@@ -10,11 +10,12 @@ class_name BaseEntity extends Node
 ## The attack components of the entity.
 @export var attack_component: BaseAttackComponent
 
+@export var terrain_generator: TerrainGenerator
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	var terrain_generator = TerrainGenerator.new()
-	terrain_generator.make_spaces()
+
 	# if the movement component and input component exist connect the movement together.
 	if movement_component and input_component and attack_component:
 		input_component.on_horizontal_movement_input.connect(movement_component.on_horizontal_movement_input)
@@ -27,3 +28,11 @@ func _ready() -> void:
 		input_component.on_attack_input.connect(attack_component.on_attack_input)
 		input_component.on_attack_input_cancelled.connect(attack_component.on_attack_input_cancelled)
  
+
+		input_component.on_jump_input_started.connect(make_terrain)
+
+func make_terrain():
+	if terrain_generator:
+		terrain_generator.make_spaces(self.get_parent())
+		for kid in self.get_parent().get_children():
+			print(kid)

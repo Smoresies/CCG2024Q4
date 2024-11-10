@@ -6,16 +6,29 @@ class_name TerrainGenerator extends Resource
 @export var max_width: int = 2
 @export var min_width: int = 0
 
-@export var bottom_left: PackedScene
-@export var bottom_middle: PackedScene
-@export var bottom_right: PackedScene
-@export var top_left: PackedScene
-@export var top_middle: PackedScene
-@export var top_right: PackedScene
-@export var left: PackedScene
-@export var right: PackedScene
+@export var north: PackedScene
+@export var north_south: PackedScene
+@export var north_east: PackedScene
+@export var north_west: PackedScene
+@export var north_south_east: PackedScene
+@export var north_south_west: PackedScene
+@export var north_east_west: PackedScene
+@export var north_south_east_west: PackedScene
 
-func make_spaces() -> void:
+@export var south: PackedScene
+@export var south_east: PackedScene
+@export var south_west: PackedScene
+@export var south_east_west: PackedScene
+
+@export var east: PackedScene
+@export var east_west: PackedScene
+
+@export var west: PackedScene
+
+@export var room_x_length: int
+@export var room_y_length: int
+
+func make_spaces(parent_node: Node) -> void:
 	var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 
 	var height: int = rng.randi_range(min_layers,max_layers)
@@ -46,36 +59,38 @@ func make_spaces() -> void:
 			level.append(Room.new())
 		for i in range(current_left_width):
 			var room: Room = Room.new()
-			room.init_room_for_use()
+			room.init_room_for_use(Vector2(level.size() * room_x_length,current_level * room_y_length))
 			level.append(room)
 
 		var room2: Room = Room.new()
-		room2.init_room_for_use()
+		room2.init_room_for_use(Vector2(level.size() * room_x_length,current_level * room_y_length))
 		level.append(room2)
 
 		var current_right_width:int = right_widths[current_level]
 		for i in range(current_right_width):
 			var room: Room = Room.new()
-			room.init_room_for_use()
+			room.init_room_for_use(Vector2(level.size() * room_x_length,current_level * room_y_length))
 			level.append(room)
 		for i in range(bottom_floor_width - current_right_width):
 			level.append(Room.new())
 		board.append(level)
 	
 	check_next_room(bottom_floor_width, height - 2, board)
-	board.reverse()
+	# board.reverse()
 	for level in board:
-		var top: String=""
-		var mid: String=""
-		var bot: String=""
+		var top_string: String=""
+		var mid_string: String=""
+		var bot_string: String=""
 		for room in level:
+			# print(north)
+			(room as Room).place_room(north_south_east_west, parent_node)
 			var vals: Array[String] = (room as Room).get_debug_string()
-			top+=vals[0]
-			mid+=vals[1]
-			bot+=vals[2]
-		print(top)
-		print(mid)
-		print(bot)
+			top_string+=vals[0]
+			mid_string+=vals[1]
+			bot_string+=vals[2]
+		print(top_string)
+		print(mid_string)
+		print(bot_string)
 
 func check_next_room(x: int, y: int, board) -> void:
 	var directions_to_check: Array[int] = [CardinalDirection.NORTH, CardinalDirection.EAST, CardinalDirection.SOUTH, CardinalDirection.WEST]
