@@ -20,23 +20,27 @@ func remove_wall(wall_to_remove: int) -> void:
 
 func get_debug_string() -> Array[String]:
 	var walls: Array[String] = []
-	if wall_location.has(CardinalDirection.NORTH):
-		walls.append("___")
-	else:
-		walls.append("   ")
+	if useable:
+		if wall_location.has(CardinalDirection.NORTH):
+			walls.append("---")
+		else:
+			walls.append("   ")
 
-	if wall_location.has(CardinalDirection.EAST) and wall_location.has(CardinalDirection.WEST):
-		walls.append("| |")
-	elif wall_location.has(CardinalDirection.WEST):
-		walls.append("|  ")
-	elif wall_location.has(CardinalDirection.EAST):
-		walls.append("  |")
-	else:
-		walls.append("   ")
+		if wall_location.has(CardinalDirection.EAST) and wall_location.has(CardinalDirection.WEST):
+			walls.append("| |")
+		elif wall_location.has(CardinalDirection.WEST):
+			walls.append("|  ")
+		elif wall_location.has(CardinalDirection.EAST):
+			walls.append("  |")
+		else:
+			walls.append("   ")
 
-	if wall_location.has(CardinalDirection.SOUTH):
-		walls.append("___")
+		if wall_location.has(CardinalDirection.SOUTH):
+			walls.append("---")
+		else:
+			walls.append("   ")
 	else:
-		walls.append("   ")
-	
+		walls.append("XXX")
+		walls.append("XXX")
+		walls.append("XXX")
 	return walls

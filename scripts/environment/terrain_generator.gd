@@ -6,6 +6,15 @@ class_name TerrainGenerator extends Resource
 @export var max_width: int = 2
 @export var min_width: int = 0
 
+@export var bottom_left: PackedScene
+@export var bottom_middle: PackedScene
+@export var bottom_right: PackedScene
+@export var top_left: PackedScene
+@export var top_middle: PackedScene
+@export var top_right: PackedScene
+@export var left: PackedScene
+@export var right: PackedScene
+
 func make_spaces() -> void:
 	var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 
@@ -54,7 +63,6 @@ func make_spaces() -> void:
 		board.append(level)
 	
 	check_next_room(bottom_floor_width, height - 2, board)
-	print("-----")
 	board.reverse()
 	for level in board:
 		var top: String=""
@@ -76,27 +84,27 @@ func check_next_room(x: int, y: int, board) -> void:
 	var current_room: Room = board[x][y]
 	for direction_to_check in directions_to_check:
 		# up
-		if direction_to_check == CardinalDirection.NORTH and y < board[x].size() - 1:
+		if direction_to_check == CardinalDirection.EAST and y < board[x].size() - 1:
 			var next_room: Room = board[x][y+1]
 			if next_room.useable and !next_room.visited:
 				current_room.remove_wall(direction_to_check)
-				next_room.remove_wall(CardinalDirection.SOUTH)
+				next_room.remove_wall(CardinalDirection.WEST)
 				check_next_room(x, y+1, board)
-		elif direction_to_check == CardinalDirection.SOUTH and y > 0:
+		elif direction_to_check == CardinalDirection.WEST and y > 0:
 			var next_room: Room = board[x][y-1]
 			if next_room.useable and !next_room.visited:
 				current_room.remove_wall(direction_to_check)
-				next_room.remove_wall(CardinalDirection.NORTH)
+				next_room.remove_wall(CardinalDirection.EAST)
 				check_next_room(x, y-1, board)
-		elif direction_to_check == CardinalDirection.EAST and x < board.size() - 1:
+		elif direction_to_check == CardinalDirection.NORTH and x < board.size() - 1:
 			var next_room: Room = board[x+1][y]
 			if next_room.useable and !next_room.visited:
 				current_room.remove_wall(direction_to_check)
-				next_room.remove_wall(CardinalDirection.WEST)
+				next_room.remove_wall(CardinalDirection.SOUTH)
 				check_next_room(x+1, y, board)
-		elif direction_to_check == CardinalDirection.WEST and x > 0:
+		elif direction_to_check == CardinalDirection.SOUTH and x > 0:
 			var next_room: Room = board[x-1][y]
 			if next_room.useable and !next_room.visited:
 				current_room.remove_wall(direction_to_check)
-				next_room.remove_wall(CardinalDirection.EAST)
+				next_room.remove_wall(CardinalDirection.NORTH)
 				check_next_room(x-1, y, board)
