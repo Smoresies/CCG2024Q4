@@ -81,9 +81,9 @@ func make_spaces(parent_node: Node) -> void:
 		var top_string: String=""
 		var mid_string: String=""
 		var bot_string: String=""
-		for room in level:
-			# print(north)
-			(room as Room).place_room(north_south_east_west, parent_node)
+		for room: Room in level:
+			var scene: PackedScene = get_room(room)
+			room.place_room(scene, parent_node)
 			var vals: Array[String] = (room as Room).get_debug_string()
 			top_string+=vals[0]
 			mid_string+=vals[1]
@@ -91,6 +91,38 @@ func make_spaces(parent_node: Node) -> void:
 		print(top_string)
 		print(mid_string)
 		print(bot_string)
+
+func get_room(room: Room) -> PackedScene:
+	if room.wall_location.has(CardinalDirection.NORTH) and room.wall_location.has(CardinalDirection.SOUTH) and room.wall_location.has(CardinalDirection.EAST):
+		return west
+	elif room.wall_location.has(CardinalDirection.NORTH) and room.wall_location.has(CardinalDirection.SOUTH) and room.wall_location.has(CardinalDirection.WEST):
+		return east
+	elif room.wall_location.has(CardinalDirection.NORTH) and room.wall_location.has(CardinalDirection.EAST) and room.wall_location.has(CardinalDirection.WEST):
+		return south
+	elif room.wall_location.has(CardinalDirection.SOUTH) and room.wall_location.has(CardinalDirection.EAST) and room.wall_location.has(CardinalDirection.WEST):
+		return north
+	elif room.wall_location.has(CardinalDirection.NORTH) and room.wall_location.has(CardinalDirection.SOUTH):
+		return east_west
+	elif room.wall_location.has(CardinalDirection.NORTH) and room.wall_location.has(CardinalDirection.EAST):
+		return south_west
+	elif room.wall_location.has(CardinalDirection.NORTH) and room.wall_location.has(CardinalDirection.WEST):
+		return south_east
+	elif room.wall_location.has(CardinalDirection.SOUTH) and room.wall_location.has(CardinalDirection.EAST):
+		return north_west
+	elif room.wall_location.has(CardinalDirection.SOUTH) and room.wall_location.has(CardinalDirection.WEST):
+		return north_east
+	elif room.wall_location.has(CardinalDirection.EAST) and room.wall_location.has(CardinalDirection.WEST):
+		return north_south
+	elif room.wall_location.has(CardinalDirection.NORTH):
+		return south_east_west
+	elif room.wall_location.has(CardinalDirection.SOUTH):
+		return north_east_west
+	elif room.wall_location.has(CardinalDirection.EAST):
+		return north_south_west
+	elif room.wall_location.has(CardinalDirection.WEST):
+		return north_south_east
+	else:
+		return north_south_east_west
 
 func check_next_room(x: int, y: int, board) -> void:
 	var directions_to_check: Array[int] = [CardinalDirection.NORTH, CardinalDirection.EAST, CardinalDirection.SOUTH, CardinalDirection.WEST]
