@@ -1,80 +1,109 @@
 class_name TerrainGenerator extends Resource
+## A class that generates the dungeon rooms for a play through.
 
-@export var max_layers: int = 6
-@export var min_layers: int = 4
+## The max number of rooms the dungeon can have vertically.
+@export var max_dungeon_height: int = 6
 
-@export var max_width: int = 2
-@export var min_width: int = 0
+## The min number of rooms the dungeon can have vertically.
+@export var min_dungeon_height: int = 4
 
-@export var north: PackedScene
-@export var north_south: PackedScene
-@export var north_east: PackedScene
-@export var north_west: PackedScene
-@export var north_south_east: PackedScene
-@export var north_south_west: PackedScene
-@export var north_east_west: PackedScene
-@export var north_south_east_west: PackedScene
+## The max number of rooms in half the dungeon's width.
+@export var max_half_dungeon_width: int = 2
 
-@export var south: PackedScene
-@export var south_east: PackedScene
-@export var south_west: PackedScene
-@export var south_east_west: PackedScene
+## The min number of rooms in half the dungeon's width.
+@export var min_half_dungeon_width: int = 0
 
-@export var east: PackedScene
-@export var east_west: PackedScene
+## The number of times to try to add more doors to a room. Currently can fail.
+@export var num_add_tries: int
 
-@export var west: PackedScene
+## The prefab with a door to the north.
+@export var door_north: PackedScene
+## The prefab with a door to the north and south.
+@export var door_north_south: PackedScene
+## The prefab with a door to the north and east.
+@export var door_north_east: PackedScene
+## The prefab with a door to the north and west.
+@export var door_north_west: PackedScene
+## The prefab with a door to the north and south and east.
+@export var door_north_south_east: PackedScene
+## The prefab with a door to the north and south and west.
+@export var door_north_south_west: PackedScene
+## The prefab with a door to the north and east and west.
+@export var door_north_east_west: PackedScene
+## The prefab with a door to the north and south and east and west.
+@export var door_north_south_east_west: PackedScene
+## The prefab with a door to the south.
+@export var door_south: PackedScene
+## The prefab with a door to the south and east.
+@export var door_south_east: PackedScene
+## The prefab with a door to the south and west.
+@export var door_south_west: PackedScene
+## The prefab with a door to the south and east and west.
+@export var door_south_east_west: PackedScene
+## The prefab with a door to the east.
+@export var door_east: PackedScene
+## The prefab with a door to the east and west.
+@export var door_east_west: PackedScene
+## The prefab with a door to the west.
+@export var door_west: PackedScene
 
+## The amount of pixels in the x direction of a room prefab.
 @export var room_x_length: int
+## The amount of pixels in the y direction of a room prefab.
 @export var room_y_length: int
 
-@export var num_add_tries: int
 
 func make_spaces(parent_node: Node) -> void:
 	var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 
-	var height: int = rng.randi_range(min_layers,max_layers)
+	# generate the height
+	var height: int = rng.randi_range(min_dungeon_height,max_dungeon_height)
+	# generate the half width
 	var bottom_floor_width: int = rng.randi_range(2,3)
-
+	# init the half widths to have the bottom 2 levels be the same
 	var left_widths: Array[int] = [bottom_floor_width, bottom_floor_width]
 	var right_widths: Array[int] = [bottom_floor_width, bottom_floor_width]
-	
+	# for each middle floor 
 	for i in range(2, height - 1):
+		# add a left width of either one less than before or the same but always above 0
 		var previous_left_index_width: int = left_widths[i-1]
 		var left_index_width_to_try: int = rng.randi_range(previous_left_index_width - 1, previous_left_index_width)
 		left_widths.append(max(1, left_index_width_to_try))
 
+		# add a right width of either one less than before or the same but always above 0
 		var previous_right_index_width: int = right_widths[i-1]
 		var right_index_width_to_try: int = rng.randi_range(previous_right_index_width - 1, previous_right_index_width)
 		right_widths.append(max(1, right_index_width_to_try))
 
+	# add the top levels which always have a width of 1
 	left_widths.append(1)
 	right_widths.append(1)
 
-	
+	# init the board
 	var board = []
-	for current_level in range(height):
-		var level = []
-		var current_left_width:int = left_widths[current_level]
+	# for each vertical level
+	for current_vertical_level in range(height):
+		var current_horizontal_level = []
+		var current_left_width:int = left_widths[current_vertical_level]
 		for i in range(bottom_floor_width - current_left_width):
-			level.append(Room.new())
+			current_horizontal_level.append(Room.new())
 		for i in range(current_left_width):
 			var room: Room = Room.new()
-			room.init_room_for_use(Vector2(level.size() * room_x_length,current_level * room_y_length))
-			level.append(room)
+			room.init_room_for_use(Vector2(current_horizontal_level.size() * room_x_length,current_vertical_level * room_y_length))
+			current_horizontal_level.append(room)
 
 		var room2: Room = Room.new()
-		room2.init_room_for_use(Vector2(level.size() * room_x_length,current_level * room_y_length))
-		level.append(room2)
+		room2.init_room_for_use(Vector2(current_horizontal_level.size() * room_x_length,current_vertical_level * room_y_length))
+		current_horizontal_level.append(room2)
 
-		var current_right_width:int = right_widths[current_level]
+		var current_right_width:int = right_widths[current_vertical_level]
 		for i in range(current_right_width):
 			var room: Room = Room.new()
-			room.init_room_for_use(Vector2(level.size() * room_x_length,current_level * room_y_length))
-			level.append(room)
+			room.init_room_for_use(Vector2(current_horizontal_level.size() * room_x_length,current_vertical_level * room_y_length))
+			current_horizontal_level.append(room)
 		for i in range(bottom_floor_width - current_right_width):
-			level.append(Room.new())
-		board.append(level)
+			current_horizontal_level.append(Room.new())
+		board.append(current_horizontal_level)
 	
 	check_next_room(height -2, bottom_floor_width, board, true)
 	for i in range(num_add_tries):
@@ -89,35 +118,35 @@ func make_spaces(parent_node: Node) -> void:
 
 func get_room(room: Room) -> PackedScene:
 	if room.wall_location.has(CardinalDirection.NORTH) and room.wall_location.has(CardinalDirection.SOUTH) and room.wall_location.has(CardinalDirection.EAST):
-		return west
+		return door_west
 	elif room.wall_location.has(CardinalDirection.NORTH) and room.wall_location.has(CardinalDirection.SOUTH) and room.wall_location.has(CardinalDirection.WEST):
-		return east
+		return door_east
 	elif room.wall_location.has(CardinalDirection.NORTH) and room.wall_location.has(CardinalDirection.EAST) and room.wall_location.has(CardinalDirection.WEST):
-		return south
+		return door_south
 	elif room.wall_location.has(CardinalDirection.SOUTH) and room.wall_location.has(CardinalDirection.EAST) and room.wall_location.has(CardinalDirection.WEST):
-		return north
+		return door_north
 	elif room.wall_location.has(CardinalDirection.NORTH) and room.wall_location.has(CardinalDirection.SOUTH):
-		return east_west
+		return door_east_west
 	elif room.wall_location.has(CardinalDirection.NORTH) and room.wall_location.has(CardinalDirection.EAST):
-		return south_west
+		return door_south_west
 	elif room.wall_location.has(CardinalDirection.NORTH) and room.wall_location.has(CardinalDirection.WEST):
-		return south_east
+		return door_south_east
 	elif room.wall_location.has(CardinalDirection.SOUTH) and room.wall_location.has(CardinalDirection.EAST):
-		return north_west
+		return door_north_west
 	elif room.wall_location.has(CardinalDirection.SOUTH) and room.wall_location.has(CardinalDirection.WEST):
-		return north_east
+		return door_north_east
 	elif room.wall_location.has(CardinalDirection.EAST) and room.wall_location.has(CardinalDirection.WEST):
-		return north_south
+		return door_north_south
 	elif room.wall_location.has(CardinalDirection.NORTH):
-		return south_east_west
+		return door_south_east_west
 	elif room.wall_location.has(CardinalDirection.SOUTH):
-		return north_east_west
+		return door_north_east_west
 	elif room.wall_location.has(CardinalDirection.EAST):
-		return north_south_west
+		return door_north_south_west
 	elif room.wall_location.has(CardinalDirection.WEST):
-		return north_south_east
+		return door_north_south_east
 	else:
-		return north_south_east_west
+		return door_north_south_east_west
 
 func add_more_paths(x: int, y: int, board,) -> void:
 	var current_room: Room = board[x][y]
