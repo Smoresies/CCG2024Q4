@@ -22,11 +22,10 @@ func remove_wall(wall_to_remove: int) -> void:
 		wall_location.erase(wall_to_remove)
 
 func place_room(room_to_place: PackedScene, node: Node2D) -> void:
-	print(node)
-	var room: Node2D = room_to_place.instantiate()
-	room.global_position = spawn_position
-	node.add_child(room)
-	print(node.get_children())
+	if visited:
+		var room: Node2D = room_to_place.instantiate()
+		room.global_position = spawn_position
+		node.add_child(room)
 
 func get_debug_string() -> Array[String]:
 	var walls: Array[String] = []

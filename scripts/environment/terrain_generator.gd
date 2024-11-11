@@ -49,7 +49,6 @@ func make_spaces(parent_node: Node) -> void:
 	left_widths.append(1)
 	right_widths.append(1)
 
-	print("here is a board yay")
 	
 	var board = []
 	for current_level in range(height):
@@ -75,7 +74,7 @@ func make_spaces(parent_node: Node) -> void:
 			level.append(Room.new())
 		board.append(level)
 	
-	check_next_room(bottom_floor_width, height - 2, board)
+	check_next_room(height -2, bottom_floor_width, board, true)
 	# board.reverse()
 	for level in board:
 		var top_string: String=""
@@ -84,7 +83,7 @@ func make_spaces(parent_node: Node) -> void:
 		for room: Room in level:
 			var scene: PackedScene = get_room(room)
 			room.place_room(scene, parent_node)
-			var vals: Array[String] = (room as Room).get_debug_string()
+			var vals: Array[String] = room.get_debug_string()
 			top_string+=vals[0]
 			mid_string+=vals[1]
 			bot_string+=vals[2]
@@ -124,11 +123,23 @@ func get_room(room: Room) -> PackedScene:
 	else:
 		return north_south_east_west
 
-func check_next_room(x: int, y: int, board) -> void:
-	var directions_to_check: Array[int] = [CardinalDirection.NORTH, CardinalDirection.EAST, CardinalDirection.SOUTH, CardinalDirection.WEST]
+func check_next_room(x: int, y: int, board, initial:bool = false) -> void:
+	var directions_to_check: Array[int]
 	# not seeded because this sucks
-	directions_to_check.shuffle()
+	if initial:
+		print("x: ", x, "    y: ", y)
+		directions_to_check = [CardinalDirection.NORTH, CardinalDirection.EAST, CardinalDirection.WEST]
+		directions_to_check.remove_at(0)
+		directions_to_check.remove_at(0)
+		directions_to_check.shuffle()
+	else:
+		directions_to_check = [CardinalDirection.NORTH, CardinalDirection.EAST, CardinalDirection.SOUTH, CardinalDirection.WEST]
+		directions_to_check.shuffle()
+
 	var current_room: Room = board[x][y]
+	if initial:
+		current_room.useable = false
+		print("do")
 	for direction_to_check in directions_to_check:
 		# up
 		if direction_to_check == CardinalDirection.EAST and y < board[x].size() - 1:
@@ -155,3 +166,5 @@ func check_next_room(x: int, y: int, board) -> void:
 				current_room.remove_wall(direction_to_check)
 				next_room.remove_wall(CardinalDirection.NORTH)
 				check_next_room(x-1, y, board)
+		else:
+			print("fuck")

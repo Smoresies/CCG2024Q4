@@ -34,5 +34,3 @@ func _ready() -> void:
 func make_terrain():
 	if terrain_generator:
 		terrain_generator.make_spaces(self.get_parent())
-		for kid in self.get_parent().get_children():
-			print(kid)
