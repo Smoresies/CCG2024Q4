@@ -40,3 +40,4 @@ east_west = ExtResource("2_7sjiu")
 west = ExtResource("16_33ltp")
 room_x_length = 3900
 room_y_length = -2000
+num_add_tries = 4

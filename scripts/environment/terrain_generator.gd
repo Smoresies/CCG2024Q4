@@ -28,6 +28,8 @@ class_name TerrainGenerator extends Resource
 @export var room_x_length: int
 @export var room_y_length: int
 
+@export var num_add_tries: int
+
 func make_spaces(parent_node: Node) -> void:
 	var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 
@@ -75,21 +77,15 @@ func make_spaces(parent_node: Node) -> void:
 		board.append(level)
 	
 	check_next_room(height -2, bottom_floor_width, board, true)
-	# board.reverse()
+	for i in range(num_add_tries):
+		var x:int = rng.randi_range(0, bottom_floor_width * 2)
+		var y:int = rng.randi_range(0, height-1)
+		add_more_paths(y, x, board)
+
 	for level in board:
-		var top_string: String=""
-		var mid_string: String=""
-		var bot_string: String=""
 		for room: Room in level:
 			var scene: PackedScene = get_room(room)
 			room.place_room(scene, parent_node)
-			var vals: Array[String] = room.get_debug_string()
-			top_string+=vals[0]
-			mid_string+=vals[1]
-			bot_string+=vals[2]
-		print(top_string)
-		print(mid_string)
-		print(bot_string)
 
 func get_room(room: Room) -> PackedScene:
 	if room.wall_location.has(CardinalDirection.NORTH) and room.wall_location.has(CardinalDirection.SOUTH) and room.wall_location.has(CardinalDirection.EAST):
@@ -123,15 +119,38 @@ func get_room(room: Room) -> PackedScene:
 	else:
 		return north_south_east_west
 
+func add_more_paths(x: int, y: int, board,) -> void:
+	var current_room: Room = board[x][y]
+	if current_room.useable:
+		if y < board[x].size() - 1:
+			var next_room: Room = board[x][y+1]
+			if next_room.useable:
+				current_room.remove_wall(CardinalDirection.EAST)
+				next_room.remove_wall(CardinalDirection.WEST)
+		if y > 0:
+			var next_room: Room = board[x][y-1]
+			if next_room.useable:
+				current_room.remove_wall(CardinalDirection.WEST)
+				next_room.remove_wall(CardinalDirection.EAST)
+		if x < board.size() - 1:
+			var next_room: Room = board[x+1][y]
+			if next_room.useable:
+				current_room.remove_wall(CardinalDirection.NORTH)
+				next_room.remove_wall(CardinalDirection.SOUTH)
+		if x > 0:
+			var next_room: Room = board[x-1][y]
+			if next_room.useable:
+				current_room.remove_wall(CardinalDirection.SOUTH)
+				next_room.remove_wall(CardinalDirection.NORTH)
+
 func check_next_room(x: int, y: int, board, initial:bool = false) -> void:
 	var directions_to_check: Array[int]
 	# not seeded because this sucks
 	if initial:
-		print("x: ", x, "    y: ", y)
 		directions_to_check = [CardinalDirection.NORTH, CardinalDirection.EAST, CardinalDirection.WEST]
-		directions_to_check.remove_at(0)
-		directions_to_check.remove_at(0)
 		directions_to_check.shuffle()
+		directions_to_check.remove_at(0)
+		directions_to_check.remove_at(0)
 	else:
 		directions_to_check = [CardinalDirection.NORTH, CardinalDirection.EAST, CardinalDirection.SOUTH, CardinalDirection.WEST]
 		directions_to_check.shuffle()
@@ -139,9 +158,7 @@ func check_next_room(x: int, y: int, board, initial:bool = false) -> void:
 	var current_room: Room = board[x][y]
 	if initial:
 		current_room.useable = false
-		print("do")
 	for direction_to_check in directions_to_check:
-		# up
 		if direction_to_check == CardinalDirection.EAST and y < board[x].size() - 1:
 			var next_room: Room = board[x][y+1]
 			if next_room.useable and !next_room.visited:
@@ -166,5 +183,3 @@ func check_next_room(x: int, y: int, board, initial:bool = false) -> void:
 				current_room.remove_wall(direction_to_check)
 				next_room.remove_wall(CardinalDirection.NORTH)
 				check_next_room(x-1, y, board)
-		else:
-			print("fuck")
