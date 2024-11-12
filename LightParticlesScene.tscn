@@ -1,0 +1,35 @@
+[gd_scene load_steps=2 format=3 uid="uid://d0jes7dfool3a"]
+
+[sub_resource type="Environment" id="Environment_xvbvw"]
+background_mode = 3
+glow_enabled = true
+glow_levels/1 = 1.0
+glow_levels/2 = 1.0
+glow_levels/4 = 1.0
+glow_levels/6 = 1.0
+glow_levels/7 = 1.0
+glow_blend_mode = 1
+
+[node name="Node2D" type="Node2D"]
+
+[node name="LightParticles" type="CPUParticles2D" parent="."]
+self_modulate = Color(2.1, 2, 0, 1)
+position = Vector2(0, -7)
+amount = 6
+lifetime = 3.0
+emission_shape = 1
+emission_sphere_radius = 25.0
+direction = Vector2(0, -1)
+gravity = Vector2(0, 0)
+initial_velocity_min = 0.5
+initial_velocity_max = 1.0
+angular_velocity_max = 5.0
+linear_accel_min = -1.0
+linear_accel_max = 1.0
+angle_min = -15.0
+angle_max = 15.0
+scale_amount_max = 1.5
+color = Color(1, 0.92549, 0.188235, 0.643137)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="LightParticles"]
+environment = SubResource("Environment_xvbvw")
