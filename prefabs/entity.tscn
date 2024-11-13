@@ -1,9 +1,11 @@
 [gd_scene load_steps=17 format=3 uid="uid://cplaaen2uodhm"]
 
 [ext_resource type="Script" path="res://scripts/entity/base_entity.gd" id="1_e765f"]
-[ext_resource type="Script" path="res://scripts/entity/components/health_and_status_components/base_health_and_status_component.gd" id="3_jfr1s"]
-[ext_resource type="PackedScene" uid="uid://d305p8471rxhx" path="res://prefabs/projectiles/projectile.tscn" id="4_fm3ym"]
+[ext_resource type="PackedScene" uid="uid://di47ep1fu4808" path="res://prefabs/components/base_health_and_status_component.tscn" id="2_w517k"]
+[ext_resource type="PackedScene" uid="uid://ccu1llutgwao8" path="res://prefabs/components/player_input_component.tscn" id="3_srndx"]
+[ext_resource type="PackedScene" uid="uid://cvnavuouf7esd" path="res://prefabs/components/base_attack_component.tscn" id="4_nn3m4"]
 [ext_resource type="Script" path="res://scripts/entity/components/movement_components/player_movement_component.gd" id="5_hgkaw"]
+[ext_resource type="PackedScene" uid="uid://csg2c5faso123" path="res://prefabs/components/ranged_attack.tscn" id="7_bi6bb"]
 [ext_resource type="Texture2D" uid="uid://duhsy7vxy8hdl" path="res://sources/knight.png" id="6_cme2n"]
 [ext_resource type="Script" path="res://scripts/entity/components/input_components/player_input_component.gd" id="6_snpov"]
 [ext_resource type="Texture2D" uid="uid://c1pfdpswrgwyk" path="res://sources/light.jpg" id="6_vuuxv"]
@@ -51,19 +53,18 @@ animations = [{
 "speed": 10.0
 }]
 
-[node name="Entity" type="Node2D" node_paths=PackedStringArray("movement_component", "input_component", "health_and_status_component", "attack_component")]
+[node name="Entity" type="Node2D" node_paths=PackedStringArray("movement_component")]
 script = ExtResource("1_e765f")
 movement_component = NodePath("PlayerMovementComponent")
 input_component = NodePath("PlayerInputComponent")
 health_and_status_component = NodePath("BaseHealthAndStatusComponent")
 attack_component = NodePath("PlayerAttackComponent")
 
-[node name="BaseHealthAndStatusComponent" type="Node" parent="."]
-script = ExtResource("3_jfr1s")
+[node name="BaseHealthAndStatusComponent" parent="." instance=ExtResource("2_w517k")]
 
-[node name="PlayerInputComponent" type="Node" parent="."]
-script = ExtResource("6_snpov")
+[node name="PlayerInputComponent" parent="." instance=ExtResource("3_srndx")]
 
+[node name="BaseAttackComponent" parent="." instance=ExtResource("4_nn3m4")]
 [node name="PlayerAttackComponent" type="Node" parent="." node_paths=PackedStringArray("lock_on_area", "attacks", "measurement_position", "projectile_spawn_position")]
 script = ExtResource("9_nny1t")
 lock_on_area = NodePath("../PlayerMovementComponent/LockOnArea")

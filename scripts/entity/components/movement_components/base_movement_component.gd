@@ -10,7 +10,7 @@ signal on_horizontal_movement_started(value: float )
 signal on_horizontal_movement(value: float )
 
 ## Event called when horizontal movement ends. Should be implemented in child class.
-signal on_horizontal_movement_cancelled(value: float )
+signal on_horizontal_movement_cancelled()
 
 ## Event called when vertical movement starts. Should be implemented in child class.
 signal on_vertical_movement_started(value: float )
@@ -92,7 +92,7 @@ func on_jump_input_cancelled() -> void:
 ## Calls the movement signals using the given velocity and previous velocity
 func _emit_movement_signals() -> void:
 	if(velocity.x == 0 && _previous_horizontal_velocity != 0):
-		on_horizontal_movement_cancelled.emit(velocity.x)
+		on_horizontal_movement_cancelled.emit()
 	elif(velocity.x != 0 && _previous_horizontal_velocity == 0):
 		on_horizontal_movement_started.emit(velocity.x)
 	elif velocity.x != 0 && _previous_horizontal_velocity != 0:
