@@ -10,9 +10,7 @@ func change_dir(dir: float):
 	elif dir < 0:
 		animated_sprite.flip_h = true
 
-func walking(dir: float):
-	change_dir(dir)
-	
+func walking(_dir: float):
 	if player.is_on_floor():
 		play(&"walking")
 
