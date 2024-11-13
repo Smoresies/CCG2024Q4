@@ -17,7 +17,7 @@ stream_2/stream = ExtResource("6_j00kt")
 
 [sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_72r0y"]
 clip_count = 2
-clip_0/name = &""
+clip_0/name = &"Weapon Basic Traveling"
 clip_0/stream = ExtResource("3_0ssjp")
 clip_0/auto_advance = 0
 clip_1/name = &""

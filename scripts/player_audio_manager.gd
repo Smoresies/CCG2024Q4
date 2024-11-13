@@ -13,13 +13,10 @@ extends Node
 var default_sfx_floor_material: StringName = sfx_floor_materials[0]
 var current_sfx_material: String = default_sfx_floor_material
 
+# An array containing supported weapon SFX types. 
 @export var weapon_sfx_types: Array = [&"basic pellet"]
 var default_weapon_sfx: String = weapon_sfx_types[0]
 var current_weapon_sfx: String = default_weapon_sfx
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	set_sfx_floor_material(default_sfx_floor_material)
 
 # Set the floor material beneath the player for triggering SFX. 
 # Invalid inputs will reset material to default_sfx_floor_material
@@ -32,7 +29,6 @@ func set_sfx_floor_material(sfx_material: String) -> void:
 		current_sfx_material = default_sfx_floor_material
 		
 	# Apply the new/default SFX material to relevant SFX player nodes. 
-	### CURRENTLY HAS A TEMPORARY IF. THIS STOPS A CRASH. NEED TO PLAY FIRST 
 	if footstep_sfx.has_stream_playback():
 		footstep_sfx.get_stream_playback().switch_to_clip_by_name(current_sfx_material)
 	if jumping_sfx.has_stream_playback():
@@ -40,10 +36,11 @@ func set_sfx_floor_material(sfx_material: String) -> void:
 	if landing_sfx.has_stream_playback():
 		landing_sfx.get_stream_playback().switch_to_clip_by_name(current_sfx_material)
 
-# When the moth jump is released, 
+## When the moth jump is released, 
 func _on_moth_jump_released() -> void:
 	moth_jump_sfx.get_stream_playback().switch_to_clip_by_name("Player Moth-jump Release")
 
+## Update sound effects that play related to weapons
 func set_weapon_sfx_type(weapon_sfx: String) -> void:
 	if weapon_sfx in weapon_sfx_types:
 		current_weapon_sfx = weapon_sfx
@@ -53,3 +50,4 @@ func set_weapon_sfx_type(weapon_sfx: String) -> void:
 	# Apply the new weapon SFX type to AudioStreamPlayer node.
 	if weapon_firing_sfx.has_stream_playback():
 		weapon_firing_sfx.get_stream_playback().switch_to_clip_by_name(current_weapon_sfx)
+	# TODO: check and update projectile travel and destroy SFX with new weapon SFX 
