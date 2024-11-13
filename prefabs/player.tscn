@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://civfx1w4vjpko"]
+[gd_scene load_steps=48 format=3 uid="uid://civfx1w4vjpko"]
 
 [ext_resource type="Script" path="res://scripts/entity/base_entity.gd" id="1_ghq3j"]
 [ext_resource type="Texture2D" uid="uid://dalik7eqdpiv0" path="res://sources/player animations/Moth_Spritesheet.png" id="1_u1mv8"]
@@ -265,9 +265,27 @@ tracks/2/keys = {
 "values": [0, 1, 2, 3]
 }
 
+[sub_resource type="Animation" id="Animation_ehq8f"]
+resource_name = "firing"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player Audio Manager/Weapon Firing SFX")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_pucqf"]
 _data = {
 "RESET": SubResource("Animation_ba674"),
+"firing": SubResource("Animation_ehq8f"),
 "idle": SubResource("Animation_ap55u"),
 "jumping": SubResource("Animation_uus07"),
 "landing": SubResource("Animation_tf4ur"),
@@ -387,14 +405,17 @@ moth_jump_sfx = NodePath("Moth Jump SFX")
 
 [node name="Landing SFX" type="AudioStreamPlayer2D" parent="PlayerController/Player Audio Manager"]
 stream = SubResource("AudioStreamInteractive_r8y8h")
+bus = &"SFX"
 
 [node name="Jumping SFX" type="AudioStreamPlayer2D" parent="PlayerController/Player Audio Manager"]
 stream = SubResource("AudioStreamInteractive_r8y8h")
+bus = &"SFX"
 
 [node name="Footstep SFX" type="AudioStreamPlayer2D" parent="PlayerController/Player Audio Manager"]
 stream = SubResource("AudioStreamInteractive_j32pn")
+bus = &"SFX"
 
-[node name="Weapons SFX" type="AudioStreamPlayer2D" parent="PlayerController/Player Audio Manager"]
+[node name="Weapon Firing SFX" type="AudioStreamPlayer2D" parent="PlayerController/Player Audio Manager"]
 stream = SubResource("AudioStreamInteractive_j32pn")
 bus = &"SFX"
 
