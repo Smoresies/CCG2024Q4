@@ -1,34 +1,25 @@
-[gd_scene load_steps=57 format=3 uid="uid://civfx1w4vjpko"]
+[gd_scene load_steps=47 format=3 uid="uid://civfx1w4vjpko"]
 
 [ext_resource type="Script" path="res://scripts/entity/base_entity.gd" id="1_ghq3j"]
-[ext_resource type="Texture2D" uid="uid://c52yso0a0uh55" path="res://sources/player animations/Moth_Spritesheet.png" id="1_u1mv8"]
-[ext_resource type="AudioStream" uid="uid://c4jvkuuoub3np" path="res://sources/SFX/Player/Footsteps/Player_Step_Dirt_var_01.ogg" id="2_365dw"]
+[ext_resource type="Texture2D" uid="uid://dalik7eqdpiv0" path="res://sources/player animations/Moth_Spritesheet.png" id="1_u1mv8"]
 [ext_resource type="Script" path="res://scripts/entity/components/movement_components/player_movement_component.gd" id="2_awxgg"]
 [ext_resource type="Script" path="res://scripts/player_audio_manager.gd" id="2_hkha4"]
-[ext_resource type="AudioStream" uid="uid://b0oj42gq5iwp6" path="res://sources/SFX/Player/Jump/Player_Jump_Wood_v1.ogg" id="2_km0tm"]
-[ext_resource type="AudioStream" uid="uid://cje8lpsvtwe6y" path="res://sources/SFX/Player/Footsteps/Player_Step_Dirt_var_02.ogg" id="3_11cx4"]
-[ext_resource type="AudioStream" uid="uid://bnxjgpwf5yrrk" path="res://sources/SFX/Player/Jump/Player_Jump_Wood_v2.ogg" id="3_v87jn"]
+[ext_resource type="AudioStream" uid="uid://cfsue0llwws2" path="res://sources/SFX/Player/Jump/Player_Jump_Wood_v1.ogg" id="2_km0tm"]
+[ext_resource type="AudioStream" uid="uid://dhxpi3u3x1iab" path="res://sources/SFX/Player/Jump/Player_Jump_Wood_v2.ogg" id="3_v87jn"]
 [ext_resource type="Script" path="res://scripts/player_animation_controller.gd" id="4_4xhru"]
-[ext_resource type="AudioStream" uid="uid://ct6lno8a477x7" path="res://sources/SFX/Player/Jump/Player_Jump_Wood_v3.ogg" id="4_hqlsc"]
-[ext_resource type="AudioStream" uid="uid://dwlmvn5f47iiw" path="res://sources/SFX/Player/Footsteps/Player_Step_Dirt_var_03.ogg" id="4_sgnae"]
-[ext_resource type="AudioStream" uid="uid://ck8n18thqiwr" path="res://sources/SFX/Player/Footsteps/Player_Step_Dirt_var_04.ogg" id="5_7n8qr"]
-[ext_resource type="AudioStream" uid="uid://bwdc36bi7hvu1" path="res://sources/SFX/Player/Jump/Player_Jump_Wood_v4.ogg" id="5_q6qfb"]
-[ext_resource type="AudioStream" uid="uid://78ncm1wm8cvo" path="res://sources/SFX/Player/Jump/Player_Jump_Wood_v5.ogg" id="6_qa40k"]
-[ext_resource type="AudioStream" uid="uid://d0nc08q3rpo75" path="res://sources/SFX/Player/Footsteps/Player_Step_Dirt_var_05.ogg" id="6_xw8v3"]
-[ext_resource type="AudioStream" uid="uid://2d7j5qlg2koi" path="res://sources/SFX/Player/Footsteps/Player_Step_Dirt_var_06.ogg" id="7_o3lgk"]
-[ext_resource type="AudioStream" uid="uid://cah2oj4gut40e" path="res://sources/SFX/Player/Footsteps/Player_Step_Dirt_var_07.ogg" id="8_xap3f"]
-[ext_resource type="AudioStream" uid="uid://bee8ax0ldve8m" path="res://sources/SFX/Player/Footsteps/Player_Step_Dirt_var_08.ogg" id="9_r5hfh"]
-[ext_resource type="AudioStream" uid="uid://bavb8qeu7wrtk" path="res://sources/SFX/Player/Footsteps/Player_Step_Dirt_var_09.ogg" id="10_fqsjb"]
-[ext_resource type="AudioStream" uid="uid://crv078lvsuhww" path="res://sources/SFX/Player/Footsteps/Player_Step_Wood_v1.ogg" id="11_v8xoh"]
-[ext_resource type="AudioStream" uid="uid://oygphai84xoe" path="res://sources/SFX/Player/Moth Jump/player_moth-jump_start.ogg" id="11_wqyd4"]
-[ext_resource type="AudioStream" uid="uid://bphaagwuv2xg7" path="res://sources/SFX/Player/Moth Jump/player_moth-jump_hold.ogg" id="12_0ceqj"]
-[ext_resource type="AudioStream" uid="uid://c0md0byy3qgt6" path="res://sources/SFX/Player/Footsteps/Player_Step_Wood_v2.ogg" id="12_iu53o"]
-[ext_resource type="AudioStream" uid="uid://by1qyhxypryis" path="res://sources/SFX/Player/Moth Jump/player_moth-jump_release.ogg" id="13_noflm"]
-[ext_resource type="AudioStream" uid="uid://dc7f7a2w75khb" path="res://sources/SFX/Player/Footsteps/Player_Step_Wood_v3.ogg" id="13_p42t8"]
-[ext_resource type="AudioStream" uid="uid://dtsamer5t7cit" path="res://sources/SFX/Player/Footsteps/Player_Step_Wood_v4.ogg" id="14_tl5nr"]
-[ext_resource type="AudioStream" uid="uid://cp5034svvc26x" path="res://sources/SFX/Player/Footsteps/Player_Step_Wood_v5.ogg" id="15_arjia"]
+[ext_resource type="AudioStream" uid="uid://cp00vgp52m5hh" path="res://sources/SFX/Player/Jump/Player_Jump_Wood_v3.ogg" id="4_hqlsc"]
+[ext_resource type="AudioStream" uid="uid://c8tnpsk3i7aoj" path="res://sources/SFX/Player/Jump/Player_Jump_Wood_v4.ogg" id="5_q6qfb"]
+[ext_resource type="AudioStream" uid="uid://bcjdnk68e6s5i" path="res://sources/SFX/Player/Jump/Player_Jump_Wood_v5.ogg" id="6_qa40k"]
+[ext_resource type="AudioStream" uid="uid://mko40t2vvl6i" path="res://sources/SFX/Player/Weapons/weapon_basic_fire_v1.ogg" id="11_whvv4"]
+[ext_resource type="AudioStream" uid="uid://cyj625hqi61o1" path="res://sources/SFX/Player/Moth Jump/player_moth-jump_start.ogg" id="11_wqyd4"]
+[ext_resource type="AudioStream" uid="uid://mcvfnytd4n4t" path="res://sources/SFX/Player/Moth Jump/player_moth-jump_hold.ogg" id="12_0ceqj"]
+[ext_resource type="AudioStream" uid="uid://cktj7in1dmjog" path="res://sources/SFX/Player/Weapons/weapon_basic_fire_v2.ogg" id="12_2fjix"]
+[ext_resource type="AudioStream" uid="uid://upwnw8t3gyvx" path="res://sources/SFX/Player/Moth Jump/player_moth-jump_release.ogg" id="13_noflm"]
+[ext_resource type="AudioStream" uid="uid://bw86b8ue108sn" path="res://sources/SFX/Player/Weapons/weapon_basic_fire_v3.ogg" id="13_qt6rc"]
+[ext_resource type="AudioStream" uid="uid://cwttxqxv8a45m" path="res://sources/SFX/Player/Weapons/weapon_basic_fire_v4.ogg" id="14_6rybw"]
+[ext_resource type="AudioStream" uid="uid://ch8wqa24dkj3l" path="res://sources/SFX/Player/Weapons/weapon_basic_fire_v5.ogg" id="15_ddls3"]
 [ext_resource type="PackedScene" uid="uid://di47ep1fu4808" path="res://prefabs/components/base_health_and_status_component.tscn" id="28_50nj0"]
-[ext_resource type="Texture2D" uid="uid://bsn6qm8sknwqc" path="res://sources/light.jpg" id="28_5627b"]
+[ext_resource type="Texture2D" uid="uid://c73h268d2r88d" path="res://sources/light.jpg" id="28_5627b"]
 [ext_resource type="Script" path="res://scripts/entity/components/light_components/light_component.gd" id="29_glieu"]
 [ext_resource type="PackedScene" uid="uid://ccu1llutgwao8" path="res://prefabs/components/player_input_component.tscn" id="29_tkue1"]
 [ext_resource type="PackedScene" uid="uid://csg2c5faso123" path="res://prefabs/components/ranged_attack.tscn" id="30_5ht77"]
@@ -307,34 +298,18 @@ clip_1/auto_advance = 0
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_64r67"]
 random_pitch = 1.1
-streams_count = 9
-stream_0/stream = ExtResource("2_365dw")
-stream_1/stream = ExtResource("3_11cx4")
-stream_2/stream = ExtResource("4_sgnae")
-stream_3/stream = ExtResource("5_7n8qr")
-stream_4/stream = ExtResource("6_xw8v3")
-stream_5/stream = ExtResource("7_o3lgk")
-stream_6/stream = ExtResource("8_xap3f")
-stream_7/stream = ExtResource("9_r5hfh")
-stream_8/stream = ExtResource("10_fqsjb")
-
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_l6aja"]
-random_pitch = 1.1
 streams_count = 5
-stream_0/stream = ExtResource("11_v8xoh")
-stream_1/stream = ExtResource("12_iu53o")
-stream_2/stream = ExtResource("13_p42t8")
-stream_3/stream = ExtResource("14_tl5nr")
-stream_4/stream = ExtResource("15_arjia")
+stream_0/stream = ExtResource("11_whvv4")
+stream_1/stream = ExtResource("12_2fjix")
+stream_2/stream = ExtResource("13_qt6rc")
+stream_3/stream = ExtResource("14_6rybw")
+stream_4/stream = ExtResource("15_ddls3")
 
 [sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_j32pn"]
-clip_count = 2
-clip_0/name = &"dirt"
+clip_count = 1
+clip_0/name = &"basic pellet"
 clip_0/stream = SubResource("AudioStreamRandomizer_64r67")
 clip_0/auto_advance = 0
-clip_1/name = &"wood"
-clip_1/stream = SubResource("AudioStreamRandomizer_l6aja")
-clip_1/auto_advance = 0
 
 [sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_v6fwb"]
 clip_count = 3
@@ -418,6 +393,10 @@ stream = SubResource("AudioStreamInteractive_r8y8h")
 
 [node name="Footstep SFX" type="AudioStreamPlayer2D" parent="PlayerController/Player Audio Manager"]
 stream = SubResource("AudioStreamInteractive_j32pn")
+
+[node name="Weapons SFX" type="AudioStreamPlayer2D" parent="PlayerController/Player Audio Manager"]
+stream = SubResource("AudioStreamInteractive_j32pn")
+bus = &"SFX"
 
 [node name="Moth Jump SFX" type="AudioStreamPlayer2D" parent="PlayerController/Player Audio Manager"]
 stream = SubResource("AudioStreamInteractive_v6fwb")
