@@ -25,18 +25,8 @@ Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
 
 [dialogic]
 
-directories/dch_directory={
-"Fica": "res://dialogic/characters/Fica.dch",
-"Phoria": "res://dialogic/characters/Phoria.dch",
-"Prince": "res://dialogic/characters/Prince.dch",
-"Vertor": "res://dialogic/characters/Vertor.dch"
-}
-directories/dtl_directory={
-"firstrun_end": "res://dialogic/firstrun_end.dtl",
-"firstrun_start": "res://dialogic/firstrun_start.dtl",
-"prince_chatter": "res://dialogic/prince_chatter.dtl",
-"test": "res://dialogic/test.dtl"
-}
+directories/dch_directory={}
+directories/dtl_directory={}
 layout/style_list=["res://dialogic/styles/Chatter.tres", "res://dialogic/styles/Default.tres"]
 layout/default_style="res://dialogic/styles/Default.tres"
 extensions_folder="res://addons/dialogic_additions"
