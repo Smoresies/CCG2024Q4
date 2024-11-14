@@ -52,6 +52,8 @@ class_name TerrainGenerator extends Resource
 ## The amount of pixels in the y direction of a room prefab.
 @export var room_y_length: int
 
+## The possible door locations for the boss room.
+const possible_boss_room_directions: Array[int] = [CardinalDirection.NORTH, CardinalDirection.EAST, CardinalDirection.WEST]
 
 func make_spaces(parent_node: Node) -> void:
 	var rng: RandomNumberGenerator = RandomNumberGenerator.new()
@@ -105,17 +107,18 @@ func make_spaces(parent_node: Node) -> void:
 			current_horizontal_level.append(Room.new())
 		board.append(current_horizontal_level)
 	
-	check_next_room(height -2, bottom_floor_width, board, true)
+	remove_walls_from_room(height -2, bottom_floor_width, board, true)
 	for i in range(num_add_tries):
 		var x:int = rng.randi_range(0, bottom_floor_width * 2)
 		var y:int = rng.randi_range(0, height-1)
-		add_more_paths(y, x, board)
+		try_to_remove_more_walls(y, x, board)
 
 	for level in board:
 		for room: Room in level:
 			var scene: PackedScene = get_room(room)
 			room.place_room(scene, parent_node)
 
+## Gets the room prefab based on what walls a room has.
 func get_room(room: Room) -> PackedScene:
 	if room.wall_location.has(CardinalDirection.NORTH) and room.wall_location.has(CardinalDirection.SOUTH) and room.wall_location.has(CardinalDirection.EAST):
 		return door_west
@@ -148,67 +151,86 @@ func get_room(room: Room) -> PackedScene:
 	else:
 		return door_north_south_east_west
 
-func add_more_paths(x: int, y: int, board,) -> void:
-	var current_room: Room = board[x][y]
-	if current_room.useable:
-		if y < board[x].size() - 1:
-			var next_room: Room = board[x][y+1]
-			if next_room.useable:
-				current_room.remove_wall(CardinalDirection.EAST)
-				next_room.remove_wall(CardinalDirection.WEST)
-		if y > 0:
-			var next_room: Room = board[x][y-1]
-			if next_room.useable:
-				current_room.remove_wall(CardinalDirection.WEST)
-				next_room.remove_wall(CardinalDirection.EAST)
-		if x < board.size() - 1:
-			var next_room: Room = board[x+1][y]
-			if next_room.useable:
-				current_room.remove_wall(CardinalDirection.NORTH)
-				next_room.remove_wall(CardinalDirection.SOUTH)
-		if x > 0:
-			var next_room: Room = board[x-1][y]
-			if next_room.useable:
-				current_room.remove_wall(CardinalDirection.SOUTH)
-				next_room.remove_wall(CardinalDirection.NORTH)
 
-func check_next_room(x: int, y: int, board, initial:bool = false) -> void:
+## Function that recursively removes walls from every room until all rooms have a path to them.
+func remove_walls_from_room(x: int, y: int, board, initial:bool = false) -> void:
 	var directions_to_check: Array[int]
-	# not seeded because this sucks
+	var current_room: Room = board[x][y]
+
+	# If its the initial room to check, the boss room, randomly choose a possible direction to enter the room.
 	if initial:
-		directions_to_check = [CardinalDirection.NORTH, CardinalDirection.EAST, CardinalDirection.WEST]
+		directions_to_check = possible_boss_room_directions.duplicate(true)
 		directions_to_check.shuffle()
-		directions_to_check.remove_at(0)
-		directions_to_check.remove_at(0)
+		while directions_to_check.size() > 1:
+			directions_to_check.remove_at(0)
+		# Set the current room to not useable so we do not put more than one door in it.
+		current_room.useable = false
+	## Otherwise randomize which direction to check first for this room
 	else:
 		directions_to_check = [CardinalDirection.NORTH, CardinalDirection.EAST, CardinalDirection.SOUTH, CardinalDirection.WEST]
 		directions_to_check.shuffle()
 
-	var current_room: Room = board[x][y]
-	if initial:
-		current_room.useable = false
+	
 	for direction_to_check in directions_to_check:
+		# If we are checking the eastern room and we are not on the eastern edge of the map.
+		# Then remove the next eastern wall in this room and the western room of the next room and try to remove walls from the next room.
 		if direction_to_check == CardinalDirection.EAST and y < board[x].size() - 1:
 			var next_room: Room = board[x][y+1]
 			if next_room.useable and !next_room.visited:
 				current_room.remove_wall(direction_to_check)
 				next_room.remove_wall(CardinalDirection.WEST)
-				check_next_room(x, y+1, board)
+				remove_walls_from_room(x, y+1, board)
+		# If we are checking the western room and we are not on the western edge of the map.
+		# Then remove the next western wall in this room and the eastern room of the next room and try to remove walls from the next room.
 		elif direction_to_check == CardinalDirection.WEST and y > 0:
 			var next_room: Room = board[x][y-1]
 			if next_room.useable and !next_room.visited:
 				current_room.remove_wall(direction_to_check)
 				next_room.remove_wall(CardinalDirection.EAST)
-				check_next_room(x, y-1, board)
+				remove_walls_from_room(x, y-1, board)
+		# If we are checking the northern room and we are not on the northern edge of the map.
+		# Then remove the next southern wall in this room and the northern room of the next room and try to remove walls from the next room.
 		elif direction_to_check == CardinalDirection.NORTH and x < board.size() - 1:
 			var next_room: Room = board[x+1][y]
 			if next_room.useable and !next_room.visited:
 				current_room.remove_wall(direction_to_check)
 				next_room.remove_wall(CardinalDirection.SOUTH)
-				check_next_room(x+1, y, board)
+				remove_walls_from_room(x+1, y, board)
+		# If we are checking the southern room and we are not on the southern edge of the map.
+		# Then remove the next northern wall in this room and the southern room of the next room and try to remove walls from the next room.
 		elif direction_to_check == CardinalDirection.SOUTH and x > 0:
 			var next_room: Room = board[x-1][y]
 			if next_room.useable and !next_room.visited:
 				current_room.remove_wall(direction_to_check)
 				next_room.remove_wall(CardinalDirection.NORTH)
-				check_next_room(x-1, y, board)
+				remove_walls_from_room(x-1, y, board)
+
+## Tries to remove all walls from the given board location.
+func try_to_remove_more_walls(x: int, y: int, board) -> void:
+	var current_room: Room = board[x][y]
+	# If the room is allowed to lose walls
+	if current_room.useable:
+		# Remove the eastern wall if it exists 
+		if y < board[x].size() - 1:
+			var next_room: Room = board[x][y+1]
+			if next_room.useable:
+				current_room.remove_wall(CardinalDirection.EAST)
+				next_room.remove_wall(CardinalDirection.WEST)
+		# Remove the western wall if it exists 
+		if y > 0:
+			var next_room: Room = board[x][y-1]
+			if next_room.useable:
+				current_room.remove_wall(CardinalDirection.WEST)
+				next_room.remove_wall(CardinalDirection.EAST)
+		# Remove the northern wall if it exists 
+		if x < board.size() - 1:
+			var next_room: Room = board[x+1][y]
+			if next_room.useable:
+				current_room.remove_wall(CardinalDirection.NORTH)
+				next_room.remove_wall(CardinalDirection.SOUTH)
+		# Remove the southern wall if it exists 
+		if x > 0:
+			var next_room: Room = board[x-1][y]
+			if next_room.useable:
+				current_room.remove_wall(CardinalDirection.SOUTH)
+				next_room.remove_wall(CardinalDirection.NORTH)
