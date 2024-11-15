@@ -1,4 +1,24 @@
-[gd_scene load_steps=2 format=3 uid="uid://d0jes7dfool3a"]
+[gd_scene load_steps=3 format=3 uid="uid://d0jes7dfool3a"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_q3rbq"]
+particle_flag_disable_z = true
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 25.0
+emission_ring_inner_radius = 25.0
+angle_min = -15.0
+angle_max = 15.0
+direction = Vector3(0, -1, 0)
+spread = 25.0
+initial_velocity_min = 0.25
+initial_velocity_max = 0.5
+angular_velocity_max = 5.0
+gravity = Vector3(0, 0, 0)
+linear_accel_min = -1.0
+linear_accel_max = 1.0
+scale_max = 1.5
+color = Color(1, 0.92549, 0.188235, 0.643137)
 
 [sub_resource type="Environment" id="Environment_xvbvw"]
 background_mode = 3
@@ -12,24 +32,14 @@ glow_blend_mode = 1
 
 [node name="Node2D" type="Node2D"]
 
-[node name="LightParticles" type="CPUParticles2D" parent="."]
+[node name="LightParticles" type="GPUParticles2D" parent="."]
 self_modulate = Color(2.1, 2, 0, 1)
 position = Vector2(0, -7)
-amount = 6
+amount = 12
+process_material = SubResource("ParticleProcessMaterial_q3rbq")
 lifetime = 3.0
-emission_shape = 1
-emission_sphere_radius = 25.0
-direction = Vector2(0, -1)
-gravity = Vector2(0, 0)
-initial_velocity_min = 0.5
-initial_velocity_max = 1.0
-angular_velocity_max = 5.0
-linear_accel_min = -1.0
-linear_accel_max = 1.0
-angle_min = -15.0
-angle_max = 15.0
-scale_amount_max = 1.5
-color = Color(1, 0.92549, 0.188235, 0.643137)
+fixed_fps = 0
+draw_order = 0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="LightParticles"]
 environment = SubResource("Environment_xvbvw")
