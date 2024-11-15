@@ -33,4 +33,4 @@ func _ready() -> void:
 
 func make_terrain():
 	if terrain_generator:
-		terrain_generator.make_spaces(self.get_parent())
+		terrain_generator.generate_dungeon(self.get_parent())

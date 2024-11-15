@@ -13,8 +13,11 @@ class_name TerrainGenerator extends Resource
 ## The min number of rooms in half the dungeon's width.
 @export var min_half_dungeon_width: int = 0
 
-## The number of times to try to add more doors to a room. Currently can fail.
-@export var num_add_tries: int
+## The minimum number of rooms to add extra doors to after dungeon generation.
+@export var min_num_rooms_to_add_extra_doors: int = 0
+
+## The maximum number of rooms to add extra doors to after dungeon generation.
+@export var max_num_rooms_to_add_extra_doors: int = 3
 
 ## The prefab with a door to the north.
 @export var door_north: PackedScene
@@ -55,7 +58,8 @@ class_name TerrainGenerator extends Resource
 ## The possible door locations for the boss room.
 const possible_boss_room_directions: Array[int] = [CardinalDirection.NORTH, CardinalDirection.EAST, CardinalDirection.WEST]
 
-func make_spaces(parent_node: Node) -> void:
+## Generates the dungeon and palces the rooms under the given node.
+func generate_dungeon(parent_node: Node) -> void:
 	var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 
 	# generate the height
@@ -63,94 +67,14 @@ func make_spaces(parent_node: Node) -> void:
 	# generate the half width
 	var bottom_floor_width: int = rng.randi_range(2,3)
 	# init the half widths to have the bottom 2 levels be the same
-	var left_widths: Array[int] = [bottom_floor_width, bottom_floor_width]
-	var right_widths: Array[int] = [bottom_floor_width, bottom_floor_width]
-	# for each middle floor 
-	for i in range(2, height - 1):
-		# add a left width of either one less than before or the same but always above 0
-		var previous_left_index_width: int = left_widths[i-1]
-		var left_index_width_to_try: int = rng.randi_range(previous_left_index_width - 1, previous_left_index_width)
-		left_widths.append(max(1, left_index_width_to_try))
+	var left_widths: Array[int] = create_side_width(rng, height, bottom_floor_width)
+	var right_widths: Array[int] = create_side_width(rng, height, bottom_floor_width)
 
-		# add a right width of either one less than before or the same but always above 0
-		var previous_right_index_width: int = right_widths[i-1]
-		var right_index_width_to_try: int = rng.randi_range(previous_right_index_width - 1, previous_right_index_width)
-		right_widths.append(max(1, right_index_width_to_try))
+	var board = create_rooms(height, bottom_floor_width, left_widths, right_widths)
 
-	# add the top levels which always have a width of 1
-	left_widths.append(1)
-	right_widths.append(1)
-
-	# init the board
-	var board = []
-	# for each vertical level
-	for current_vertical_level in range(height):
-		var current_horizontal_level = []
-		var current_left_width:int = left_widths[current_vertical_level]
-		for i in range(bottom_floor_width - current_left_width):
-			current_horizontal_level.append(Room.new())
-		for i in range(current_left_width):
-			var room: Room = Room.new()
-			room.init_room_for_use(Vector2(current_horizontal_level.size() * room_x_length,current_vertical_level * room_y_length))
-			current_horizontal_level.append(room)
-
-		var room2: Room = Room.new()
-		room2.init_room_for_use(Vector2(current_horizontal_level.size() * room_x_length,current_vertical_level * room_y_length))
-		current_horizontal_level.append(room2)
-
-		var current_right_width:int = right_widths[current_vertical_level]
-		for i in range(current_right_width):
-			var room: Room = Room.new()
-			room.init_room_for_use(Vector2(current_horizontal_level.size() * room_x_length,current_vertical_level * room_y_length))
-			current_horizontal_level.append(room)
-		for i in range(bottom_floor_width - current_right_width):
-			current_horizontal_level.append(Room.new())
-		board.append(current_horizontal_level)
-	
 	remove_walls_from_room(height -2, bottom_floor_width, board, true)
-	for i in range(num_add_tries):
-		var x:int = rng.randi_range(0, bottom_floor_width * 2)
-		var y:int = rng.randi_range(0, height-1)
-		try_to_remove_more_walls(y, x, board)
-
-	for level in board:
-		for room: Room in level:
-			var scene: PackedScene = get_room(room)
-			room.place_room(scene, parent_node)
-
-## Gets the room prefab based on what walls a room has.
-func get_room(room: Room) -> PackedScene:
-	if room.wall_location.has(CardinalDirection.NORTH) and room.wall_location.has(CardinalDirection.SOUTH) and room.wall_location.has(CardinalDirection.EAST):
-		return door_west
-	elif room.wall_location.has(CardinalDirection.NORTH) and room.wall_location.has(CardinalDirection.SOUTH) and room.wall_location.has(CardinalDirection.WEST):
-		return door_east
-	elif room.wall_location.has(CardinalDirection.NORTH) and room.wall_location.has(CardinalDirection.EAST) and room.wall_location.has(CardinalDirection.WEST):
-		return door_south
-	elif room.wall_location.has(CardinalDirection.SOUTH) and room.wall_location.has(CardinalDirection.EAST) and room.wall_location.has(CardinalDirection.WEST):
-		return door_north
-	elif room.wall_location.has(CardinalDirection.NORTH) and room.wall_location.has(CardinalDirection.SOUTH):
-		return door_east_west
-	elif room.wall_location.has(CardinalDirection.NORTH) and room.wall_location.has(CardinalDirection.EAST):
-		return door_south_west
-	elif room.wall_location.has(CardinalDirection.NORTH) and room.wall_location.has(CardinalDirection.WEST):
-		return door_south_east
-	elif room.wall_location.has(CardinalDirection.SOUTH) and room.wall_location.has(CardinalDirection.EAST):
-		return door_north_west
-	elif room.wall_location.has(CardinalDirection.SOUTH) and room.wall_location.has(CardinalDirection.WEST):
-		return door_north_east
-	elif room.wall_location.has(CardinalDirection.EAST) and room.wall_location.has(CardinalDirection.WEST):
-		return door_north_south
-	elif room.wall_location.has(CardinalDirection.NORTH):
-		return door_south_east_west
-	elif room.wall_location.has(CardinalDirection.SOUTH):
-		return door_north_east_west
-	elif room.wall_location.has(CardinalDirection.EAST):
-		return door_north_south_west
-	elif room.wall_location.has(CardinalDirection.WEST):
-		return door_north_south_east
-	else:
-		return door_north_south_east_west
-
+	randomly_remove_walls_from_dungeon(board, rng)
+	instantiate_rooms(board, parent_node)
 
 ## Function that recursively removes walls from every room until all rooms have a path to them.
 func remove_walls_from_room(x: int, y: int, board, initial:bool = false) -> void:
@@ -169,7 +93,6 @@ func remove_walls_from_room(x: int, y: int, board, initial:bool = false) -> void
 	else:
 		directions_to_check = [CardinalDirection.NORTH, CardinalDirection.EAST, CardinalDirection.SOUTH, CardinalDirection.WEST]
 		directions_to_check.shuffle()
-
 	
 	for direction_to_check in directions_to_check:
 		# If we are checking the eastern room and we are not on the eastern edge of the map.
@@ -205,32 +128,149 @@ func remove_walls_from_room(x: int, y: int, board, initial:bool = false) -> void
 				next_room.remove_wall(CardinalDirection.NORTH)
 				remove_walls_from_room(x-1, y, board)
 
+## Randomly removes walls from rooms in the dungeon.
+func randomly_remove_walls_from_dungeon(board, rng: RandomNumberGenerator) -> void:
+
+	var i = rng.randi_range(min_num_rooms_to_add_extra_doors, max_num_rooms_to_add_extra_doors)
+	var max_tries = 20
+
+	while i > 0 and max_tries > 0:
+		var x:int = rng.randi_range(0, board[0].size() - 1)
+		var y:int = rng.randi_range(0, board.size() - 1)
+		if remove_all_possible_walls_from_room(y, x, board):
+			i -= 1
+
+		# update failsafe
+		max_tries -=1
+		if max_tries <= 0:
+			print("Error removing walls from dungeon. Ran out of tries.")
+
+## Instantiates the rooms in the board under the given node.
+func instantiate_rooms(board, parent_node: Node) -> void:
+	for level in board:
+		for room: Room in level:
+			var scene: PackedScene = get_room(room)
+			room.place_room(scene, parent_node)
+
+## Randomly decides the width of a single side of the dungeon.
+func create_side_width(rng: RandomNumberGenerator, height: int, bottom_floor_width: int) -> Array[int]:
+
+	# init the half widths to have the bottom 2 levels be the same
+	var widths: Array[int] = [bottom_floor_width, bottom_floor_width]
+
+	# for each middle floor 
+	for i in range(2, height - 1):
+		# add a left width of either one less than before or the same but always above 0
+		var previous_left_index_width: int = widths[i-1]
+		var left_index_width_to_try: int = rng.randi_range(previous_left_index_width - 1, previous_left_index_width)
+		widths.append(max(1, left_index_width_to_try))
+
+	# add the top levels which always have a width of 1
+	widths.append(1)
+	return widths
+
+## Initializes the rooms for use in the dungeon path creation algorithm. 
+func create_rooms(height: int, bottom_floor_width: int, left_widths: Array[int], right_widths: Array[int]):
+	# init the board
+	var board = []
+
+	# for each vertical level
+	for current_vertical_level in range(height):
+		var current_horizontal_level = []
+		var current_left_width:int = left_widths[current_vertical_level]
+
+		# create unuseable rooms where they are not marked on the left.
+		for i in range(bottom_floor_width - current_left_width):
+			current_horizontal_level.append(Room.new())
+		# create useable rooms where they are marked on the left.
+		for i in range(current_left_width):
+			var room: Room = Room.new()
+			room.init_room_for_use(Vector2(current_horizontal_level.size() * room_x_length, current_vertical_level * room_y_length))
+			current_horizontal_level.append(room)
+
+		# create the useable room in the middle.
+		var middle_room: Room = Room.new()
+		middle_room.init_room_for_use(Vector2(current_horizontal_level.size() * room_x_length, current_vertical_level * room_y_length))
+		current_horizontal_level.append(middle_room)
+
+		# create useable rooms where they are marked on the right.
+		var current_right_width:int = right_widths[current_vertical_level]
+		for i in range(current_right_width):
+			var room: Room = Room.new()
+			room.init_room_for_use(Vector2(current_horizontal_level.size() * room_x_length, current_vertical_level * room_y_length))
+			current_horizontal_level.append(room)
+		# create unuseable rooms where they are not marked on the right.
+		for i in range(bottom_floor_width - current_right_width):
+			current_horizontal_level.append(Room.new())
+		board.append(current_horizontal_level)
+
+	return board
+
+## Gets the room prefab based on what walls a room has.
+func get_room(room: Room) -> PackedScene:
+	if room.wall_location.has(CardinalDirection.NORTH) and room.wall_location.has(CardinalDirection.SOUTH) and room.wall_location.has(CardinalDirection.EAST):
+		return door_west
+	elif room.wall_location.has(CardinalDirection.NORTH) and room.wall_location.has(CardinalDirection.SOUTH) and room.wall_location.has(CardinalDirection.WEST):
+		return door_east
+	elif room.wall_location.has(CardinalDirection.NORTH) and room.wall_location.has(CardinalDirection.EAST) and room.wall_location.has(CardinalDirection.WEST):
+		return door_south
+	elif room.wall_location.has(CardinalDirection.SOUTH) and room.wall_location.has(CardinalDirection.EAST) and room.wall_location.has(CardinalDirection.WEST):
+		return door_north
+	elif room.wall_location.has(CardinalDirection.NORTH) and room.wall_location.has(CardinalDirection.SOUTH):
+		return door_east_west
+	elif room.wall_location.has(CardinalDirection.NORTH) and room.wall_location.has(CardinalDirection.EAST):
+		return door_south_west
+	elif room.wall_location.has(CardinalDirection.NORTH) and room.wall_location.has(CardinalDirection.WEST):
+		return door_south_east
+	elif room.wall_location.has(CardinalDirection.SOUTH) and room.wall_location.has(CardinalDirection.EAST):
+		return door_north_west
+	elif room.wall_location.has(CardinalDirection.SOUTH) and room.wall_location.has(CardinalDirection.WEST):
+		return door_north_east
+	elif room.wall_location.has(CardinalDirection.EAST) and room.wall_location.has(CardinalDirection.WEST):
+		return door_north_south
+	elif room.wall_location.has(CardinalDirection.NORTH):
+		return door_south_east_west
+	elif room.wall_location.has(CardinalDirection.SOUTH):
+		return door_north_east_west
+	elif room.wall_location.has(CardinalDirection.EAST):
+		return door_north_south_west
+	elif room.wall_location.has(CardinalDirection.WEST):
+		return door_north_south_east
+	else:
+		return door_north_south_east_west
+
 ## Tries to remove all walls from the given board location.
-func try_to_remove_more_walls(x: int, y: int, board) -> void:
+func remove_all_possible_walls_from_room(x: int, y: int, board) -> bool:
+	var removed_wall: bool = false
 	var current_room: Room = board[x][y]
 	# If the room is allowed to lose walls
 	if current_room.useable:
 		# Remove the eastern wall if it exists 
 		if y < board[x].size() - 1:
 			var next_room: Room = board[x][y+1]
-			if next_room.useable:
+			if next_room.useable and current_room.wall_location.has(CardinalDirection.EAST):
 				current_room.remove_wall(CardinalDirection.EAST)
 				next_room.remove_wall(CardinalDirection.WEST)
+				removed_wall = true
 		# Remove the western wall if it exists 
 		if y > 0:
 			var next_room: Room = board[x][y-1]
-			if next_room.useable:
+			if next_room.useable and current_room.wall_location.has(CardinalDirection.WEST):
 				current_room.remove_wall(CardinalDirection.WEST)
 				next_room.remove_wall(CardinalDirection.EAST)
+				removed_wall = true
 		# Remove the northern wall if it exists 
 		if x < board.size() - 1:
 			var next_room: Room = board[x+1][y]
-			if next_room.useable:
+			if next_room.useable and current_room.wall_location.has(CardinalDirection.NORTH):
 				current_room.remove_wall(CardinalDirection.NORTH)
 				next_room.remove_wall(CardinalDirection.SOUTH)
+				removed_wall = true
 		# Remove the southern wall if it exists 
 		if x > 0:
 			var next_room: Room = board[x-1][y]
-			if next_room.useable:
+			if next_room.useable and current_room.wall_location.has(CardinalDirection.SOUTH):
 				current_room.remove_wall(CardinalDirection.SOUTH)
 				next_room.remove_wall(CardinalDirection.NORTH)
+				removed_wall = true
+	return removed_wall
