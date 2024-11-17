@@ -27,10 +27,3 @@ func _ready() -> void:
 		input_component.on_attack_input_started.connect(attack_component.on_attack_input_started)
 		input_component.on_attack_input.connect(attack_component.on_attack_input)
 		input_component.on_attack_input_cancelled.connect(attack_component.on_attack_input_cancelled)
- 
-
-		input_component.on_jump_input_started.connect(make_terrain)
-
-func make_terrain():
-	if terrain_generator:
-		terrain_generator.generate_dungeon(self.get_parent())
