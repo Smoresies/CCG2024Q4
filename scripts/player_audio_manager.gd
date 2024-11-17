@@ -9,7 +9,6 @@ extends Node
 # An array containing the valid surface types for sound effects. 
 @export var sfx_floor_materials: Array = [&"dirt", &"wood"]
 # The first item in the array is the default value.
-# Changed to be permanent until crashing errors are solved
 var default_sfx_floor_material: StringName = sfx_floor_materials[0]
 var current_sfx_material: String = default_sfx_floor_material
 
@@ -18,8 +17,7 @@ var current_sfx_material: String = default_sfx_floor_material
 var default_weapon_sfx: String = weapon_sfx_types[0]
 var current_weapon_sfx: String = default_weapon_sfx
 
-# Set the floor material beneath the player for triggering SFX. 
-# Invalid inputs will reset material to default_sfx_floor_material
+## Set the floor material beneath the player for triggering SFX. Invalid inputs will reset material to the default value. 
 func set_sfx_floor_material(sfx_material: String) -> void:
 	# If the input is valid, accept the new material
 	if sfx_material in sfx_floor_materials:
@@ -36,11 +34,11 @@ func set_sfx_floor_material(sfx_material: String) -> void:
 	if landing_sfx.has_stream_playback():
 		landing_sfx.get_stream_playback().switch_to_clip_by_name(current_sfx_material)
 
-## When the moth jump is released, 
+## When the moth jump is released, switch the active clip to wind down the sound effect. 
 func _on_moth_jump_released() -> void:
 	moth_jump_sfx.get_stream_playback().switch_to_clip_by_name("Player Moth-jump Release")
 
-## Update sound effects that play related to weapons
+## Update weapon-related sound effects by passing in the name of the active weapon modifier. 
 func set_weapon_sfx_type(weapon_sfx: String) -> void:
 	if weapon_sfx in weapon_sfx_types:
 		current_weapon_sfx = weapon_sfx
