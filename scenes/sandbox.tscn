@@ -6,8 +6,8 @@
 [ext_resource type="Script" path="res://scripts/status_effect/base_status_effect.gd" id="4_3cfgk"]
 [ext_resource type="PackedScene" uid="uid://dtwb2d20i0de2" path="res://prefabs/attacks/ranged_attack2.tscn" id="5_ct8tr"]
 [ext_resource type="Script" path="res://scripts/status_effect/replace_attack_status_effect.gd" id="6_ciesc"]
-[ext_resource type="PackedScene" uid="uid://civfx1w4vjpko" path="res://prefabs/player.tscn" id="7_iabik"]
 [ext_resource type="PackedScene" uid="uid://df0h6dt2b3l7n" path="res://prefabs/climbable.tscn" id="7_nah8b"]
+[ext_resource type="PackedScene" uid="uid://cplaaen2uodhm" path="res://prefabs/entity.tscn" id="9_qbiev"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vau7a"]
 
@@ -61,11 +61,14 @@ status_effects = Array[ExtResource("4_3cfgk")]([SubResource("Resource_8rh63")])
 position = Vector2(-66, 48)
 shape = SubResource("RectangleShape2D_vau7a")
 
-[node name="Player" parent="." instance=ExtResource("7_iabik")]
-
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.0565686, 0.0646959, 0.0836866, 1)
 
 [node name="Climbable" parent="." instance=ExtResource("7_nah8b")]
 position = Vector2(129, 202)
 collision_layer = 17
+
+[node name="Entity" parent="." instance=ExtResource("9_qbiev")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.025, 0.025)
