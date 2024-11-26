@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dtwb2d20i0de2" path="res://prefabs/attacks/ranged_attack2.tscn" id="5_ct8tr"]
 [ext_resource type="Script" path="res://scripts/status_effect/replace_attack_status_effect.gd" id="6_ciesc"]
 [ext_resource type="PackedScene" uid="uid://df0h6dt2b3l7n" path="res://prefabs/climbable.tscn" id="7_nah8b"]
-[ext_resource type="PackedScene" uid="uid://cplaaen2uodhm" path="res://prefabs/entity.tscn" id="9_qbiev"]
+[ext_resource type="PackedScene" uid="uid://civfx1w4vjpko" path="res://prefabs/player.tscn" id="8_qfoau"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vau7a"]
 
@@ -68,7 +68,4 @@ color = Color(0.0565686, 0.0646959, 0.0836866, 1)
 position = Vector2(129, 202)
 collision_layer = 17
 
-[node name="Entity" parent="." instance=ExtResource("9_qbiev")]
-
-[node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(0.025, 0.025)
+[node name="Player" parent="." instance=ExtResource("8_qfoau")]
