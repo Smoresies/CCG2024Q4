@@ -24,10 +24,13 @@ var _current_health: int = max_health
 ## Bonuses
 var flat_defense_bonus: int = 0
 var percent_defense_bonus: float = 1
+
 var flat_heal_bonus: int = 0
 var percent_heal_bonus: float = 1
+
 var flat_damage_bonus: int = 0
 var percent_damage_bonus: float = 1
+
 var flat_move_speed_bonus: int = 0
 var percent_move_speed_bonus: float = 1
 
