@@ -50,6 +50,8 @@ shape = SubResource("CircleShape2D_05lk1")
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("2_howwq")
 
-[node name="Traveling SFX" type="AudioStreamPlayer2D" parent="."]
+[node name="Projectile Audio Manager" type="Node" parent="."]
+
+[node name="Projectile SFX" type="AudioStreamPlayer2D" parent="Projectile Audio Manager"]
 stream = SubResource("AudioStreamInteractive_kihnr")
 bus = &"SFX"
