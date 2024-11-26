@@ -48,4 +48,4 @@ func set_weapon_sfx_type(weapon_sfx: String) -> void:
 	# Apply the new weapon SFX type to AudioStreamPlayer node.
 	if weapon_firing_sfx.has_stream_playback():
 		weapon_firing_sfx.get_stream_playback().switch_to_clip_by_name(current_weapon_sfx)
-	# TODO: check and update projectile travel and destroy SFX with new weapon SFX 
+		# TODO update projectile SFX 
