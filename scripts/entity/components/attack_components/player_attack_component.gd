@@ -23,7 +23,9 @@ func _ready() -> void:
 	# Abstract class instantiation error
 	lock_on_area.body_entered.connect(_add_target)
 	lock_on_area.body_exited.connect(_remove_target)
-	on_target_change.connect(target_changed)
+	# Debug message that checks for collision with targeting
+	# Commented to reduce log strain
+	# on_target_change.connect(target_changed)
 
 func on_attack_input_started() -> void:
 	attacks[0].start_attack(_get_current_target_or_direction())

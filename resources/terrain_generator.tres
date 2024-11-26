@@ -1,0 +1,44 @@
+[gd_resource type="Resource" script_class="TerrainGenerator" load_steps=17 format=3 uid="uid://d2s8b7n2687ew"]
+
+[ext_resource type="PackedScene" uid="uid://7b1vs6o1ty34" path="res://prefabs/rooms/East.tscn" id="1_ie46b"]
+[ext_resource type="Script" path="res://scripts/environment/terrain_generator.gd" id="1_su67f"]
+[ext_resource type="PackedScene" uid="uid://bb3lvyfuabruj" path="res://prefabs/rooms/EastWest.tscn" id="2_7sjiu"]
+[ext_resource type="PackedScene" uid="uid://dhtodn6fbm7kq" path="res://prefabs/rooms/North.tscn" id="3_xk5jg"]
+[ext_resource type="PackedScene" uid="uid://cwyqnvu8aub2q" path="res://prefabs/rooms/NorthEast.tscn" id="4_gjk7s"]
+[ext_resource type="PackedScene" uid="uid://dm5isl5yn6r0r" path="res://prefabs/rooms/NorthEastWest.tscn" id="5_7hftb"]
+[ext_resource type="PackedScene" uid="uid://iyydplstd03t" path="res://prefabs/rooms/NorthSouth.tscn" id="6_5x0tg"]
+[ext_resource type="PackedScene" uid="uid://b3iicsrmk6elb" path="res://prefabs/rooms/NorthSouthEast.tscn" id="7_yvinb"]
+[ext_resource type="PackedScene" uid="uid://dkelml4ojj2fk" path="res://prefabs/rooms/NorthSouthEastWest.tscn" id="8_gb28e"]
+[ext_resource type="PackedScene" uid="uid://c6qq7huqp4uwm" path="res://prefabs/rooms/NorthSouthWest.tscn" id="9_qxd03"]
+[ext_resource type="PackedScene" uid="uid://bf7uytlq5ia6a" path="res://prefabs/rooms/NorthWest.tscn" id="10_211on"]
+[ext_resource type="PackedScene" uid="uid://b3hyll4d246n1" path="res://prefabs/rooms/South.tscn" id="12_8ooyx"]
+[ext_resource type="PackedScene" uid="uid://ciaxf1m5vrhfh" path="res://prefabs/rooms/SouthEast.tscn" id="13_aoi1j"]
+[ext_resource type="PackedScene" uid="uid://soow780xley0" path="res://prefabs/rooms/SouthEastWest.tscn" id="14_bfac6"]
+[ext_resource type="PackedScene" uid="uid://1ihvxylxw52y" path="res://prefabs/rooms/SouthWest.tscn" id="15_r08yk"]
+[ext_resource type="PackedScene" uid="uid://c5x0w4jlmqj85" path="res://prefabs/rooms/West.tscn" id="16_33ltp"]
+
+[resource]
+script = ExtResource("1_su67f")
+max_dungeon_height = 6
+min_dungeon_height = 4
+max_half_dungeon_width = 2
+min_half_dungeon_width = 0
+min_num_rooms_to_add_extra_doors = 0
+max_num_rooms_to_add_extra_doors = 3
+door_north = ExtResource("3_xk5jg")
+door_north_south = ExtResource("6_5x0tg")
+door_north_east = ExtResource("4_gjk7s")
+door_north_west = ExtResource("10_211on")
+door_north_south_east = ExtResource("7_yvinb")
+door_north_south_west = ExtResource("9_qxd03")
+door_north_east_west = ExtResource("5_7hftb")
+door_north_south_east_west = ExtResource("8_gb28e")
+door_south = ExtResource("12_8ooyx")
+door_south_east = ExtResource("13_aoi1j")
+door_south_west = ExtResource("15_r08yk")
+door_south_east_west = ExtResource("14_bfac6")
+door_east = ExtResource("1_ie46b")
+door_east_west = ExtResource("2_7sjiu")
+door_west = ExtResource("16_33ltp")
+room_x_length = 3900
+room_y_length = -2000

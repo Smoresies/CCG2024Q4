@@ -10,6 +10,8 @@ class_name BaseEntity extends Node
 ## The attack components of the entity.
 @export var attack_component: BaseAttackComponent
 
+@export var terrain_generator: TerrainGenerator
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -25,4 +27,3 @@ func _ready() -> void:
 		input_component.on_attack_input_started.connect(attack_component.on_attack_input_started)
 		input_component.on_attack_input.connect(attack_component.on_attack_input)
 		input_component.on_attack_input_cancelled.connect(attack_component.on_attack_input_cancelled)
- 
