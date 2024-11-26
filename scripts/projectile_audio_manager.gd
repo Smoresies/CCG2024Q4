@@ -18,3 +18,9 @@ func update_projectile_SFX(new_projectile_type) -> void:
 	if projectile_sfx.has_stream_playback():
 		projectile_sfx.get_stream_playback().switch_to_clip_by_name(current_projectile_sfx)
 	
+
+## Changes the active audio clip attached to a projectile to reflect its destruction.  
+func _on_projectile_destroyed() -> void:
+	pass
+	# TODO trigger clip change 
+	# TODO await finished signal
