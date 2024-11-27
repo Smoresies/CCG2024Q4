@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://v4pkq3pvqkk5"]
+
+[ext_resource type="Texture2D" uid="uid://cibtxib88268l" path="res://sources/particle sprites/star_07.png" id="1_fiqsd"]
+
+[sub_resource type="Gradient" id="Gradient_j0318"]
+offsets = PackedFloat32Array(0, 0.90573, 1)
+colors = PackedColorArray(1.1, 1.1, 1.1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_hvkcx"]
+gradient = SubResource("Gradient_j0318")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5kcr3"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 40.0
+radial_velocity_min = -2.23517e-05
+radial_velocity_max = 28.11
+gravity = Vector3(0, 0, 0)
+scale_min = 0.05
+scale_max = 0.15
+color_ramp = SubResource("GradientTexture1D_hvkcx")
+
+[node name="BasicAttack" type="GPUParticles2D"]
+position = Vector2(-7, -2)
+amount = 35
+process_material = SubResource("ParticleProcessMaterial_5kcr3")
+texture = ExtResource("1_fiqsd")
+lifetime = 0.7
