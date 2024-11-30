@@ -32,22 +32,22 @@ scale = Vector2(113, 1)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D11"]
 shape = SubResource("RectangleShape2D_f5xfc")
 
-[node name="StaticBody2D6" type="StaticBody2D" parent="."]
-position = Vector2(3450, 1400)
-scale = Vector2(45, 1)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D6"]
-shape = SubResource("RectangleShape2D_f5xfc")
-
 [node name="StaticBody2D13" type="StaticBody2D" parent="."]
 position = Vector2(3300, 950)
-scale = Vector2(52, 1)
+scale = Vector2(55, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D13"]
 shape = SubResource("RectangleShape2D_f5xfc")
 
+[node name="StaticBody2D15" type="StaticBody2D" parent="."]
+position = Vector2(3300, 1400)
+scale = Vector2(55, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D15"]
+shape = SubResource("RectangleShape2D_f5xfc")
+
 [node name="StaticBody2D7" type="StaticBody2D" parent="."]
-position = Vector2(2294, 1400)
+position = Vector2(2110, 1400)
 scale = Vector2(45, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D7"]
@@ -61,21 +61,28 @@ scale = Vector2(1, 90)
 shape = SubResource("RectangleShape2D_f5xfc")
 
 [node name="StaticBody2D14" type="StaticBody2D" parent="."]
-position = Vector2(3830, 900)
-scale = Vector2(1, 90)
+position = Vector2(3830, 400)
+scale = Vector2(1, 40)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D14"]
 shape = SubResource("RectangleShape2D_f5xfc")
 
+[node name="StaticBody2D16" type="StaticBody2D" parent="."]
+position = Vector2(3830, 1380)
+scale = Vector2(1, 42)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D16"]
+shape = SubResource("RectangleShape2D_f5xfc")
+
 [node name="StaticBody2D3" type="StaticBody2D" parent="."]
-position = Vector2(1850, 1590)
+position = Vector2(1650, 1590)
 scale = Vector2(1, 20)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
 shape = SubResource("RectangleShape2D_f5xfc")
 
 [node name="StaticBody2D4" type="StaticBody2D" parent="."]
-position = Vector2(2750, 1590)
+position = Vector2(2570, 1590)
 scale = Vector2(1, 20)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4"]
@@ -94,6 +101,62 @@ scale = Vector2(1, 20)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D9"]
 shape = SubResource("RectangleShape2D_f5xfc")
+
+[node name="Vine" type="StaticBody2D" parent="."]
+position = Vector2(1050, 1360)
+scale = Vector2(1, 30)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Vine"]
+shape = SubResource("RectangleShape2D_f5xfc")
+debug_color = Color(0, 0.6, 0.3, 0.6)
+
+[node name="Vine2" type="StaticBody2D" parent="."]
+position = Vector2(2110, 1560)
+scale = Vector2(1, 15)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Vine2"]
+shape = SubResource("RectangleShape2D_f5xfc")
+debug_color = Color(0, 0.6, 0.3, 0.6)
+
+[node name="Vine4" type="StaticBody2D" parent="."]
+position = Vector2(3450, 1560)
+scale = Vector2(1, 15)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Vine4"]
+shape = SubResource("RectangleShape2D_f5xfc")
+debug_color = Color(0, 0.6, 0.3, 0.6)
+
+[node name="Vine5" type="StaticBody2D" parent="."]
+position = Vector2(3300, 690)
+scale = Vector2(1, 15)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Vine5"]
+shape = SubResource("RectangleShape2D_f5xfc")
+debug_color = Color(0, 0.6, 0.3, 0.6)
+
+[node name="Vine7" type="StaticBody2D" parent="."]
+position = Vector2(2110, 200)
+scale = Vector2(1, 20)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Vine7"]
+shape = SubResource("RectangleShape2D_f5xfc")
+debug_color = Color(0, 0.6, 0.3, 0.6)
+
+[node name="Vine6" type="StaticBody2D" parent="."]
+position = Vector2(1050, 790)
+scale = Vector2(1, 15)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Vine6"]
+shape = SubResource("RectangleShape2D_f5xfc")
+debug_color = Color(0, 0.6, 0.3, 0.6)
+
+[node name="Vine3" type="StaticBody2D" parent="."]
+position = Vector2(2110, 1960)
+scale = Vector2(1, 15)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Vine3"]
+shape = SubResource("RectangleShape2D_f5xfc")
+debug_color = Color(0, 0.6, 0.3, 0.6)
 
 [node name="StaticBody2D12" type="StaticBody2D" parent="."]
 position = Vector2(1640, 570)
