@@ -525,7 +525,7 @@ script = ExtResource("4_4xhru")
 animated_sprite = NodePath("..")
 player = NodePath("../..")
 
-[node name="Player Audio Manager" type="Node" parent="PlayerController" node_paths=PackedStringArray("landing_sfx", "footstep_sfx", "jumping_sfx", "moth_jump_sfx")]
+[node name="Player Audio Manager" type="Node2D" parent="PlayerController" node_paths=PackedStringArray("landing_sfx", "footstep_sfx", "jumping_sfx", "moth_jump_sfx")]
 script = ExtResource("2_hkha4")
 landing_sfx = NodePath("Landing SFX")
 footstep_sfx = NodePath("Footstep SFX")
@@ -533,6 +533,7 @@ jumping_sfx = NodePath("Jumping SFX")
 moth_jump_sfx = NodePath("Moth Jump SFX")
 
 [node name="AudioListener2D" type="AudioListener2D" parent="PlayerController/Player Audio Manager"]
+current = true
 
 [node name="Landing SFX" type="AudioStreamPlayer2D" parent="PlayerController/Player Audio Manager"]
 stream = SubResource("AudioStreamInteractive_r8y8h")

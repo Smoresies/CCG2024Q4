@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://d305p8471rxhx"]
+[gd_scene load_steps=13 format=3 uid="uid://d305p8471rxhx"]
 
 [ext_resource type="Script" path="res://scripts/entity/projectile_components/base_projectile_component.gd" id="1_3idd6"]
 [ext_resource type="Texture2D" uid="uid://dgbegkp2wgbi3" path="res://sources/icon.svg" id="2_howwq"]
@@ -10,33 +10,28 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_05lk1"]
 
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_k21n8"]
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_k7rx1"]
+random_pitch = 1.05
+streams_count = 1
+stream_0/stream = ExtResource("3_0ssjp")
+
+[sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_kihnr"]
+clip_count = 1
+clip_0/name = &"basic pellet"
+clip_0/stream = SubResource("AudioStreamRandomizer_k7rx1")
+clip_0/auto_advance = 0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_f5mjo"]
+random_pitch = 1.1
 streams_count = 3
 stream_0/stream = ExtResource("4_xo53q")
 stream_1/stream = ExtResource("5_isjt6")
 stream_2/stream = ExtResource("6_j00kt")
 
-[sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_72r0y"]
-clip_count = 2
-clip_0/name = &"Weapon Basic Traveling"
-clip_0/stream = ExtResource("3_0ssjp")
-clip_0/auto_advance = 0
-clip_1/name = &""
-clip_1/stream = SubResource("AudioStreamRandomizer_k21n8")
-clip_1/auto_advance = 0
-_transitions = {
-Vector2i(-1, -1): {
-"fade_beats": 1,
-"fade_mode": 4,
-"from_time": 0,
-"to_time": 1
-}
-}
-
-[sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_kihnr"]
+[sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_bx5gb"]
 clip_count = 1
 clip_0/name = &"basic pellet"
-clip_0/stream = SubResource("AudioStreamInteractive_72r0y")
+clip_0/stream = SubResource("AudioStreamRandomizer_f5mjo")
 clip_0/auto_advance = 0
 
 [node name="projectile" type="Area2D"]
@@ -51,9 +46,16 @@ shape = SubResource("CircleShape2D_05lk1")
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("2_howwq")
 
-[node name="Projectile Audio Manager" type="Node" parent="."]
+[node name="Projectile Audio Manager" type="Node2D" parent="."]
 script = ExtResource("3_bws0u")
 
-[node name="Projectile SFX" type="AudioStreamPlayer2D" parent="Projectile Audio Manager"]
+[node name="Projectile Travel SFX" type="AudioStreamPlayer2D" parent="Projectile Audio Manager"]
 stream = SubResource("AudioStreamInteractive_kihnr")
+max_distance = 200.0
 bus = &"SFX"
+
+[node name="Projectile Destroy SFX" type="AudioStreamPlayer2D" parent="Projectile Audio Manager"]
+stream = SubResource("AudioStreamInteractive_bx5gb")
+bus = &"SFX"
+
+[connection signal="on_destroy" from="." to="Projectile Audio Manager" method="_on_projectile_on_destroy"]

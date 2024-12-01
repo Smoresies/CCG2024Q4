@@ -7,13 +7,13 @@ extends Node
 @onready var weapon_firing_sfx: AudioStreamPlayer2D = $"Weapon Firing SFX"
 
 # An array containing the valid surface types for sound effects. 
-@export var sfx_floor_materials: Array = [&"dirt", &"wood"]
+@export var sfx_floor_materials: Array = ["dirt", "wood"]
 # The first item in the array is the default value.
 var default_sfx_floor_material: StringName = sfx_floor_materials[0]
 var current_sfx_material: String = default_sfx_floor_material
 
 # An array containing supported weapon SFX types. 
-@export var weapon_sfx_types: Array = [&"basic pellet"]
+@export var weapon_sfx_types: Array = ["basic pellet"]
 var default_weapon_sfx: String = weapon_sfx_types[0]
 var current_weapon_sfx: String = default_weapon_sfx
 
@@ -39,7 +39,7 @@ func _on_moth_jump_released() -> void:
 	moth_jump_sfx.get_stream_playback().switch_to_clip_by_name("Player Moth-jump Release")
 
 ## Update weapon-related sound effects by passing in the name of the active weapon modifier. 
-func set_weapon_sfx_type(weapon_sfx: String) -> void:
+func set_weapon_sfx(weapon_sfx: String) -> void:
 	if weapon_sfx in weapon_sfx_types:
 		current_weapon_sfx = weapon_sfx
 	else:
