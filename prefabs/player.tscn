@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/entity/base_entity.gd" id="1_ghq3j"]
 [ext_resource type="Texture2D" uid="uid://dalik7eqdpiv0" path="res://sources/player animations/Moth_Spritesheet.png" id="1_u1mv8"]
 [ext_resource type="Script" path="res://scripts/entity/components/movement_components/player_movement_component.gd" id="2_awxgg"]
-[ext_resource type="Script" path="res://scripts/player_audio_manager.gd" id="2_hkha4"]
+[ext_resource type="Script" path="res://scripts/Audio/player_audio_manager.gd" id="2_hkha4"]
 [ext_resource type="AudioStream" uid="uid://cfsue0llwws2" path="res://sources/SFX/Player/Jump/Player_Jump_Wood_v1.ogg" id="2_km0tm"]
 [ext_resource type="AudioStream" uid="uid://dhxpi3u3x1iab" path="res://sources/SFX/Player/Jump/Player_Jump_Wood_v2.ogg" id="3_v87jn"]
 [ext_resource type="Script" path="res://scripts/player_animation_controller.gd" id="4_4xhru"]

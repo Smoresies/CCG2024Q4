@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/entity/projectile_components/base_projectile_component.gd" id="1_3idd6"]
 [ext_resource type="Texture2D" uid="uid://dgbegkp2wgbi3" path="res://sources/icon.svg" id="2_howwq"]
 [ext_resource type="AudioStream" uid="uid://jto7ojm5p2af" path="res://sources/SFX/Player/Weapons/weapon_basic_traveling.ogg" id="3_0ssjp"]
-[ext_resource type="Script" path="res://scripts/projectile_audio_manager.gd" id="3_bws0u"]
+[ext_resource type="Script" path="res://scripts/Audio/projectile_audio_manager.gd" id="3_bws0u"]
 [ext_resource type="AudioStream" uid="uid://cn7l4cpm8s2yb" path="res://sources/SFX/Player/Weapons/weapon_basic_destroy_v1.ogg" id="4_xo53q"]
 [ext_resource type="AudioStream" uid="uid://cnr2t1h7emnxj" path="res://sources/SFX/Player/Weapons/weapon_basic_destroy_v2.ogg" id="5_isjt6"]
 [ext_resource type="AudioStream" uid="uid://4k6me2dlydjx" path="res://sources/SFX/Player/Weapons/weapon_basic_destroy_v3.ogg" id="6_j00kt"]
