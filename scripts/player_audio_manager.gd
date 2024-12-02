@@ -6,6 +6,9 @@ extends Node
 @onready var moth_jump_sfx: AudioStreamPlayer2D = $"Moth Jump SFX"
 @onready var weapon_firing_sfx: AudioStreamPlayer2D = $"Weapon Firing SFX"
 
+# TODO  REMOVE TEMPORARY FIX FOR MOTH JUMP
+var is_true_moth_jump_ended: bool = false
+
 # An array containing the valid surface types for sound effects. 
 @export var sfx_floor_materials: Array = [&"dirt", &"wood"]
 # The first item in the array is the default value.
@@ -51,4 +54,12 @@ func _on_player_controller_on_moth_jump() -> void:
 
 ## When the moth jump is released, switch the active clip to wind down the sound effect. 
 func _on_player_controller_on_moth_jump_ended() -> void:
-	moth_jump_sfx.get_stream_playback().switch_to_clip_by_name("Player Moth-jump Release")
+	# TODO remove this temporary fix and un-comment the line below
+	if is_true_moth_jump_ended:
+		moth_jump_sfx.get_stream_playback().switch_to_clip_by_name("Player Moth-jump Release")
+		is_true_moth_jump_ended = false
+	else:
+		is_true_moth_jump_ended = true
+	
+	# moth_jump_sfx.get_stream_playback().switch_to_clip_by_name("Player Moth-jump Release")
+	

@@ -441,26 +441,6 @@ clip_1/auto_advance = 0
 clip_2/name = &"Player Moth-jump Release"
 clip_2/stream = ExtResource("13_noflm")
 clip_2/auto_advance = 0
-_transitions = {
-Vector2i(0, 1): {
-"fade_beats": 1,
-"fade_mode": 4,
-"from_time": 0,
-"to_time": 1
-},
-Vector2i(0, 2): {
-"fade_beats": 1,
-"fade_mode": 4,
-"from_time": 0,
-"to_time": 1
-},
-Vector2i(1, 1): {
-"fade_beats": 1,
-"fade_mode": 4,
-"from_time": 3,
-"to_time": 1
-}
-}
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_l7pbr"]
 random_pitch = 1.1
