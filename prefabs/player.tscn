@@ -550,6 +550,7 @@ bus = &"SFX"
 
 [node name="Weapon Firing SFX" type="AudioStreamPlayer2D" parent="PlayerController/Player Audio Manager"]
 stream = SubResource("AudioStreamInteractive_drf5x")
+max_polyphony = 3
 bus = &"SFX"
 
 [node name="Moth Jump SFX" type="AudioStreamPlayer2D" parent="PlayerController/Player Audio Manager"]
@@ -595,3 +596,4 @@ projectile_spawn_position = NodePath("../PlayerController/Marker2D")
 [connection signal="on_horizontal_movement" from="PlayerController" to="PlayerController/AnimatedSprite2D/AnimationPlayer" method="play_walking_animation"]
 [connection signal="on_horizontal_movement_cancelled" from="PlayerController" to="PlayerController/AnimatedSprite2D/AnimationPlayer" method="play_idle_animation"]
 [connection signal="on_jump_started" from="PlayerController" to="PlayerController/AnimatedSprite2D/AnimationPlayer" method="play_jump_animation"]
+[connection signal="on_attack_input_started" from="PlayerInputComponent" to="PlayerController/Player Audio Manager" method="_on_player_input_component_on_attack_input_started"]
