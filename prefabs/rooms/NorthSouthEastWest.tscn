@@ -1,0 +1,33 @@
+[gd_scene load_steps=2 format=3 uid="uid://dkelml4ojj2fk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gbgtv"]
+
+[node name="Room 4 Entrances" type="Node2D"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(3100, 1750)
+scale = Vector2(80, 25)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_gbgtv")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+position = Vector2(800, 1750)
+scale = Vector2(80, 25)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+shape = SubResource("RectangleShape2D_gbgtv")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+position = Vector2(3100, 250)
+scale = Vector2(80, 25)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+shape = SubResource("RectangleShape2D_gbgtv")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="."]
+position = Vector2(800, 250)
+scale = Vector2(80, 25)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4"]
+shape = SubResource("RectangleShape2D_gbgtv")
