@@ -2,7 +2,6 @@
 
 [ext_resource type="Texture2D" uid="uid://dm246a5b6pul4" path="res://sources/world_tileset.png" id="1_jhrxt"]
 
-
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_omc8n"]
 polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
