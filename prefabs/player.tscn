@@ -1,30 +1,39 @@
-[gd_scene load_steps=59 format=3 uid="uid://civfx1w4vjpko"]
+[gd_scene load_steps=69 format=3 uid="uid://civfx1w4vjpko"]
 
 [ext_resource type="Script" path="res://scripts/entity/base_entity.gd" id="1_ghq3j"]
-[ext_resource type="Texture2D" uid="uid://c52yso0a0uh55" path="res://sources/player animations/Moth_Spritesheet.png" id="1_u1mv8"]
+[ext_resource type="Texture2D" uid="uid://dalik7eqdpiv0" path="res://sources/player animations/Moth_Spritesheet.png" id="1_u1mv8"]
 [ext_resource type="Script" path="res://scripts/entity/components/movement_components/player_movement_component.gd" id="2_awxgg"]
 [ext_resource type="Script" path="res://scripts/player_audio_manager.gd" id="2_hkha4"]
-[ext_resource type="AudioStream" uid="uid://b0oj42gq5iwp6" path="res://sources/SFX/Player/Jump/Player_Jump_Wood_v1.ogg" id="2_km0tm"]
-[ext_resource type="AudioStream" uid="uid://bnxjgpwf5yrrk" path="res://sources/SFX/Player/Jump/Player_Jump_Wood_v2.ogg" id="3_v87jn"]
+[ext_resource type="AudioStream" uid="uid://cfsue0llwws2" path="res://sources/SFX/Player/Jump/Player_Jump_Wood_v1.ogg" id="2_km0tm"]
+[ext_resource type="AudioStream" uid="uid://dhxpi3u3x1iab" path="res://sources/SFX/Player/Jump/Player_Jump_Wood_v2.ogg" id="3_v87jn"]
 [ext_resource type="Script" path="res://scripts/player_animation_controller.gd" id="4_4xhru"]
-[ext_resource type="AudioStream" uid="uid://ct6lno8a477x7" path="res://sources/SFX/Player/Jump/Player_Jump_Wood_v3.ogg" id="4_hqlsc"]
-[ext_resource type="AudioStream" uid="uid://bwdc36bi7hvu1" path="res://sources/SFX/Player/Jump/Player_Jump_Wood_v4.ogg" id="5_q6qfb"]
-[ext_resource type="AudioStream" uid="uid://78ncm1wm8cvo" path="res://sources/SFX/Player/Jump/Player_Jump_Wood_v5.ogg" id="6_qa40k"]
-[ext_resource type="AudioStream" uid="uid://cuafhnjktbdpq" path="res://sources/SFX/Player/Weapons/weapon_basic_fire_v1.ogg" id="11_nl51i"]
-[ext_resource type="AudioStream" uid="uid://oygphai84xoe" path="res://sources/SFX/Player/Moth Jump/player_moth-jump_start.ogg" id="11_wqyd4"]
-[ext_resource type="AudioStream" uid="uid://bphaagwuv2xg7" path="res://sources/SFX/Player/Moth Jump/player_moth-jump_hold.ogg" id="12_0ceqj"]
-[ext_resource type="AudioStream" uid="uid://dxe0hcs2frgjb" path="res://sources/SFX/Player/Weapons/weapon_basic_fire_v2.ogg" id="12_qsljt"]
-[ext_resource type="AudioStream" uid="uid://by1qyhxypryis" path="res://sources/SFX/Player/Moth Jump/player_moth-jump_release.ogg" id="13_noflm"]
-[ext_resource type="AudioStream" uid="uid://bu7mficyf4u11" path="res://sources/SFX/Player/Weapons/weapon_basic_fire_v3.ogg" id="13_wodyd"]
-[ext_resource type="AudioStream" uid="uid://c7rlesysqiht" path="res://sources/SFX/Player/Weapons/weapon_basic_fire_v4.ogg" id="14_rf5ty"]
-[ext_resource type="AudioStream" uid="uid://w4efh60bdueh" path="res://sources/SFX/Player/Weapons/weapon_basic_fire_v5.ogg" id="15_q0jyp"]
-[ext_resource type="AudioStream" uid="uid://crv078lvsuhww" path="res://sources/SFX/Player/Footsteps/Player_Step_Wood_v1.ogg" id="20_aecei"]
-[ext_resource type="AudioStream" uid="uid://c0md0byy3qgt6" path="res://sources/SFX/Player/Footsteps/Player_Step_Wood_v2.ogg" id="21_yyy3p"]
-[ext_resource type="AudioStream" uid="uid://dc7f7a2w75khb" path="res://sources/SFX/Player/Footsteps/Player_Step_Wood_v3.ogg" id="22_8q2pb"]
-[ext_resource type="AudioStream" uid="uid://dtsamer5t7cit" path="res://sources/SFX/Player/Footsteps/Player_Step_Wood_v4.ogg" id="23_g174k"]
-[ext_resource type="AudioStream" uid="uid://cp5034svvc26x" path="res://sources/SFX/Player/Footsteps/Player_Step_Wood_v5.ogg" id="24_51gtt"]
+[ext_resource type="AudioStream" uid="uid://cp00vgp52m5hh" path="res://sources/SFX/Player/Jump/Player_Jump_Wood_v3.ogg" id="4_hqlsc"]
+[ext_resource type="AudioStream" uid="uid://c8tnpsk3i7aoj" path="res://sources/SFX/Player/Jump/Player_Jump_Wood_v4.ogg" id="5_q6qfb"]
+[ext_resource type="AudioStream" uid="uid://bcjdnk68e6s5i" path="res://sources/SFX/Player/Jump/Player_Jump_Wood_v5.ogg" id="6_qa40k"]
+[ext_resource type="AudioStream" uid="uid://mko40t2vvl6i" path="res://sources/SFX/Player/Weapons/weapon_basic_fire_v1.ogg" id="11_nl51i"]
+[ext_resource type="AudioStream" uid="uid://bo4si64728gya" path="res://sources/SFX/Player/Footsteps/Player_Step_Dirt_var_01.ogg" id="11_uwe4e"]
+[ext_resource type="AudioStream" uid="uid://cyj625hqi61o1" path="res://sources/SFX/Player/Moth Jump/player_moth-jump_start.ogg" id="11_wqyd4"]
+[ext_resource type="AudioStream" uid="uid://mcvfnytd4n4t" path="res://sources/SFX/Player/Moth Jump/player_moth-jump_hold.ogg" id="12_0ceqj"]
+[ext_resource type="AudioStream" uid="uid://b1rmycq11amek" path="res://sources/SFX/Player/Footsteps/Player_Step_Dirt_var_02.ogg" id="12_57enf"]
+[ext_resource type="AudioStream" uid="uid://cktj7in1dmjog" path="res://sources/SFX/Player/Weapons/weapon_basic_fire_v2.ogg" id="12_qsljt"]
+[ext_resource type="AudioStream" uid="uid://upwnw8t3gyvx" path="res://sources/SFX/Player/Moth Jump/player_moth-jump_release.ogg" id="13_noflm"]
+[ext_resource type="AudioStream" uid="uid://bw86b8ue108sn" path="res://sources/SFX/Player/Weapons/weapon_basic_fire_v3.ogg" id="13_wodyd"]
+[ext_resource type="AudioStream" uid="uid://bo2fybso0hfcq" path="res://sources/SFX/Player/Footsteps/Player_Step_Dirt_var_03.ogg" id="13_yaorc"]
+[ext_resource type="AudioStream" uid="uid://bw8ft10m4ckbe" path="res://sources/SFX/Player/Footsteps/Player_Step_Dirt_var_04.ogg" id="14_hj0li"]
+[ext_resource type="AudioStream" uid="uid://cwttxqxv8a45m" path="res://sources/SFX/Player/Weapons/weapon_basic_fire_v4.ogg" id="14_rf5ty"]
+[ext_resource type="AudioStream" uid="uid://cojqa7p0ulesb" path="res://sources/SFX/Player/Footsteps/Player_Step_Dirt_var_05.ogg" id="15_fckk1"]
+[ext_resource type="AudioStream" uid="uid://ch8wqa24dkj3l" path="res://sources/SFX/Player/Weapons/weapon_basic_fire_v5.ogg" id="15_q0jyp"]
+[ext_resource type="AudioStream" uid="uid://bheqjqhd8cayk" path="res://sources/SFX/Player/Footsteps/Player_Step_Dirt_var_06.ogg" id="16_06qgv"]
+[ext_resource type="AudioStream" uid="uid://c03i8305yfl8v" path="res://sources/SFX/Player/Footsteps/Player_Step_Dirt_var_07.ogg" id="17_bixj5"]
+[ext_resource type="AudioStream" uid="uid://drkvuedrkshgx" path="res://sources/SFX/Player/Footsteps/Player_Step_Dirt_var_08.ogg" id="18_qcjxn"]
+[ext_resource type="AudioStream" uid="uid://jxmumfkjylbb" path="res://sources/SFX/Player/Footsteps/Player_Step_Dirt_var_09.ogg" id="19_kab17"]
+[ext_resource type="AudioStream" uid="uid://cowsteditggjx" path="res://sources/SFX/Player/Footsteps/Player_Step_Wood_v1.ogg" id="20_aecei"]
+[ext_resource type="AudioStream" uid="uid://bcpgfodd2nj35" path="res://sources/SFX/Player/Footsteps/Player_Step_Wood_v2.ogg" id="21_yyy3p"]
+[ext_resource type="AudioStream" uid="uid://binhg35doyvnc" path="res://sources/SFX/Player/Footsteps/Player_Step_Wood_v3.ogg" id="22_8q2pb"]
+[ext_resource type="AudioStream" uid="uid://bkauaq3qqj0g8" path="res://sources/SFX/Player/Footsteps/Player_Step_Wood_v4.ogg" id="23_g174k"]
+[ext_resource type="AudioStream" uid="uid://o122rygsuxau" path="res://sources/SFX/Player/Footsteps/Player_Step_Wood_v5.ogg" id="24_51gtt"]
 [ext_resource type="PackedScene" uid="uid://di47ep1fu4808" path="res://prefabs/components/base_health_and_status_component.tscn" id="28_50nj0"]
-[ext_resource type="Texture2D" uid="uid://bsn6qm8sknwqc" path="res://sources/light.jpg" id="28_5627b"]
+[ext_resource type="Texture2D" uid="uid://c73h268d2r88d" path="res://sources/light.jpg" id="28_5627b"]
 [ext_resource type="Script" path="res://scripts/entity/components/light_components/light_component.gd" id="29_glieu"]
 [ext_resource type="PackedScene" uid="uid://ccu1llutgwao8" path="res://prefabs/components/player_input_component.tscn" id="29_tkue1"]
 [ext_resource type="PackedScene" uid="uid://csg2c5faso123" path="res://prefabs/components/ranged_attack.tscn" id="30_5ht77"]
@@ -164,20 +173,6 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_ehq8f"]
 resource_name = "firing"
-tracks/0/type = "method"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Player Audio Manager/Weapon Firing SFX")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [0.0],
-"method": &"play"
-}]
-}
 
 [sub_resource type="Animation" id="Animation_ap55u"]
 resource_name = "idle"
@@ -424,12 +419,16 @@ clip_1/auto_advance = 0
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_64r67"]
 random_pitch = 1.1
-streams_count = 5
-stream_0/stream = ExtResource("11_nl51i")
-stream_1/stream = ExtResource("12_qsljt")
-stream_2/stream = ExtResource("13_wodyd")
-stream_3/stream = ExtResource("14_rf5ty")
-stream_4/stream = ExtResource("15_q0jyp")
+streams_count = 9
+stream_0/stream = ExtResource("11_uwe4e")
+stream_1/stream = ExtResource("12_57enf")
+stream_2/stream = ExtResource("13_yaorc")
+stream_3/stream = ExtResource("14_hj0li")
+stream_4/stream = ExtResource("15_fckk1")
+stream_5/stream = ExtResource("16_06qgv")
+stream_6/stream = ExtResource("17_bixj5")
+stream_7/stream = ExtResource("18_qcjxn")
+stream_8/stream = ExtResource("19_kab17")
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_4bmky"]
 streams_count = 5
@@ -439,7 +438,7 @@ stream_2/stream = ExtResource("22_8q2pb")
 stream_3/stream = ExtResource("23_g174k")
 stream_4/stream = ExtResource("24_51gtt")
 
-[sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_f2c2h"]
+[sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_f3w7y"]
 clip_count = 2
 clip_0/name = &"dirt"
 clip_0/stream = SubResource("AudioStreamRandomizer_64r67")
@@ -448,10 +447,18 @@ clip_1/name = &"wood"
 clip_1/stream = SubResource("AudioStreamRandomizer_4bmky")
 clip_1/auto_advance = 0
 
-[sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_r25m5"]
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_n4yi7"]
+streams_count = 5
+stream_0/stream = ExtResource("11_nl51i")
+stream_1/stream = ExtResource("12_qsljt")
+stream_2/stream = ExtResource("13_wodyd")
+stream_3/stream = ExtResource("14_rf5ty")
+stream_4/stream = ExtResource("15_q0jyp")
+
+[sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_drf5x"]
 clip_count = 1
-clip_0/name = &"basic pellet"
-clip_0/stream = SubResource("AudioStreamRandomizer_64r67")
+clip_0/name = &"Basic Pellet"
+clip_0/stream = SubResource("AudioStreamRandomizer_n4yi7")
 clip_0/auto_advance = 0
 
 [sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_v6fwb"]
@@ -518,7 +525,7 @@ script = ExtResource("4_4xhru")
 animated_sprite = NodePath("..")
 player = NodePath("../..")
 
-[node name="Player Audio Manager" type="Node" parent="PlayerController" node_paths=PackedStringArray("landing_sfx", "footstep_sfx", "jumping_sfx", "moth_jump_sfx")]
+[node name="Player Audio Manager" type="Node2D" parent="PlayerController" node_paths=PackedStringArray("landing_sfx", "footstep_sfx", "jumping_sfx", "moth_jump_sfx")]
 script = ExtResource("2_hkha4")
 landing_sfx = NodePath("Landing SFX")
 footstep_sfx = NodePath("Footstep SFX")
@@ -526,6 +533,7 @@ jumping_sfx = NodePath("Jumping SFX")
 moth_jump_sfx = NodePath("Moth Jump SFX")
 
 [node name="AudioListener2D" type="AudioListener2D" parent="PlayerController/Player Audio Manager"]
+current = true
 
 [node name="Landing SFX" type="AudioStreamPlayer2D" parent="PlayerController/Player Audio Manager"]
 stream = SubResource("AudioStreamInteractive_r8y8h")
@@ -536,12 +544,12 @@ stream = SubResource("AudioStreamInteractive_r8y8h")
 bus = &"SFX"
 
 [node name="Footstep SFX" type="AudioStreamPlayer2D" parent="PlayerController/Player Audio Manager"]
-stream = SubResource("AudioStreamInteractive_f2c2h")
+stream = SubResource("AudioStreamInteractive_f3w7y")
 volume_db = -10.0
 bus = &"SFX"
 
 [node name="Weapon Firing SFX" type="AudioStreamPlayer2D" parent="PlayerController/Player Audio Manager"]
-stream = SubResource("AudioStreamInteractive_r25m5")
+stream = SubResource("AudioStreamInteractive_drf5x")
 bus = &"SFX"
 
 [node name="Moth Jump SFX" type="AudioStreamPlayer2D" parent="PlayerController/Player Audio Manager"]

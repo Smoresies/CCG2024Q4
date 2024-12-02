@@ -1,5 +1,8 @@
 class_name BaseCollidableObject extends Area2D
 
+## Signal that is emitted when an entity is hit.
+signal on_destroy()
+
 ## Damage inflicted by the collidable.
 @export var damage: int
 @export var healing: int
@@ -15,6 +18,8 @@ func _on_body_entered(body: Node2D) -> void:
 		_deal_damage(parent)
 		_heal_health(parent)
 		_apply_status_effects(parent)
+	
+	on_destroy.emit()
 	queue_free()
 
 func _deal_damage(entity: BaseEntity) -> void:
