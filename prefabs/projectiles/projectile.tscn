@@ -8,6 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://cnr2t1h7emnxj" path="res://sources/SFX/Player/Weapons/weapon_basic_destroy_v2.ogg" id="5_isjt6"]
 [ext_resource type="AudioStream" uid="uid://4k6me2dlydjx" path="res://sources/SFX/Player/Weapons/weapon_basic_destroy_v3.ogg" id="6_j00kt"]
 
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_05lk1"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_k7rx1"]
