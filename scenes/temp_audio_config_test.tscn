@@ -23,27 +23,58 @@ offset_bottom = 537.0
 layout_mode = 2
 size_flags_vertical = 4
 
-[node name="Save Menu" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+[node name="Slider Labels" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Save" type="Button" parent="MarginContainer/HBoxContainer/Save Menu"]
+[node name="Master Volume" type="Label" parent="MarginContainer/HBoxContainer/Slider Labels"]
 layout_mode = 2
-text = "Save"
+text = "Master Volume   "
 
-[node name="Load" type="Button" parent="MarginContainer/HBoxContainer/Save Menu"]
+[node name="Music Volume" type="Label" parent="MarginContainer/HBoxContainer/Slider Labels"]
 layout_mode = 2
-text = "Load"
+text = "Music Volume"
+
+[node name="SFX Volume" type="Label" parent="MarginContainer/HBoxContainer/Slider Labels"]
+layout_mode = 2
+text = "SFX Volume"
+
+[node name="Ambience Volume" type="Label" parent="MarginContainer/HBoxContainer/Slider Labels"]
+layout_mode = 2
+text = "Ambience Volume"
 
 [node name="Settings Menu" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/Settings Menu"]
-layout_mode = 2
-text = "    Master Volume   "
-
 [node name="Master Volume Slider" type="HSlider" parent="MarginContainer/HBoxContainer/Settings Menu"]
+layout_mode = 2
+size_flags_vertical = 3
+max_value = 1.0
+step = 0.005
+value = 0.7
+tick_count = 11
+ticks_on_borders = true
+
+[node name="Music Volume Slider" type="HSlider" parent="MarginContainer/HBoxContainer/Settings Menu"]
+layout_mode = 2
+size_flags_vertical = 3
+max_value = 1.0
+step = 0.005
+value = 0.7
+tick_count = 11
+ticks_on_borders = true
+
+[node name="SFX Volume Slider" type="HSlider" parent="MarginContainer/HBoxContainer/Settings Menu"]
+layout_mode = 2
+size_flags_vertical = 3
+max_value = 1.0
+step = 0.005
+value = 0.7
+tick_count = 11
+ticks_on_borders = true
+
+[node name="Ambience Volume Slider" type="HSlider" parent="MarginContainer/HBoxContainer/Settings Menu"]
 layout_mode = 2
 size_flags_vertical = 3
 max_value = 1.0
@@ -58,6 +89,7 @@ volume_db = -20.0
 autoplay = true
 bus = &"SFX"
 
-[connection signal="pressed" from="MarginContainer/HBoxContainer/Save Menu/Save" to="." method="_on_save_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/Save Menu/Load" to="." method="_on_load_pressed"]
 [connection signal="value_changed" from="MarginContainer/HBoxContainer/Settings Menu/Master Volume Slider" to="." method="_on_master_volume_slider_value_changed"]
+[connection signal="value_changed" from="MarginContainer/HBoxContainer/Settings Menu/Music Volume Slider" to="." method="_on_music_volume_slider_value_changed"]
+[connection signal="value_changed" from="MarginContainer/HBoxContainer/Settings Menu/SFX Volume Slider" to="." method="_on_sfx_volume_slider_value_changed"]
+[connection signal="value_changed" from="MarginContainer/HBoxContainer/Settings Menu/Ambience Volume Slider" to="." method="_on_ambience_volume_slider_value_changed"]

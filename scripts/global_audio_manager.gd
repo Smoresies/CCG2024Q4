@@ -1,7 +1,7 @@
 extends Control
 
 var config = ConfigFile.new()
-var config_file_path = "user://Saves/config.cfg"
+var config_file_path = "user://config.cfg"
 
 @export var master_volume: float
 @export var music_volume: float
@@ -13,7 +13,14 @@ var config_file_path = "user://Saves/config.cfg"
 @export var sfx_bus_index = AudioServer.get_bus_index("SFX")
 @export var ambience_bus_index = AudioServer.get_bus_index("Ambience")
 
-## Sets the audio buses to a reasonable loudness. Recalls settings from a saved config file. 
+# TODO: Reference volume settings sliders 
+#@onready var master_volume_slider: HSlider = $"MarginContainer/HBoxContainer/Settings Menu/Master Volume Slider"
+#@onready var music_volume_slider: HSlider = $"MarginContainer/HBoxContainer/Settings Menu/Music Volume Slider"
+#@onready var sfx_volume_slider: HSlider = $"MarginContainer/HBoxContainer/Settings Menu/SFX Volume Slider"
+#@onready var ambience_volume_slider: HSlider = $"MarginContainer/HBoxContainer/Settings Menu/Ambience Volume Slider"
+
+
+## Sets the audio buses to a default value. Recalls settings from a saved config file.
 func _ready() -> void:
 	set_master_volume(0.7)
 	set_music_volume(0.7)
@@ -47,47 +54,64 @@ func read_config_file() -> void:
 	sfx_volume = config.get_value("AudioSettings","sfx_volume")
 	ambience_volume = config.get_value("AudioSettings","ambience_volume")
 	
+	# Set the audio settings according to recall results
+	set_master_volume(master_volume)
+	set_music_volume(music_volume)
+	set_sfx_volume(sfx_volume)
+	set_ambience_volume(ambience_volume)
 
+## DEBUG: print audio bus volumes
 func print_audio_settings() -> void:
-	# For verification purposes: 
 	print("Master vol: \t" + str(master_volume) + "\n")
-	#print("Music vol: \t\t" + str(music_volume))
-	#print("SFX vol: \t\t" + str(sfx_volume))
-	#print("Ambience vol: \t" + str(ambience_volume))
-	
+	print("Music vol: \t\t" + str(music_volume))
+	print("SFX vol: \t\t" + str(sfx_volume))
+	print("Ambience vol: \t" + str(ambience_volume))
 
+## Update the master bus volume, update the settings slider value, and save settings
 func set_master_volume(new_volume: float):
 	master_volume = new_volume
 	var volume = linear_to_db(new_volume)
 	AudioServer.set_bus_volume_db(master_bus_index, volume)
-	on_audio_settings_changed()
-	
-
-# TODO
-func set_music_volume(volume: float):
-	on_audio_settings_changed()
-	
-
-# TODO
-func set_sfx_volume(volume: float):
+	# master_volume_slider.value = master_volume
 	on_audio_settings_changed()
 
-# TODO
-func set_ambience_volume(volume: float):
+func set_music_volume(new_volume: float):
+	music_volume = new_volume
+	var volume = linear_to_db(new_volume)
+	AudioServer.set_bus_volume_db(music_bus_index, volume)
+	# music_volume_slider.value = music_volume
 	on_audio_settings_changed()
-	
+
+func set_sfx_volume(new_volume: float):
+	sfx_volume = new_volume
+	var volume = linear_to_db(new_volume)
+	AudioServer.set_bus_volume_db(sfx_bus_index, volume)
+	# sfx_volume_slider.value = sfx_volume
+	on_audio_settings_changed()
+
+func set_ambience_volume(new_volume: float):
+	ambience_volume = new_volume
+	var volume = linear_to_db(new_volume)
+	AudioServer.set_bus_volume_db(ambience_bus_index, volume)
+	# ambience_volume_slider.value = ambience_volume
+	on_audio_settings_changed()
 
 func on_audio_settings_changed() -> void: 
-	# TEMP for debugging TODO: un-comment
-	#save_audio_settings()
-	print_audio_settings()
-
-
-func _on_save_pressed() -> void:
 	save_audio_settings()
+	# print_audio_settings() # DEBUG: reports audio settings via console
 
-func _on_load_pressed() -> void:
-	read_config_file()
-
-func _on_master_volume_slider_value_changed(value: float) -> void:
-	set_master_volume(value)
+# TODO: Link sliders to volume settings on value changed
+#func _on_master_volume_slider_value_changed(value: float) -> void:
+	#set_master_volume(value)
+#
+#
+#func _on_music_volume_slider_value_changed(value: float) -> void:
+	#set_music_volume(value)
+#
+#
+#func _on_sfx_volume_slider_value_changed(value: float) -> void:
+	#set_sfx_volume(value)
+#
+#
+#func _on_ambience_volume_slider_value_changed(value: float) -> void:
+	#set_ambience_volume(value)
