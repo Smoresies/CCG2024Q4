@@ -49,7 +49,6 @@ func set_weapon_sfx(weapon_sfx: String) -> void:
 	if weapon_firing_sfx.has_stream_playback():
 		weapon_firing_sfx.get_stream_playback().switch_to_clip_by_name(current_weapon_sfx)
 
-
 func _on_player_controller_on_moth_jump() -> void:
 	moth_jump_sfx.play()
 
@@ -64,3 +63,7 @@ func _on_player_controller_on_moth_jump_ended() -> void:
 	
 	# moth_jump_sfx.get_stream_playback().switch_to_clip_by_name("Player Moth-jump Release")
 	
+## When an attack is inputted, trigger the sound effect
+func _on_player_input_component_on_attack_input_started() -> void:
+	weapon_firing_sfx.play()
+
