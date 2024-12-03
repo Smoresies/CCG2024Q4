@@ -11,22 +11,13 @@
 [ext_resource type="AudioStream" uid="uid://c8tnpsk3i7aoj" path="res://sources/SFX/Player/Jump/Player_Jump_Wood_v4.ogg" id="5_q6qfb"]
 [ext_resource type="AudioStream" uid="uid://bcjdnk68e6s5i" path="res://sources/SFX/Player/Jump/Player_Jump_Wood_v5.ogg" id="6_qa40k"]
 [ext_resource type="AudioStream" uid="uid://mko40t2vvl6i" path="res://sources/SFX/Player/Weapons/weapon_basic_fire_v1.ogg" id="11_nl51i"]
-[ext_resource type="AudioStream" uid="uid://bo4si64728gya" path="res://sources/SFX/Player/Footsteps/Player_Step_Dirt_var_01.ogg" id="11_uwe4e"]
 [ext_resource type="AudioStream" uid="uid://cyj625hqi61o1" path="res://sources/SFX/Player/Moth Jump/player_moth-jump_start.ogg" id="11_wqyd4"]
 [ext_resource type="AudioStream" uid="uid://mcvfnytd4n4t" path="res://sources/SFX/Player/Moth Jump/player_moth-jump_hold.ogg" id="12_0ceqj"]
-[ext_resource type="AudioStream" uid="uid://b1rmycq11amek" path="res://sources/SFX/Player/Footsteps/Player_Step_Dirt_var_02.ogg" id="12_57enf"]
 [ext_resource type="AudioStream" uid="uid://cktj7in1dmjog" path="res://sources/SFX/Player/Weapons/weapon_basic_fire_v2.ogg" id="12_qsljt"]
 [ext_resource type="AudioStream" uid="uid://upwnw8t3gyvx" path="res://sources/SFX/Player/Moth Jump/player_moth-jump_release.ogg" id="13_noflm"]
 [ext_resource type="AudioStream" uid="uid://bw86b8ue108sn" path="res://sources/SFX/Player/Weapons/weapon_basic_fire_v3.ogg" id="13_wodyd"]
-[ext_resource type="AudioStream" uid="uid://bo2fybso0hfcq" path="res://sources/SFX/Player/Footsteps/Player_Step_Dirt_var_03.ogg" id="13_yaorc"]
-[ext_resource type="AudioStream" uid="uid://bw8ft10m4ckbe" path="res://sources/SFX/Player/Footsteps/Player_Step_Dirt_var_04.ogg" id="14_hj0li"]
 [ext_resource type="AudioStream" uid="uid://cwttxqxv8a45m" path="res://sources/SFX/Player/Weapons/weapon_basic_fire_v4.ogg" id="14_rf5ty"]
-[ext_resource type="AudioStream" uid="uid://cojqa7p0ulesb" path="res://sources/SFX/Player/Footsteps/Player_Step_Dirt_var_05.ogg" id="15_fckk1"]
 [ext_resource type="AudioStream" uid="uid://ch8wqa24dkj3l" path="res://sources/SFX/Player/Weapons/weapon_basic_fire_v5.ogg" id="15_q0jyp"]
-[ext_resource type="AudioStream" uid="uid://bheqjqhd8cayk" path="res://sources/SFX/Player/Footsteps/Player_Step_Dirt_var_06.ogg" id="16_06qgv"]
-[ext_resource type="AudioStream" uid="uid://c03i8305yfl8v" path="res://sources/SFX/Player/Footsteps/Player_Step_Dirt_var_07.ogg" id="17_bixj5"]
-[ext_resource type="AudioStream" uid="uid://drkvuedrkshgx" path="res://sources/SFX/Player/Footsteps/Player_Step_Dirt_var_08.ogg" id="18_qcjxn"]
-[ext_resource type="AudioStream" uid="uid://jxmumfkjylbb" path="res://sources/SFX/Player/Footsteps/Player_Step_Dirt_var_09.ogg" id="19_kab17"]
 [ext_resource type="AudioStream" uid="uid://cowsteditggjx" path="res://sources/SFX/Player/Footsteps/Player_Step_Wood_v1.ogg" id="20_aecei"]
 [ext_resource type="AudioStream" uid="uid://bcpgfodd2nj35" path="res://sources/SFX/Player/Footsteps/Player_Step_Wood_v2.ogg" id="21_yyy3p"]
 [ext_resource type="AudioStream" uid="uid://binhg35doyvnc" path="res://sources/SFX/Player/Footsteps/Player_Step_Wood_v3.ogg" id="22_8q2pb"]
@@ -412,16 +403,15 @@ clip_1/auto_advance = 0
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_64r67"]
 random_pitch = 1.1
 streams_count = 9
-stream_0/stream = ExtResource("11_uwe4e")
-stream_1/stream = ExtResource("12_57enf")
-stream_2/stream = ExtResource("13_yaorc")
-stream_3/stream = ExtResource("14_hj0li")
-stream_4/stream = ExtResource("15_fckk1")
-stream_5/stream = ExtResource("16_06qgv")
-stream_6/stream = ExtResource("17_bixj5")
-stream_7/stream = ExtResource("18_qcjxn")
-stream_8/stream = ExtResource("19_kab17")
-
+stream_0/stream = ExtResource("24_0bqx5")
+stream_1/stream = ExtResource("25_wgtsf")
+stream_2/stream = ExtResource("26_tp853")
+stream_3/stream = ExtResource("27_dsqtc")
+stream_4/stream = ExtResource("28_dlwcd")
+stream_5/stream = ExtResource("29_jusag")
+stream_6/stream = ExtResource("30_e2odk")
+stream_7/stream = ExtResource("31_iyr7e")
+stream_8/stream = ExtResource("32_xqcc0")
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_4bmky"]
 streams_count = 5
@@ -467,37 +457,6 @@ clip_2/name = &"Player Moth-jump Release"
 clip_2/stream = ExtResource("13_noflm")
 clip_2/auto_advance = 0
 
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_l7pbr"]
-random_pitch = 1.1
-streams_count = 9
-stream_0/stream = ExtResource("24_0bqx5")
-stream_1/stream = ExtResource("25_wgtsf")
-stream_2/stream = ExtResource("26_tp853")
-stream_3/stream = ExtResource("27_dsqtc")
-stream_4/stream = ExtResource("28_dlwcd")
-stream_5/stream = ExtResource("29_jusag")
-stream_6/stream = ExtResource("30_e2odk")
-stream_7/stream = ExtResource("31_iyr7e")
-stream_8/stream = ExtResource("32_xqcc0")
-
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_t8b3n"]
-random_pitch = 1.1
-streams_count = 5
-stream_0/stream = ExtResource("20_aecei")
-stream_1/stream = ExtResource("21_yyy3p")
-stream_2/stream = ExtResource("22_8q2pb")
-stream_3/stream = ExtResource("23_g174k")
-stream_4/stream = ExtResource("24_51gtt")
-
-[sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_luy1b"]
-clip_count = 2
-clip_0/name = &"dirt"
-clip_0/stream = SubResource("AudioStreamRandomizer_l7pbr")
-clip_0/auto_advance = 0
-clip_1/name = &"wood"
-clip_1/stream = SubResource("AudioStreamRandomizer_t8b3n")
-clip_1/auto_advance = 0
-
 [node name="Player" type="Node2D" node_paths=PackedStringArray("movement_component", "input_component", "health_and_status_component", "attack_component")]
 script = ExtResource("1_ghq3j")
 movement_component = NodePath("PlayerController")
@@ -529,8 +488,7 @@ script = ExtResource("4_4xhru")
 animated_sprite = NodePath("..")
 player = NodePath("../..")
 
-
-[node name="Player Audio Manager" type="Node2D" parent="PlayerController" node_paths=PackedStringArray("landing_sfx", "footstep_sfx", "jumping_sfx", "moth_jump_sfx")]
+[node name="Player Audio Manager" type="Node2D" parent="PlayerController"]
 script = ExtResource("2_hkha4")
 
 [node name="AudioListener2D" type="AudioListener2D" parent="PlayerController/Player Audio Manager"]
@@ -543,7 +501,6 @@ bus = &"SFX"
 [node name="Jumping SFX" type="AudioStreamPlayer2D" parent="PlayerController/Player Audio Manager"]
 stream = SubResource("AudioStreamInteractive_r8y8h")
 bus = &"SFX"
-
 
 [node name="Footstep SFX" type="AudioStreamPlayer2D" parent="PlayerController/Player Audio Manager"]
 stream = SubResource("AudioStreamInteractive_f3w7y")
@@ -558,9 +515,6 @@ bus = &"SFX"
 stream = SubResource("AudioStreamInteractive_v6fwb")
 volume_db = -11.718
 bus = &"SFX"
-
-[node name="Footstep SFX" type="AudioStreamPlayer2D" parent="PlayerController/Player Audio Manager"]
-stream = SubResource("AudioStreamInteractive_luy1b")
 
 [node name="Marker2D" type="Marker2D" parent="PlayerController"]
 position = Vector2(24, -18)
