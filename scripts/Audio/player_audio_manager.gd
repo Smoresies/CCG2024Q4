@@ -1,10 +1,13 @@
 extends Node
 
-@export var landing_sfx: AudioStreamPlayer2D
-@export var footstep_sfx: AudioStreamPlayer2D
-@export var jumping_sfx: AudioStreamPlayer2D
-@export var moth_jump_sfx: AudioStreamPlayer2D
+@onready var footstep_sfx: AudioStreamPlayer2D = $"Footstep SFX"
+@onready var landing_sfx: AudioStreamPlayer2D = $"Landing SFX"
+@onready var jumping_sfx: AudioStreamPlayer2D = $"Jumping SFX"
+@onready var moth_jump_sfx: AudioStreamPlayer2D = $"Moth Jump SFX"
 @onready var weapon_firing_sfx: AudioStreamPlayer2D = $"Weapon Firing SFX"
+
+# TODO  REMOVE TEMPORARY FIX FOR MOTH JUMP
+var is_true_moth_jump_ended: bool = false
 
 # An array containing the valid surface types for sound effects. 
 @export var sfx_floor_materials: Array = ["dirt", "wood"]
@@ -34,9 +37,6 @@ func set_sfx_floor_material(sfx_material: String) -> void:
 	if landing_sfx.has_stream_playback():
 		landing_sfx.get_stream_playback().switch_to_clip_by_name(current_sfx_material)
 
-## When the moth jump is released, switch the active clip to wind down the sound effect. 
-func _on_moth_jump_released() -> void:
-	moth_jump_sfx.get_stream_playback().switch_to_clip_by_name("Player Moth-jump Release")
 
 ## Update weapon-related sound effects by passing in the name of the active weapon modifier. 
 func set_weapon_sfx(weapon_sfx: String) -> void:
@@ -48,4 +48,22 @@ func set_weapon_sfx(weapon_sfx: String) -> void:
 	# Apply the new weapon SFX type to AudioStreamPlayer node.
 	if weapon_firing_sfx.has_stream_playback():
 		weapon_firing_sfx.get_stream_playback().switch_to_clip_by_name(current_weapon_sfx)
-		# TODO update projectile SFX 
+
+func _on_player_controller_on_moth_jump() -> void:
+	moth_jump_sfx.play()
+
+## When the moth jump is released, switch the active clip to wind down the sound effect. 
+func _on_player_controller_on_moth_jump_ended() -> void:
+	# TODO remove this temporary fix and un-comment the line below
+	if is_true_moth_jump_ended:
+		moth_jump_sfx.get_stream_playback().switch_to_clip_by_name("Player Moth-jump Release")
+		is_true_moth_jump_ended = false
+	else:
+		is_true_moth_jump_ended = true
+	
+	# moth_jump_sfx.get_stream_playback().switch_to_clip_by_name("Player Moth-jump Release")
+	
+## When an attack is inputted, trigger the sound effect
+func _on_player_input_component_on_attack_input_started() -> void:
+	weapon_firing_sfx.play()
+
