@@ -19,6 +19,7 @@ var config_file_path = "user://config.cfg"
 #@onready var sfx_volume_slider: HSlider = $"MarginContainer/HBoxContainer/Settings Menu/SFX Volume Slider"
 #@onready var ambience_volume_slider: HSlider = $"MarginContainer/HBoxContainer/Settings Menu/Ambience Volume Slider"
 
+@onready var output_device_options: OptionButton = $"Output Device Options"
 
 ## Sets the audio buses to a default value. Recalls settings from a saved config file.
 func _ready() -> void:
@@ -27,7 +28,23 @@ func _ready() -> void:
 	set_sfx_volume(0.7)
 	set_ambience_volume(0.7)
 	
+	initialize_audio_device_selector()
 	read_config_file()
+
+## Sets up the audio device selector. Separated into its own function to avoid merge conflicts. 
+func initialize_audio_device_selector():
+	# For each output device: Add it to the list
+	for device in AudioServer.get_output_device_list():
+		output_device_options.add_item(device)
+
+	# For each item in the list: 
+	for i in range(output_device_options.item_count):
+		# Check: is it the active device
+		var device = output_device_options.get_item_text(i) 
+		if device == AudioServer.output_device:
+			# If it is, select the device. 
+			output_device_options.select(i) 
+			break
 
 func save_audio_settings() -> void:
 	# Set values based on the user's preferences:
@@ -123,4 +140,3 @@ func on_audio_settings_changed() -> void:
 #
 #func _on_ambience_volume_slider_value_changed(value: float) -> void:
 	#set_ambience_volume(value)
-
