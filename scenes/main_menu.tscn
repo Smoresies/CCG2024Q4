@@ -1,0 +1,74 @@
+[gd_scene load_steps=4 format=3 uid="uid://dcrdim86w0al7"]
+
+[ext_resource type="Script" path="res://scenes/main_menu.gd" id="1_wq40c"]
+[ext_resource type="Texture2D" uid="uid://byjtisralnm4p" path="res://sources/Rogue Light Title_v2 black.png" id="1_yrrwc"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rsiyk"]
+texture = ExtResource("1_yrrwc")
+
+[node name="Main Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wq40c")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -160.0
+offset_top = -101.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_direction = 2
+layout_mode = 2
+
+[node name="Play" type="Button" parent="HBoxContainer/VBoxContainer"]
+texture_filter = 2
+layout_mode = 2
+text = "Play
+"
+
+[node name="Options" type="Button" parent="HBoxContainer/VBoxContainer"]
+texture_filter = 2
+layout_mode = 2
+text = "Options
+"
+
+[node name="Credits" type="Button" parent="HBoxContainer/VBoxContainer"]
+texture_filter = 2
+layout_mode = 2
+text = "Credits
+"
+
+[node name="Exit" type="Button" parent="HBoxContainer/VBoxContainer"]
+texture_filter = 2
+layout_mode = 2
+text = "Exit
+"
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 33.0
+offset_right = -124.0
+offset_bottom = -359.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_rsiyk")
+
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/Credits" to="." method="_on_credits_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/Exit" to="." method="_on_exit_pressed"]
