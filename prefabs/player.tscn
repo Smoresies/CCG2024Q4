@@ -514,7 +514,6 @@ bus = &"SFX"
 
 [node name="Moth Jump SFX" type="AudioStreamPlayer2D" parent="PlayerController/Player Audio Manager"]
 stream = SubResource("AudioStreamInteractive_v6fwb")
-volume_db = -11.718
 bus = &"SFX"
 
 [node name="Marker2D" type="Marker2D" parent="PlayerController"]
