@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://c4u25rfkj1gbh"]
+
+[ext_resource type="Script" path="res://scripts/entity/wisp.gd" id="1_m1v1t"]
+[ext_resource type="Texture2D" uid="uid://72nuwitgxjhj" path="res://sources/icon.svg" id="3_br7l5"]
+[ext_resource type="Script" path="res://scripts/entity/components/health_and_status_components/base_health_and_status_component.gd" id="5_elmvx"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kujpc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4vdi3"]
+
+[node name="Wisp" type="CharacterBody2D"]
+script = ExtResource("1_m1v1t")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.14, 0.14)
+texture = ExtResource("3_br7l5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_kujpc")
+
+[node name="left_vision" type="RayCast2D" parent="."]
+target_position = Vector2(-200, 0)
+
+[node name="right_vision" type="RayCast2D" parent="."]
+target_position = Vector2(200, 0)
+
+[node name="ledge_check" type="RayCast2D" parent="."]
+target_position = Vector2(20, 16.545)
+
+[node name="front_check" type="RayCast2D" parent="."]
+target_position = Vector2(15, 0)
+
+[node name="BaseHealthAndStatusComponent" type="Node" parent="."]
+script = ExtResource("5_elmvx")
+max_health = 5
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -3.4)
+scale = Vector2(1.55, 1.02)
+shape = SubResource("RectangleShape2D_4vdi3")
