@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dcrdim86w0al7"]
 
 [ext_resource type="Script" path="res://scenes/main_menu.gd" id="1_wq40c"]
-[ext_resource type="Texture2D" uid="uid://byjtisralnm4p" path="res://sources/Rogue Light Title_v2 black.png" id="1_yrrwc"]
+[ext_resource type="Texture2D" uid="uid://tlrc3wrn2jv7" path="res://sources/Rogue Light Title_v2 black.png" id="1_yrrwc"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rsiyk"]
 texture = ExtResource("1_yrrwc")
