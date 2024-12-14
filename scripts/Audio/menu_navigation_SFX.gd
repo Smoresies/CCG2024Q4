@@ -21,6 +21,7 @@ extends MarginContainer
 @onready var sfx_volume_slider: HSlider = $"../Audio Menu Constraints/Audio Settings/SFX Volume/SFX Volume Slider"
 @onready var ambience_volume_slider: HSlider = $"../Audio Menu Constraints/Audio Settings/Ambience Volume/Ambience Volume Slider"
 
+#========= SFX CALLS =========#
 func play_general_button_press_sfx() -> void: 
 	general_button_press.play()
 
@@ -36,13 +37,13 @@ func play_general_slider_adjustment_sfx() -> void:
 func play_error_button_press_sfx() -> void: 
 	error_button_press.play()
 
+
+#========= BUTTON PRESSES =========#
 func _on_to_controls_pressed() -> void:
 	play_general_button_press_sfx()
 
-
 func _on_to_sound_pressed() -> void:
 	play_general_button_press_sfx()
-
 
 func _on_back_pressed() -> void:
 	play_back_button_sfx()
@@ -58,14 +59,12 @@ func _on_output_device_selector_item_selected(index: int) -> void:
 
 
 
-
+#========= BUTTON HOVERS =========#
 func _on_to_controls_mouse_entered() -> void:
 	play_general_button_hover_sfx()
 
-
 func _on_to_sound_mouse_entered() -> void:
 	play_general_button_hover_sfx()
-
 
 func _on_back_mouse_entered() -> void:
 	play_general_button_hover_sfx()
@@ -73,12 +72,13 @@ func _on_back_mouse_entered() -> void:
 func _on_output_device_selector_mouse_entered() -> void:
 	play_general_button_hover_sfx()
 
+func _on_master_volume_slider_mouse_entered() -> void:
+	play_general_button_hover_sfx()
 
+
+#========= SLIDER ADJUSTMENT =========#
 func _on_master_volume_slider_drag_started() -> void:
 	play_general_slider_adjustment_sfx()
 
 func _on_master_volume_slider_drag_ended(value_changed: bool) -> void:
 	play_back_button_sfx()
-
-func _on_master_volume_slider_mouse_entered() -> void:
-	play_general_button_hover_sfx()

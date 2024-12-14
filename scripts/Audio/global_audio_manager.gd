@@ -24,13 +24,19 @@ var config_file_path = "user://config.cfg"
 
 ## Sets the audio buses to a default value. Recalls settings from a saved config file.
 func _ready() -> void:
-	set_master_volume(0.7)
-	set_music_volume(0.7)
-	set_sfx_volume(0.7)
-	set_ambience_volume(0.7)
+	if config.load(config_file_path) != OK:
+		set_master_volume(0.7)
+		set_music_volume(0.7)
+		set_sfx_volume(0.7)
+		set_ambience_volume(0.7)
 	
 	initialize_audio_device_selector()
 	read_config_file()
+	
+	#TODO: play menu music here to avoid clicks
+	
+	#TODO: remove test audio 
+	$"TEST MUSIC".play()
 
 ## Sets up the audio device selector. Separated into its own function to avoid merge conflicts. 
 func initialize_audio_device_selector():
@@ -80,10 +86,10 @@ func read_config_file() -> void:
 
 ## DEBUG: print audio bus volumes
 func print_audio_settings() -> void:
-	print("Master vol: \t" + str(master_volume) + "\n")
+	print("Master vol: \t" + str(master_volume))
 	print("Music vol: \t\t" + str(music_volume))
 	print("SFX vol: \t\t" + str(sfx_volume))
-	print("Ambience vol: \t" + str(ambience_volume))
+	print("Ambience vol: \t" + str(ambience_volume) + "\n")
 
 ## When a device is selected from the menu, set the output device appropriately. 
 func _on_output_device_selector_item_selected(index: int): 
@@ -126,7 +132,7 @@ func set_ambience_volume(new_volume: float):
 
 func on_audio_settings_changed() -> void: 
 	save_audio_settings()
-	print_audio_settings() # DEBUG: reports audio settings via console
+	#print_audio_settings() # DEBUG: reports audio settings via console
 
 
 func _on_master_volume_slider_value_changed(value: float) -> void:
