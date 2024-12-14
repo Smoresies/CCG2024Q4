@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cjvoqxawoatyn"]
+[gd_scene load_steps=12 format=3 uid="uid://cjvoqxawoatyn"]
 
 [ext_resource type="Script" path="res://scripts/Audio/global_audio_manager.gd" id="1_lmqid"]
 [ext_resource type="Script" path="res://scripts/Audio/menu_navigation_SFX.gd" id="2_s8ot6"]
@@ -9,7 +9,6 @@
 [ext_resource type="AudioStream" uid="uid://cld611np3wkk4" path="res://sources/SFX/UI/ui_slider_adjusted.ogg" id="7_fcexy"]
 [ext_resource type="AudioStream" uid="uid://co7iiqx8xkv3c" path="res://sources/SFX/UI/ui_game-paused.ogg" id="8_se32k"]
 [ext_resource type="AudioStream" uid="uid://ddl68nsbwki14" path="res://sources/SFX/UI/ui_game-unpaused.ogg" id="9_s2c5k"]
-[ext_resource type="AudioStream" uid="uid://ctdwu512pr3nh" path="res://sources/Music/Pupa.ogg" id="10_sfjdx"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_apoui"]
 random_pitch = 1.02
@@ -209,10 +208,6 @@ max_value = 1.0
 step = 0.005
 tick_count = 11
 ticks_on_borders = true
-
-[node name="TEMP MUSIC" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("10_sfjdx")
-bus = &"Music"
 
 [connection signal="mouse_entered" from="Menu Navigation/Navigation Options/To Controls" to="Menu Navigation" method="_on_to_controls_mouse_entered"]
 [connection signal="pressed" from="Menu Navigation/Navigation Options/To Controls" to="Menu Navigation" method="_on_to_controls_pressed"]

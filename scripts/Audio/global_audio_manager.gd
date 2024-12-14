@@ -39,8 +39,6 @@ func _ready() -> void:
 	
 	#TODO: play menu music here to avoid clicks
 	
-	#TODO: remove test audio 
-	$"TEMP MUSIC".play()
 
 
 ## Parse the AudioServer's reported audio devices to populate a list 
