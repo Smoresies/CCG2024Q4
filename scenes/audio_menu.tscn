@@ -8,55 +8,137 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="Options Text" type="Label" parent="."]
+layout_mode = 0
+offset_left = 49.0
+offset_top = 57.0
+offset_right = 160.0
+offset_bottom = 110.0
+text = "Options"
+
+[node name="Menu Navigation" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_left = 60.0
+offset_top = 442.0
+offset_right = 143.0
+offset_bottom = 577.0
+
+[node name="Navigation Options" type="VBoxContainer" parent="Menu Navigation"]
+layout_mode = 2
+theme_override_constants/separation = 21
+
+[node name="To Controls" type="Button" parent="Menu Navigation/Navigation Options"]
+layout_mode = 2
+text = "Controls"
+alignment = 0
+
+[node name="To Sound" type="Button" parent="Menu Navigation/Navigation Options"]
+layout_mode = 2
+text = "Sound"
+alignment = 0
+
+[node name="Back" type="Button" parent="Menu Navigation/Navigation Options"]
+layout_mode = 2
+text = "Back"
+alignment = 0
+
 [node name="Audio Menu Constraints" type="MarginContainer" parent="."]
 layout_mode = 0
 offset_left = 306.0
 offset_top = 154.0
 offset_right = 857.0
-offset_bottom = 471.0
+offset_bottom = 453.0
 
-[node name="Columns" type="HBoxContainer" parent="Audio Menu Constraints"]
+[node name="Audio Settings" type="VBoxContainer" parent="Audio Menu Constraints"]
+layout_mode = 2
+theme_override_constants/separation = 28
+
+[node name="Output Device" type="HBoxContainer" parent="Audio Menu Constraints/Audio Settings"]
 layout_mode = 2
 
-[node name="Labels" type="VBoxContainer" parent="Audio Menu Constraints/Columns"]
+[node name="Output Device Label" type="Label" parent="Audio Menu Constraints/Audio Settings/Output Device"]
 layout_mode = 2
 size_flags_horizontal = 3
-
-[node name="Output Device Label" type="Label" parent="Audio Menu Constraints/Columns/Labels"]
-layout_mode = 2
+size_flags_vertical = 5
 text = "Output Device:"
 
-[node name="Master Volume Label" type="Label" parent="Audio Menu Constraints/Columns/Labels"]
-layout_mode = 2
-text = "Master Volume:"
-
-[node name="Music Volume Label" type="Label" parent="Audio Menu Constraints/Columns/Labels"]
-layout_mode = 2
-text = "Music Volume:"
-
-[node name="SFX Volume Label" type="Label" parent="Audio Menu Constraints/Columns/Labels"]
-layout_mode = 2
-text = "Sound Effects Volume:"
-
-[node name="Ambience Volume Label" type="Label" parent="Audio Menu Constraints/Columns/Labels"]
-layout_mode = 2
-text = "Ambience Volume:"
-
-[node name="Controls" type="VBoxContainer" parent="Audio Menu Constraints/Columns"]
+[node name="Output Device Selector" type="OptionButton" parent="Audio Menu Constraints/Audio Settings/Output Device"]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 5
 
-[node name="OptionButton" type="OptionButton" parent="Audio Menu Constraints/Columns/Controls"]
+[node name="Master Volume" type="HBoxContainer" parent="Audio Menu Constraints/Audio Settings"]
 layout_mode = 2
 
-[node name="Master Volume Slider" type="HSlider" parent="Audio Menu Constraints/Columns/Controls"]
+[node name="Master Volume Label" type="Label" parent="Audio Menu Constraints/Audio Settings/Master Volume"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 5
+text = "Master Volume:"
+
+[node name="Master Volume Slider" type="HSlider" parent="Audio Menu Constraints/Audio Settings/Master Volume"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 5
+max_value = 1.0
+step = 0.1
+value = 0.8
+tick_count = 11
+ticks_on_borders = true
+
+[node name="Music Volume" type="HBoxContainer" parent="Audio Menu Constraints/Audio Settings"]
 layout_mode = 2
 
-[node name="Music Volume Slider" type="HSlider" parent="Audio Menu Constraints/Columns/Controls"]
+[node name="Music Volume Label" type="Label" parent="Audio Menu Constraints/Audio Settings/Music Volume"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 5
+text = "Music Volume:"
+
+[node name="Music Volume Slider" type="HSlider" parent="Audio Menu Constraints/Audio Settings/Music Volume"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 5
+max_value = 1.0
+step = 0.1
+value = 0.8
+tick_count = 11
+ticks_on_borders = true
+
+[node name="SFX Volume" type="HBoxContainer" parent="Audio Menu Constraints/Audio Settings"]
 layout_mode = 2
 
-[node name="SFX Volume Slider" type="HSlider" parent="Audio Menu Constraints/Columns/Controls"]
+[node name="SFX Volume Label" type="Label" parent="Audio Menu Constraints/Audio Settings/SFX Volume"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 5
+text = "Sound Effects Volume:"
+
+[node name="SFX Volume Slider" type="HSlider" parent="Audio Menu Constraints/Audio Settings/SFX Volume"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 5
+max_value = 1.0
+step = 0.1
+value = 0.8
+tick_count = 11
+ticks_on_borders = true
+
+[node name="Ambience Volume" type="HBoxContainer" parent="Audio Menu Constraints/Audio Settings"]
 layout_mode = 2
 
-[node name="Ambience Volume Slider" type="HSlider" parent="Audio Menu Constraints/Columns/Controls"]
+[node name="Ambience Volume Label" type="Label" parent="Audio Menu Constraints/Audio Settings/Ambience Volume"]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 5
+text = "Ambience Volume:"
+
+[node name="Ambience Volume Slider" type="HSlider" parent="Audio Menu Constraints/Audio Settings/Ambience Volume"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 5
+max_value = 1.0
+step = 0.1
+value = 0.8
+tick_count = 11
+ticks_on_borders = true
