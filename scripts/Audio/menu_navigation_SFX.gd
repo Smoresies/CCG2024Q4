@@ -21,6 +21,7 @@ extends MarginContainer
 @onready var sfx_volume_slider: HSlider = $"../Audio Menu Constraints/Audio Settings/SFX Volume/SFX Volume Slider"
 @onready var ambience_volume_slider: HSlider = $"../Audio Menu Constraints/Audio Settings/Ambience Volume/Ambience Volume Slider"
 
+
 #========= SFX CALLS =========#
 func play_general_button_press_sfx() -> void: 
 	general_button_press.play()
@@ -41,12 +42,19 @@ func play_error_button_press_sfx() -> void:
 #========= BUTTON PRESSES =========#
 func _on_to_controls_pressed() -> void:
 	play_general_button_press_sfx()
+	to_controls.disabled = true
+	await general_button_press.finished
+	#TODO: replace with controls scene location
+	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
 
 func _on_to_sound_pressed() -> void:
-	play_general_button_press_sfx()
+	play_error_button_press_sfx()
 
 func _on_back_pressed() -> void:
 	play_back_button_sfx()
+	back.disabled = true
+	await back_button_press.finished
+	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
 
 func _on_output_device_selector_toggled(toggled_on: bool) -> void:
 	if toggled_on:
@@ -75,10 +83,38 @@ func _on_output_device_selector_mouse_entered() -> void:
 func _on_master_volume_slider_mouse_entered() -> void:
 	play_general_button_hover_sfx()
 
+func _on_music_volume_slider_mouse_entered() -> void:
+	play_general_button_hover_sfx()
+
+func _on_sfx_volume_slider_mouse_entered() -> void:
+	play_general_button_hover_sfx()
+
+func _on_ambience_volume_slider_mouse_entered() -> void:
+	play_general_button_hover_sfx()
+
+
 
 #========= SLIDER ADJUSTMENT =========#
 func _on_master_volume_slider_drag_started() -> void:
 	play_general_slider_adjustment_sfx()
 
 func _on_master_volume_slider_drag_ended(value_changed: bool) -> void:
+	play_back_button_sfx()
+
+func _on_music_volume_slider_drag_started() -> void:
+	play_general_slider_adjustment_sfx()
+
+func _on_music_volume_slider_drag_ended(value_changed: bool) -> void:
+	play_back_button_sfx()
+
+func _on_sfx_volume_slider_drag_started() -> void:
+	play_general_slider_adjustment_sfx()
+
+func _on_sfx_volume_slider_drag_ended(value_changed: bool) -> void:
+	play_back_button_sfx()
+
+func _on_ambience_volume_slider_drag_started() -> void:
+	play_general_slider_adjustment_sfx()
+
+func _on_ambience_volume_slider_drag_ended(value_changed: bool) -> void:
 	play_back_button_sfx()

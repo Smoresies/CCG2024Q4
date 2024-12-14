@@ -42,6 +42,7 @@ func _ready() -> void:
 	#TODO: remove test audio 
 	$"TEMP MUSIC".play()
 
+
 ## Parse the AudioServer's reported audio devices to populate a list 
 func populate_audio_device_selector():
 	# For each output device: Add it to the list
@@ -110,7 +111,6 @@ func _on_output_device_selector_item_selected(index: int):
 	AudioServer.output_device = device 
 	await get_tree().create_timer(.1).timeout # Timer necessary to ensure proper saving of audio settings
 	on_audio_settings_changed()
-	
 
 ## Update the master bus volume, update the settings slider value, and save settings
 func set_master_volume(new_volume: float):
