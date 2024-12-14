@@ -1,0 +1,62 @@
+[gd_scene format=3 uid="uid://cjvoqxawoatyn"]
+
+[node name="AudioMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Audio Menu Constraints" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_left = 306.0
+offset_top = 154.0
+offset_right = 857.0
+offset_bottom = 471.0
+
+[node name="Columns" type="HBoxContainer" parent="Audio Menu Constraints"]
+layout_mode = 2
+
+[node name="Labels" type="VBoxContainer" parent="Audio Menu Constraints/Columns"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Output Device Label" type="Label" parent="Audio Menu Constraints/Columns/Labels"]
+layout_mode = 2
+text = "Output Device:"
+
+[node name="Master Volume Label" type="Label" parent="Audio Menu Constraints/Columns/Labels"]
+layout_mode = 2
+text = "Master Volume:"
+
+[node name="Music Volume Label" type="Label" parent="Audio Menu Constraints/Columns/Labels"]
+layout_mode = 2
+text = "Music Volume:"
+
+[node name="SFX Volume Label" type="Label" parent="Audio Menu Constraints/Columns/Labels"]
+layout_mode = 2
+text = "Sound Effects Volume:"
+
+[node name="Ambience Volume Label" type="Label" parent="Audio Menu Constraints/Columns/Labels"]
+layout_mode = 2
+text = "Ambience Volume:"
+
+[node name="Controls" type="VBoxContainer" parent="Audio Menu Constraints/Columns"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="OptionButton" type="OptionButton" parent="Audio Menu Constraints/Columns/Controls"]
+layout_mode = 2
+
+[node name="Master Volume Slider" type="HSlider" parent="Audio Menu Constraints/Columns/Controls"]
+layout_mode = 2
+
+[node name="Music Volume Slider" type="HSlider" parent="Audio Menu Constraints/Columns/Controls"]
+layout_mode = 2
+
+[node name="SFX Volume Slider" type="HSlider" parent="Audio Menu Constraints/Columns/Controls"]
+layout_mode = 2
+
+[node name="Ambience Volume Slider" type="HSlider" parent="Audio Menu Constraints/Columns/Controls"]
+layout_mode = 2
