@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://c8brk3jj8c74f"]
 
-[ext_resource type="Script" path="res://scripts/global_audio_manager.gd" id="1_mmwb2"]
+[ext_resource type="Script" path="res://scripts/Audio/global_audio_manager.gd" id="1_mmwb2"]
 [ext_resource type="AudioStream" uid="uid://mcvfnytd4n4t" path="res://sources/SFX/Player/Moth Jump/player_moth-jump_hold.ogg" id="2_r5771"]
 
 [node name="TempAudioConfigTest" type="Control"]
