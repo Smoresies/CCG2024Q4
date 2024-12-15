@@ -8,14 +8,18 @@ extends Control
 @onready var error_sfx: AudioStreamPlayer = $"Menu Audio Manager/Error SFX"
 @onready var slider_adjusted_sfx: AudioStreamPlayer = $"Menu Audio Manager/Slider Adjusted SFX"
 
+
 func _on_play_pressed() -> void:
 	play_generic_button_press_sfx()
 
 func _on_options_pressed() -> void:
 	play_generic_button_press_sfx()
+  #TODO: replace this with controls scene
+	get_tree().change_scene_to_file("res://scenes/audio_menu.tscn")
 
 func _on_credits_pressed() -> void:
 	play_generic_button_press_sfx()
+
 
 func _on_exit_pressed() -> void:
 	play_back_button_sfx()
