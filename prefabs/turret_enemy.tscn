@@ -1,0 +1,73 @@
+[gd_scene load_steps=11 format=3 uid="uid://b1xhcuxdos1xr"]
+
+[ext_resource type="Script" path="res://scripts/entity/base_entity.gd" id="1_u2n7m"]
+[ext_resource type="Script" path="res://scripts/entity/components/input_components/ai_input_component.gd" id="2_we85u"]
+[ext_resource type="Script" path="res://scripts/entity/components/attack_components/ai_attack_component.gd" id="3_gnkk8"]
+[ext_resource type="Script" path="res://scripts/entity/attacks/ranged_attack.gd" id="4_kyhj4"]
+[ext_resource type="Script" path="res://scripts/entity/components/health_and_status_components/base_health_and_status_component.gd" id="4_v8bh5"]
+[ext_resource type="Script" path="res://scripts/entity/components/movement_components/no_movement_component.gd" id="5_i7iyq"]
+[ext_resource type="PackedScene" uid="uid://m2h23e4vbv61" path="res://prefabs/projectiles/enemy_projectile.tscn" id="5_kut6p"]
+[ext_resource type="Texture2D" uid="uid://bkp6u6mt7e4h0" path="res://sources/icon.svg" id="8_tksvx"]
+[ext_resource type="Script" path="res://scripts/entity/components/input_components/input_states/attack_state.gd" id="9_nsdwi"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u13c2"]
+size = Vector2(63, 63)
+
+[node name="TurretEnemy" type="Node2D" node_paths=PackedStringArray("movement_component", "input_component", "health_and_status_component", "attack_component")]
+script = ExtResource("1_u2n7m")
+movement_component = NodePath("NoMovementComponent")
+input_component = NodePath("AiInputComponent")
+health_and_status_component = NodePath("BaseHealthAndStatusComponent")
+attack_component = NodePath("AiAttackComponent")
+
+[node name="AiInputComponent" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("2_we85u")
+initial_state = NodePath("../AI States/AttackState")
+
+[node name="AiAttackComponent" type="Node" parent="." node_paths=PackedStringArray("search_area", "attacks", "measurement_position", "projectile_spawn_position")]
+script = ExtResource("3_gnkk8")
+search_area = NodePath("../NoMovementComponent/DetectionArea")
+attacks = [NodePath("RangedAttack")]
+measurement_position = NodePath("../NoMovementComponent/ShootingPoint")
+projectile_spawn_position = NodePath("../NoMovementComponent/ShootingPoint")
+
+[node name="RangedAttack" type="Node" parent="AiAttackComponent" node_paths=PackedStringArray("projectile_spawn_position")]
+script = ExtResource("4_kyhj4")
+projectile_scene = ExtResource("5_kut6p")
+projectile_spawn_position = NodePath("../../NoMovementComponent/ShootingPoint")
+projectile_speed = 50
+base_attack_damage = 10
+base_attack_cooldown_in_seconds = 2.0
+
+[node name="BaseHealthAndStatusComponent" type="Node" parent="."]
+script = ExtResource("4_v8bh5")
+
+[node name="NoMovementComponent" type="CharacterBody2D" parent="."]
+collision_layer = 2
+script = ExtResource("5_i7iyq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NoMovementComponent"]
+position = Vector2(31.5, 31.5)
+shape = SubResource("RectangleShape2D_u13c2")
+
+[node name="Sprite2D" type="Sprite2D" parent="NoMovementComponent"]
+position = Vector2(31.5, 31.5)
+scale = Vector2(0.507813, 0.507813)
+texture = ExtResource("8_tksvx")
+
+[node name="DetectionArea" type="Area2D" parent="NoMovementComponent"]
+position = Vector2(65, 31)
+scale = Vector2(2, 2)
+collision_layer = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="NoMovementComponent/DetectionArea"]
+polygon = PackedVector2Array(0, 0, 120, 90, 120, -90)
+
+[node name="ShootingPoint" type="Marker2D" parent="NoMovementComponent"]
+position = Vector2(65, 31)
+
+[node name="AI States" type="Node" parent="."]
+
+[node name="AttackState" type="Node" parent="AI States" node_paths=PackedStringArray("search_area")]
+script = ExtResource("9_nsdwi")
+search_area = NodePath("../../NoMovementComponent/DetectionArea")

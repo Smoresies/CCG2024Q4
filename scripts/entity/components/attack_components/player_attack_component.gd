@@ -78,7 +78,6 @@ func target_changed(previous_target, curr_target):
 
 ## Adds a target and starts the update_closest_target coroutine.
 func _add_target(_body: Node2D):
-	print(_body)
 	_num_targets += 1
 	if _num_targets == 1:
 		_update_targets = true
@@ -86,18 +85,13 @@ func _add_target(_body: Node2D):
 
 ## Gets the current target or the direction we are facing.
 func _get_current_target_or_direction():
-	print("here")
 	if is_instance_valid(_current_target):
-		print("meow")
 		return _current_target
 	else:
-		print("woof")
 		return _current_direction_facing
 
 ## Removes a target and updates the boolean for continuing running the coroutine.
 func _remove_target(_body: Node2D):
-	print(_body)
-
 	_num_targets -= 1
 	_update_targets = _num_targets > 0
 
