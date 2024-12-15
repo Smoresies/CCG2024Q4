@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://db57whnmfxr41"]
+[gd_scene load_steps=14 format=4 uid="uid://db57whnmfxr41"]
 
 [ext_resource type="TileSet" uid="uid://jihb2ayj2lsh" path="res://sources/tiles.tres" id="1_t1d4h"]
 [ext_resource type="PackedScene" uid="uid://c861ph2h6lepr" path="res://prefabs/dummy.tscn" id="2_xqrxo"]
@@ -8,6 +8,8 @@
 [ext_resource type="Script" path="res://scripts/status_effect/replace_attack_status_effect.gd" id="6_ciesc"]
 [ext_resource type="PackedScene" uid="uid://df0h6dt2b3l7n" path="res://prefabs/climbable.tscn" id="7_nah8b"]
 [ext_resource type="PackedScene" uid="uid://civfx1w4vjpko" path="res://prefabs/player.tscn" id="8_qfoau"]
+[ext_resource type="AudioStream" uid="uid://dwh63yboxs154" path="res://sources/Music/Hollow Silhouette (Intro).ogg" id="9_kmsdt"]
+[ext_resource type="AudioStream" uid="uid://djfm6o5jj4rn6" path="res://sources/Music/Hollow Silhouette.ogg" id="10_sa8l8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vau7a"]
 
@@ -16,6 +18,16 @@ script = ExtResource("6_ciesc")
 replacement_attack = ExtResource("5_ct8tr")
 one_shot = true
 effect_duration_in_seconds = 0.0
+
+[sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_ftrhr"]
+clip_count = 2
+clip_0/name = &"Hollow Silhouette (intro)"
+clip_0/stream = ExtResource("9_kmsdt")
+clip_0/auto_advance = 1
+clip_0/next_clip = 0
+clip_1/name = &"Hollow Silhouette"
+clip_1/stream = ExtResource("10_sa8l8")
+clip_1/auto_advance = 0
 
 [node name="Sandbox" type="Node2D"]
 
@@ -69,3 +81,11 @@ position = Vector2(129, 202)
 collision_layer = 17
 
 [node name="Player" parent="." instance=ExtResource("8_qfoau")]
+
+[node name="Sandbox Audio Manager" type="Node" parent="."]
+
+[node name="Music" type="AudioStreamPlayer" parent="Sandbox Audio Manager"]
+stream = SubResource("AudioStreamInteractive_ftrhr")
+volume_db = -12.0
+autoplay = true
+bus = &"Music"
