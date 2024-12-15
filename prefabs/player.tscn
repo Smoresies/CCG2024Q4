@@ -557,4 +557,4 @@ projectile_spawn_position = NodePath("../PlayerController/Marker2D")
 [connection signal="on_jump_started" from="PlayerController" to="PlayerController/AnimatedSprite2D/AnimationPlayer" method="play_jump_animation"]
 [connection signal="on_moth_jump" from="PlayerController" to="PlayerController/Player Audio Manager" method="_on_player_controller_on_moth_jump"]
 [connection signal="on_moth_jump_ended" from="PlayerController" to="PlayerController/Player Audio Manager" method="_on_player_controller_on_moth_jump_ended"]
-[connection signal="on_attack_input_started" from="PlayerInputComponent" to="PlayerController/Player Audio Manager" method="_on_player_input_component_on_attack_input_started"]
+[connection signal="on_attack_started" from="PlayerAttackComponent" to="PlayerController/Player Audio Manager" method="_on_player_input_component_on_attack_input_started"]

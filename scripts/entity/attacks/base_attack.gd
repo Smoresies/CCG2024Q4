@@ -13,18 +13,19 @@ func _ready() -> void:
     cooldown_timer.wait_time = base_attack_cooldown_in_seconds
     cooldown_timer.autostart = false
     cooldown_timer.timeout.connect(enable_attacking)
-
+    enable_attacking()
+    print(can_attack)
     add_child(cooldown_timer)
     pass
 
-func start_attack(_target: Node2D):
-    pass
+func start_attack(_target) -> bool:
+    return false
 
-func attack(_target: Node2D):
-    pass
+func attack(_target) -> bool:
+    return false
 
-func cancel_attack(_target: Node2D):
-    pass
+func cancel_attack(_target) -> bool:
+    return false
 
 func enable_attacking() -> void:
     can_attack = true

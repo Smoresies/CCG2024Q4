@@ -28,14 +28,20 @@ func _ready() -> void:
 	# on_target_change.connect(target_changed)
 
 func on_attack_input_started() -> void:
-	attacks[0].start_attack(_get_current_target_or_direction())
+	var executed: bool = attacks[0].start_attack(_get_current_target_or_direction())
+	if executed:
+		on_attack_started.emit()
 
 func on_attack_input() -> void:
-	attacks[0].attack(_get_current_target_or_direction())
+	var executed: bool = attacks[0].attack(_get_current_target_or_direction())
+	if executed:
+		on_attack.emit()
 
 
 func on_attack_input_cancelled() -> void:
-	attacks[0].cancel_attack(_get_current_target_or_direction())
+	var executed: bool = attacks[0].cancel_attack(_get_current_target_or_direction())
+	if executed:
+		on_attack_cancelled.emit()
 
 
 ## Checks each target in the lock on area and then determines which is the closest. Emits an on_target_change signal if the target has changed.
@@ -72,6 +78,7 @@ func target_changed(previous_target, curr_target):
 
 ## Adds a target and starts the update_closest_target coroutine.
 func _add_target(_body: Node2D):
+	print(_body)
 	_num_targets += 1
 	if _num_targets == 1:
 		_update_targets = true
@@ -79,13 +86,18 @@ func _add_target(_body: Node2D):
 
 ## Gets the current target or the direction we are facing.
 func _get_current_target_or_direction():
+	print("here")
 	if is_instance_valid(_current_target):
+		print("meow")
 		return _current_target
 	else:
+		print("woof")
 		return _current_direction_facing
 
 ## Removes a target and updates the boolean for continuing running the coroutine.
 func _remove_target(_body: Node2D):
+	print(_body)
+
 	_num_targets -= 1
 	_update_targets = _num_targets > 0
 

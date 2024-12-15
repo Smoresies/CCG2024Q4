@@ -8,5 +8,3 @@ func on_horizontal_movement() -> int:
 
 func on_vertical_movement() -> int:
     return vertical_movement
-
-func 

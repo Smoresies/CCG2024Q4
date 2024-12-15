@@ -1,7 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://c4u25rfkj1gbh"]
+[gd_scene load_steps=6 format=3 uid="uid://bdff7aopl0x62"]
 
 [ext_resource type="Script" path="res://scripts/entity/wisp.gd" id="1_m1v1t"]
-[ext_resource type="Texture2D" uid="uid://72nuwitgxjhj" path="res://sources/icon.svg" id="3_br7l5"]
+[ext_resource type="Texture2D" uid="uid://bkp6u6mt7e4h0" path="res://sources/icon.svg" id="3_br7l5"]
 [ext_resource type="Script" path="res://scripts/entity/components/health_and_status_components/base_health_and_status_component.gd" id="5_elmvx"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kujpc"]
