@@ -1,0 +1,237 @@
+[gd_scene load_steps=12 format=3 uid="uid://cjvoqxawoatyn"]
+
+[ext_resource type="Script" path="res://scripts/Audio/global_audio_manager.gd" id="1_lmqid"]
+[ext_resource type="Script" path="res://scripts/Audio/menu_navigation_SFX.gd" id="2_s8ot6"]
+[ext_resource type="AudioStream" uid="uid://cvq170er2vl6q" path="res://sources/SFX/UI/ui_button_hover.ogg" id="3_wdf1d"]
+[ext_resource type="AudioStream" uid="uid://mm702ojk1x8f" path="res://sources/SFX/UI/ui_button_press.ogg" id="4_jl6c0"]
+[ext_resource type="AudioStream" uid="uid://de2vfm8r5d1j3" path="res://sources/SFX/UI/ui_button_back.ogg" id="5_pf86y"]
+[ext_resource type="AudioStream" uid="uid://cabnony5ni6wy" path="res://sources/SFX/UI/ui_button_error.ogg" id="6_fliyd"]
+[ext_resource type="AudioStream" uid="uid://cld611np3wkk4" path="res://sources/SFX/UI/ui_slider_adjusted.ogg" id="7_fcexy"]
+[ext_resource type="AudioStream" uid="uid://co7iiqx8xkv3c" path="res://sources/SFX/UI/ui_game-paused.ogg" id="8_se32k"]
+[ext_resource type="AudioStream" uid="uid://ddl68nsbwki14" path="res://sources/SFX/UI/ui_game-unpaused.ogg" id="9_s2c5k"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_apoui"]
+random_pitch = 1.02
+random_volume_offset_db = 0.5
+streams_count = 1
+stream_0/stream = ExtResource("3_wdf1d")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_xww3a"]
+random_pitch = 1.02
+random_volume_offset_db = 0.5
+streams_count = 1
+stream_0/stream = ExtResource("7_fcexy")
+
+[node name="AudioMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_lmqid")
+
+[node name="Options Text" type="Label" parent="."]
+layout_mode = 0
+offset_left = 49.0
+offset_top = 57.0
+offset_right = 160.0
+offset_bottom = 110.0
+text = "Options"
+
+[node name="Menu Navigation" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.088
+anchor_top = 0.786
+anchor_right = 0.088
+anchor_bottom = 0.786
+offset_left = -41.376
+offset_top = -67.328
+offset_right = 41.624
+offset_bottom = 67.672
+script = ExtResource("2_s8ot6")
+
+[node name="Navigation Options" type="VBoxContainer" parent="Menu Navigation"]
+layout_mode = 2
+theme_override_constants/separation = 21
+
+[node name="To Controls" type="Button" parent="Menu Navigation/Navigation Options"]
+layout_mode = 2
+text = "Controls"
+alignment = 0
+
+[node name="To Sound" type="Button" parent="Menu Navigation/Navigation Options"]
+layout_mode = 2
+text = "Sound"
+alignment = 0
+
+[node name="Back" type="Button" parent="Menu Navigation/Navigation Options"]
+layout_mode = 2
+text = "Back"
+alignment = 0
+
+[node name="Menu Nav SFX" type="Node" parent="Menu Navigation"]
+
+[node name="General Button Hover SFX" type="AudioStreamPlayer" parent="Menu Navigation/Menu Nav SFX"]
+stream = SubResource("AudioStreamRandomizer_apoui")
+volume_db = -15.0
+max_polyphony = 3
+bus = &"UI"
+
+[node name="General Button Press SFX" type="AudioStreamPlayer" parent="Menu Navigation/Menu Nav SFX"]
+stream = ExtResource("4_jl6c0")
+bus = &"UI"
+
+[node name="Back Button Press SFX" type="AudioStreamPlayer" parent="Menu Navigation/Menu Nav SFX"]
+stream = ExtResource("5_pf86y")
+volume_db = -5.0
+bus = &"UI"
+
+[node name="Error Button Press SFX" type="AudioStreamPlayer" parent="Menu Navigation/Menu Nav SFX"]
+stream = ExtResource("6_fliyd")
+bus = &"UI"
+
+[node name="Slider Adjustment SFX" type="AudioStreamPlayer" parent="Menu Navigation/Menu Nav SFX"]
+stream = SubResource("AudioStreamRandomizer_xww3a")
+max_polyphony = 5
+bus = &"UI"
+
+[node name="Game Paused SFX" type="AudioStreamPlayer" parent="Menu Navigation/Menu Nav SFX"]
+stream = ExtResource("8_se32k")
+bus = &"UI"
+
+[node name="Game Unpaused SFX" type="AudioStreamPlayer" parent="Menu Navigation/Menu Nav SFX"]
+stream = ExtResource("9_s2c5k")
+bus = &"UI"
+
+[node name="Audio Menu Constraints" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -92.5
+offset_top = -113.5
+offset_right = 92.5
+offset_bottom = 113.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Audio Settings" type="VBoxContainer" parent="Audio Menu Constraints"]
+layout_mode = 2
+theme_override_constants/separation = 28
+
+[node name="Output Device" type="HBoxContainer" parent="Audio Menu Constraints/Audio Settings"]
+layout_mode = 2
+
+[node name="Output Device Label" type="Label" parent="Audio Menu Constraints/Audio Settings/Output Device"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 5
+text = "Output Device:"
+
+[node name="Output Device Selector" type="OptionButton" parent="Audio Menu Constraints/Audio Settings/Output Device"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 5
+
+[node name="Master Volume" type="HBoxContainer" parent="Audio Menu Constraints/Audio Settings"]
+layout_mode = 2
+
+[node name="Master Volume Label" type="Label" parent="Audio Menu Constraints/Audio Settings/Master Volume"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 5
+text = "Master Volume:"
+
+[node name="Master Volume Slider" type="HSlider" parent="Audio Menu Constraints/Audio Settings/Master Volume"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 5
+max_value = 1.0
+step = 0.005
+tick_count = 11
+ticks_on_borders = true
+
+[node name="Music Volume" type="HBoxContainer" parent="Audio Menu Constraints/Audio Settings"]
+layout_mode = 2
+
+[node name="Music Volume Label" type="Label" parent="Audio Menu Constraints/Audio Settings/Music Volume"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 5
+text = "Music Volume:"
+
+[node name="Music Volume Slider" type="HSlider" parent="Audio Menu Constraints/Audio Settings/Music Volume"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 5
+max_value = 1.0
+step = 0.005
+tick_count = 11
+ticks_on_borders = true
+
+[node name="SFX Volume" type="HBoxContainer" parent="Audio Menu Constraints/Audio Settings"]
+layout_mode = 2
+
+[node name="SFX Volume Label" type="Label" parent="Audio Menu Constraints/Audio Settings/SFX Volume"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 5
+text = "Sound Effects Volume:"
+
+[node name="SFX Volume Slider" type="HSlider" parent="Audio Menu Constraints/Audio Settings/SFX Volume"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 5
+max_value = 1.0
+step = 0.005
+tick_count = 11
+ticks_on_borders = true
+
+[node name="Ambience Volume" type="HBoxContainer" parent="Audio Menu Constraints/Audio Settings"]
+layout_mode = 2
+
+[node name="Ambience Volume Label" type="Label" parent="Audio Menu Constraints/Audio Settings/Ambience Volume"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 5
+text = "Ambience Volume:"
+
+[node name="Ambience Volume Slider" type="HSlider" parent="Audio Menu Constraints/Audio Settings/Ambience Volume"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 5
+max_value = 1.0
+step = 0.005
+tick_count = 11
+ticks_on_borders = true
+
+[connection signal="mouse_entered" from="Menu Navigation/Navigation Options/To Controls" to="Menu Navigation" method="_on_to_controls_mouse_entered"]
+[connection signal="pressed" from="Menu Navigation/Navigation Options/To Controls" to="Menu Navigation" method="_on_to_controls_pressed"]
+[connection signal="mouse_entered" from="Menu Navigation/Navigation Options/To Sound" to="Menu Navigation" method="_on_to_sound_mouse_entered"]
+[connection signal="pressed" from="Menu Navigation/Navigation Options/To Sound" to="Menu Navigation" method="_on_to_sound_pressed"]
+[connection signal="mouse_entered" from="Menu Navigation/Navigation Options/Back" to="Menu Navigation" method="_on_back_mouse_entered"]
+[connection signal="pressed" from="Menu Navigation/Navigation Options/Back" to="Menu Navigation" method="_on_back_pressed"]
+[connection signal="item_selected" from="Audio Menu Constraints/Audio Settings/Output Device/Output Device Selector" to="." method="_on_output_device_selector_item_selected"]
+[connection signal="item_selected" from="Audio Menu Constraints/Audio Settings/Output Device/Output Device Selector" to="Menu Navigation" method="_on_output_device_selector_item_selected"]
+[connection signal="mouse_entered" from="Audio Menu Constraints/Audio Settings/Output Device/Output Device Selector" to="Menu Navigation" method="_on_output_device_selector_mouse_entered"]
+[connection signal="toggled" from="Audio Menu Constraints/Audio Settings/Output Device/Output Device Selector" to="Menu Navigation" method="_on_output_device_selector_toggled"]
+[connection signal="drag_ended" from="Audio Menu Constraints/Audio Settings/Master Volume/Master Volume Slider" to="Menu Navigation" method="_on_master_volume_slider_drag_ended"]
+[connection signal="drag_started" from="Audio Menu Constraints/Audio Settings/Master Volume/Master Volume Slider" to="Menu Navigation" method="_on_master_volume_slider_drag_started"]
+[connection signal="mouse_entered" from="Audio Menu Constraints/Audio Settings/Master Volume/Master Volume Slider" to="Menu Navigation" method="_on_master_volume_slider_mouse_entered"]
+[connection signal="value_changed" from="Audio Menu Constraints/Audio Settings/Master Volume/Master Volume Slider" to="." method="_on_master_volume_slider_value_changed"]
+[connection signal="drag_ended" from="Audio Menu Constraints/Audio Settings/Music Volume/Music Volume Slider" to="Menu Navigation" method="_on_music_volume_slider_drag_ended"]
+[connection signal="drag_started" from="Audio Menu Constraints/Audio Settings/Music Volume/Music Volume Slider" to="Menu Navigation" method="_on_music_volume_slider_drag_started"]
+[connection signal="mouse_entered" from="Audio Menu Constraints/Audio Settings/Music Volume/Music Volume Slider" to="Menu Navigation" method="_on_music_volume_slider_mouse_entered"]
+[connection signal="value_changed" from="Audio Menu Constraints/Audio Settings/Music Volume/Music Volume Slider" to="." method="_on_music_volume_slider_value_changed"]
+[connection signal="drag_ended" from="Audio Menu Constraints/Audio Settings/SFX Volume/SFX Volume Slider" to="Menu Navigation" method="_on_sfx_volume_slider_drag_ended"]
+[connection signal="drag_started" from="Audio Menu Constraints/Audio Settings/SFX Volume/SFX Volume Slider" to="Menu Navigation" method="_on_sfx_volume_slider_drag_started"]
+[connection signal="mouse_entered" from="Audio Menu Constraints/Audio Settings/SFX Volume/SFX Volume Slider" to="Menu Navigation" method="_on_sfx_volume_slider_mouse_entered"]
+[connection signal="value_changed" from="Audio Menu Constraints/Audio Settings/SFX Volume/SFX Volume Slider" to="." method="_on_sfx_volume_slider_value_changed"]
+[connection signal="drag_ended" from="Audio Menu Constraints/Audio Settings/Ambience Volume/Ambience Volume Slider" to="Menu Navigation" method="_on_ambience_volume_slider_drag_ended"]
+[connection signal="drag_started" from="Audio Menu Constraints/Audio Settings/Ambience Volume/Ambience Volume Slider" to="Menu Navigation" method="_on_ambience_volume_slider_drag_started"]
+[connection signal="mouse_entered" from="Audio Menu Constraints/Audio Settings/Ambience Volume/Ambience Volume Slider" to="Menu Navigation" method="_on_ambience_volume_slider_mouse_entered"]
+[connection signal="value_changed" from="Audio Menu Constraints/Audio Settings/Ambience Volume/Ambience Volume Slider" to="." method="_on_ambience_volume_slider_value_changed"]
