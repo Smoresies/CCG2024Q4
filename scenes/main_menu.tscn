@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" path="res://scenes/main_menu.gd" id="1_wq40c"]
 [ext_resource type="Texture2D" uid="uid://tlrc3wrn2jv7" path="res://sources/Rogue Light Title_v2 black.png" id="1_yrrwc"]
+
 [ext_resource type="AudioStream" uid="uid://cvq170er2vl6q" path="res://sources/SFX/UI/ui_button_hover.ogg" id="3_bf7ia"]
 [ext_resource type="AudioStream" uid="uid://mm702ojk1x8f" path="res://sources/SFX/UI/ui_button_press.ogg" id="4_l6wk7"]
 [ext_resource type="AudioStream" uid="uid://de2vfm8r5d1j3" path="res://sources/SFX/UI/ui_button_back.ogg" id="5_yeqh0"]
@@ -9,6 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://ddl68nsbwki14" path="res://sources/SFX/UI/ui_game-unpaused.ogg" id="7_alp8x"]
 [ext_resource type="AudioStream" uid="uid://cabnony5ni6wy" path="res://sources/SFX/UI/ui_button_error.ogg" id="8_q836h"]
 [ext_resource type="AudioStream" uid="uid://cld611np3wkk4" path="res://sources/SFX/UI/ui_slider_adjusted.ogg" id="9_ncgjt"]
+
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rsiyk"]
 texture = ExtResource("1_yrrwc")
