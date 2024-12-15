@@ -67,3 +67,7 @@ func _on_player_controller_on_moth_jump_ended() -> void:
 func _on_player_input_component_on_attack_input_started() -> void:
 	weapon_firing_sfx.play()
 
+
+
+func _on_player_attack_component_on_attack() -> void:
+	pass # Replace with function body.
