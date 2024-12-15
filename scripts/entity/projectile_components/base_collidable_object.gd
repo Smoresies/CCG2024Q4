@@ -20,8 +20,6 @@ func _on_body_entered(body: Node2D) -> void:
 		_apply_status_effects(parent)
 	
 	on_destroy.emit()
-	# TODO: disable the projectile's texture and hitbox
-	await get_tree().create_timer(1.0).timeout # Wait for the sound effect to finish
 	queue_free()
 
 func _deal_damage(entity: BaseEntity) -> void:
