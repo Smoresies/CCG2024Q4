@@ -4,6 +4,7 @@ class_name BaseAttack extends Node
 @export var base_attack_hit_effects: Array[BaseStatusEffect]
 @export var base_attack_healing: int
 @export var base_attack_cooldown_in_seconds: float
+@export var light_radius_cost_percentage: float
 
 var cooldown_timer: Timer
 var can_attack: bool
@@ -13,6 +14,7 @@ func _ready() -> void:
     cooldown_timer.wait_time = base_attack_cooldown_in_seconds
     cooldown_timer.autostart = false
     cooldown_timer.timeout.connect(enable_attacking)
+    light_radius_cost_percentage *= -1
     enable_attacking()
     print(can_attack)
     add_child(cooldown_timer)

@@ -21,10 +21,12 @@ func _ready() -> void:
 func change_light_energy_by_percent(percent_to_change: float) -> void:
     current_light_energy_percent += percent_to_change
     # change the brightness to use the percent but do not allow lower than 0%
-    energy = initial_light_energy * minf(0, current_light_energy_percent)
+    current_light_energy_percent = max(0, current_light_energy_percent)
+    energy = initial_light_energy * current_light_energy_percent
 
 ## Used to change the percent scaling of the light size and then update the light size.
 func change_light_size_by_percent(percent_to_change: float) -> void:
     current_light_size_percent += percent_to_change
     # change the size to use the percent but do not allow lower than 0%
-    texture_scale = initial_light_size * minf(0, current_light_size_percent)
+    current_light_size_percent = max(0, current_light_size_percent)
+    texture_scale = initial_light_size * current_light_size_percent
