@@ -19,6 +19,8 @@ var _current_target: Node2D = null
 ## If the update target timer is running.
 var _update_target_timer_running: bool = false
 
+@onready var light_radius = get_node("/root/Sandbox/Player/PlayerController/LightComponent")
+
 func _ready() -> void:
 	# Abstract class instantiation error
 	lock_on_area.body_entered.connect(_add_target)
@@ -31,17 +33,21 @@ func on_attack_input_started() -> void:
 	var executed: bool = attacks[0].start_attack(_get_current_target_or_direction())
 	if executed:
 		on_attack_started.emit()
+		light_radius.change_light_size_by_percent(attacks[0].light_radius_cost_percentage)
 
 func on_attack_input() -> void:
 	var executed: bool = attacks[0].attack(_get_current_target_or_direction())
 	if executed:
 		on_attack.emit()
+		light_radius.change_light_size_by_percent(attacks[0].light_radius_cost_percentage)
+		
 
 
 func on_attack_input_cancelled() -> void:
 	var executed: bool = attacks[0].cancel_attack(_get_current_target_or_direction())
 	if executed:
 		on_attack_cancelled.emit()
+		light_radius.change_light_size_by_percent(attacks[0].light_radius_cost_percentage)
 
 
 ## Checks each target in the lock on area and then determines which is the closest. Emits an on_target_change signal if the target has changed.
